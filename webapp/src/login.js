@@ -9,6 +9,7 @@ let app = new Vue({
   },
   methods: {
     submit: function () {
+      console.log(1123)
       this.message = ''
       if (!!!this.user.account || !!!this.user.password) {
         this.message = '账号或密码不能为空'
