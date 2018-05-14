@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --color",
+    "start": "webpack-dev-server",
     "build": "webpack-cli"
   },
   "author": "ovaphlow",
@@ -21,6 +21,7 @@
     "jquery": "^3.3.1",
     "vue": "^2.5.16",
     "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.14"
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "^3.1.4"
   }
 }

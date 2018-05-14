@@ -10,13 +10,11 @@ let app = new Vue({
   methods: {
     filter: () => {
       let category = document.getElementById('category')
-      let district = document.getElementById('district')
       axios({
         method: 'POST',
         url: './api/news/filter',
         data: {
           category: category.value,
-          district: district.value
         },
         responseType: 'json'
       }).then(response => {
