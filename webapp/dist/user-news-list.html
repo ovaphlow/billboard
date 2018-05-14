@@ -22,10 +22,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="./">首页</a>
+          <a class="nav-link" href="./">首页</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="./resume.html">求职<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="./resume.html">求职</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="./user.html">用户中心</a>
@@ -34,50 +34,28 @@
     </div>
   </nav>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <select class="form-control" id="location">
-            <option value="">不限地区</option>
-            <option value="">阿城区</option>
-            <option value="">道里区</option>
-            <option value="">道外区</option>
-            <option value="">呼兰区</option>
-            <option value="">南岗区</option>
-            <option value="">平房区</option>
-            <option value="">松北区</option>
-            <option value="">香坊区</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="form-group">
-          <select class="form-control" id="category">
-            <option value="">不限类别</option>
-            <option value="">财务 / 行政</option>
-            <option value="">餐饮 / 服务</option>
-            <option value="">技工 / 普工</option>
-            <option value="">物流 / 交通</option>
-            <option value="">销售 / 客服</option>
-            <option value="">兼职</option>
-            <option value="">其它</option>
-          </select>
-        </div>
-      </div>
-    </div>
+  <div class="container-fluid" style="padding-top:0.5em;">
+    <h3>
+      我的消息
+      <button type="button" class="btn float-right" id="new">
+        <i class="fa fa-plus"></i>
+        发布消息
+      </button>
+    </h3>
   </div>
 
+  <div class="clearfix"></div>
+  <p><br/></p>
+
   <div id="list">
-    <div class="card w-100" style="margin-top:1em">
+    <div class="card w-100" style="margin-top:1em" v-for="c in content">
       <div class="card-header">
         <img class="mr-3" src="/assets/image/wallhaven-20867.jpg" alt="image" style="width:2em;height:2em">
-        用户名
+        {{ c.user_name }}
       </div>
       <div class="card-body">
-        <h5 class="card-title">标题</h5>
-        <p class="card-text">正文</p>
+        <h5 class="card-title">{{ c.title }}</h5>
+        <p class="card-text">{{ c.content }}</p>
         <ul class="list-inline text-muted float-right">
           <li class="list-inline-item float-left">
             <span class="float-right">2018-04-03 21:55</span>
@@ -95,11 +73,31 @@
   </div>
 
   <script src="./lib/jquery/dist/jquery.slim.min.js"></script>
-  <!-- <script src="/lib/popper.js/dist/popper.min.js"></script> -->
+  <!-- <script src="./lib/popper.js/dist/popper.min.js"></script> -->
   <script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="./lib/axios/dist/axios.min.js"></script>
   <script src="./lib/vue.min.js"></script>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      axios({
+        method: 'GET',
+        url: './api/news/user/' + localStorage.getItem('auth'),
+        responseType: 'json'
+      }).then(function (response) {
+        var list = new Vue({
+          el: '#list',
+          data: response.data
+        })
+      })
+    })
+  </script>
+
+  <script>
+    document.getElementById('new').addEventListener('click', function () {
+      location.href = './user-news-save.html'
+    })
+  </script>
 </body>
 
 </html>
