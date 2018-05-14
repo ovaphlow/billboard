@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>#billboard</title>
+
+  <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+  <div id="navbar"></div>
+
+  <div id="app" class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <p class="lead">我的简历</p>
+      </div>
+
+      <div class="form-group col-12">
+        <label>姓名</label>
+        <input type="text" class="form-control">
+      </div>
+
+      <div class="form-group col-6">
+        <label>性别</label>
+        <select class="form-control">
+          <option value="女">女</option>
+          <option value="男">男</option>
+        </select>
+      </div>
+      <div class="form-group col-6">
+        <label>出生日期</label>
+        <input type="date" class="form-control">
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="col-12">
+        <p class="lead text-secondary">教育经历</p>
+      </div>
+
+      <div class="col-12">
+        <ul class="list-group">
+          <li class="list-group-item">
+            XX 大学 - XXXX 专业
+            <span class="pull-right text-secondary">
+              2011-09 至 2014-07
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <p><br></p>
+
+      <div class="col-12">
+        <p class="lead text-secondary">工作经历</p>
+      </div>
+
+      <div class="col-12">
+        <ul class="list-group">
+          <li class="list-group-item">
+            XXXXX 公司 - XXX 职位
+            <span class="pull-right text-secondary">
+              2014-08 至 2018-03
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <p><br></p>
+
+      <div class="col-12">
+        <button type="button" class="btn btn-primary btn-lg btn-block">
+          <i class="fa fa-check-square-o"></i>
+          保存
+        </button>
+        <button type="button" class="btn btn-light btn-lg btn-block">
+          <i class="fa fa-angle-left"></i>
+          返回
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./lib/axios/dist/axios.min.js"></script>
+  <script src="./lib/vue/dist/vue.js"></script>
+  <script src="./lib/jquery/dist/jquery.slim.min.js"></script>
+  <!-- <script src="./lib/popper.js/dist/popper.min.js"></script> -->
+  <script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script src="./assets/js/user.resume.js"></script>
+</body>
+
+</html>
