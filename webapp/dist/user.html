@@ -13,20 +13,82 @@
 </head>
 
 <body>
-  <div id="navbar"></div>
+  <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-dark">
+    <span class="navbar-brand">#billboard</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="container-fluid" id="app">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="./">首页</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./resume.html">求职</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="./user.html">用户中心 <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
+  <div class="container-fluid">
+    <p><br></p>
+    <div class="media workspace">
+      <img class="mr-3" src="" alt="头像">
+      <div class="media-body">
+        <h5 class="mt-0">用户名</h5>
+        <p class="text-muted">登录时间：</p>
+      </div>
+    </div>
+
+    <div class="clearfix"> </div>
+    <p><br></p>
+
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-block">我的金币</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-block" id="news-list">我的消息</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-block">我的收藏</button>
+      </div>
+    </div>
+
+    <div class="clearfix"> </div>
+    <p><br></p>
+
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action">
+        企业认证
+        <i class="fa fa-angle-right float-right"></i>
+      </a>
+      <a href="#" class="list-group-item list-group-item-action">
+        联系我们
+        <i class="fa fa-angle-right float-right"></i>
+      </a>
+      <a href="#" class="list-group-item list-group-item-action">
+        使用须知
+        <i class="fa fa-angle-right float-right"></i>
+      </a>
+    </div>
   </div>
 
-  <script src="./lib/axios/dist/axios.min.js"></script>
-  <script src="./lib/vue/dist/vue.min.js"></script>
   <script src="./lib/jquery/dist/jquery.slim.min.js"></script>
-  <!-- <script src="/lib/popper.js/dist/popper.min.js"></script> -->
+  <!-- <script src="./lib/popper.js/dist/popper.min.js"></script> -->
   <script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
 
-  <script src="./assets/js/user.js"></script>
-
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('news-list').addEventListener('click', function () {
+        location.href = './user-news-list.html'
+      })
+    })
+  </script>
 </body>
 
 </html>
