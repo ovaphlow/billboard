@@ -1,7 +1,7 @@
 {
   "name": "billboard-frontend",
   "version": "1.0.0",
-  "description": "",
+  "description": "my frist pratice project",
   "main": "index.js",
   "scripts": {
     "watch": "webpack --watch",

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>#billboard</title>
+
+  <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-dark">
+    <span class="navbar-brand">#billboard</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="./">首页</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./resume.html">求职</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./user.html">用户中心</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid" style="padding-top:0.5em;">
+    <h3>
+      发布消息
+      <button type="button" class="btn float-right" id="back">
+        <i class="fa fa-arrow-left"></i>
+        返回
+      </button>
+    </h3>
+  </div>
+
+  <div class="clearfix"></div>
+  <p><br/></p>
+
+  <div class="alert alert-danger" role="alert" style="display:none" id="tip"> </div>
+
+  <div class="container-fluid">
+    <div class="control-group">
+      <label>标题</label>
+      <input type="text" placeholder="限制 30 字以内" class="form-control" id="title">
+    </div>
+
+    <div class="clearfix"></div>
+    <p><br></p>
+
+    <div class="control-group">
+      <label>内容</label>
+      <textarea rows="5" class="form-control" id="content"></textarea>
+    </div>
+
+    <div class="clearfix"></div>
+    <p><br></p>
+
+    <div class="control-group">
+      <label>类别</label>
+      <select class="form-control" id="category">
+        <option value="">未选择</option>
+        <option value="财务 / 行政">财务 / 行政</option>
+        <option value="餐饮 / 服务">餐饮 / 服务</option>
+        <option value="技工 / 普工">技工 / 普工</option>
+        <option value="物流 / 交通">物流 / 交通</option>
+        <option value="销售 / 客服">销售 / 客服</option>
+        <option value="兼职">兼职</option>
+        <option value="其它">其它</option>
+      </select>
+    </div>
+
+    <div class="clearfix"></div>
+    <p><br></p>
+
+    <div class="control-group">
+      <label>地区</label>
+      <select class="form-control" id="district">
+        <option value="">未选择</option>
+        <option value="阿城区">阿城区</option>
+        <option value="道里区">道里区</option>
+        <option value="道外区">道外区</option>
+        <option value="呼兰区">呼兰区</option>
+        <option value="南岗区">南岗区</option>
+        <option value="平房区">平房区</option>
+        <option value="松北区">松北区</option>
+        <option value="香坊区">香坊区</option>
+      </select>
+    </div>
+
+    <div class="clearfix"></div>
+    <p><br></p>
+
+    <button type="button" class="btn btn-primary btn-block btn-lg" id="submit">
+      <i class="fa fa-check"></i>
+      提交
+    </button>
+  </div>
+
+  <script src="./lib/jquery/dist/jquery.slim.min.js"></script>
+  <!-- <script src="/lib/popper.js/dist/popper.min.js"></script> -->
+  <script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="./lib/axios/dist/axios.min.js"></script>
+  <script src="./lib/vue.min.js"></script>
+
+  <script>
+    document.getElementById('submit').addEventListener('click', function () {
+      var tip = document.getElementById('tip')
+      tip.innerHTML = ''
+      tip.style.display = 'none'
+      var title = document.getElementById('title')
+      if (!!!title.value) {
+        tip.innerHTML = '请填写标题'
+        tip.style.display = 'block'
+        return false
+      }
+      var content = document.getElementById('content')
+      if (!!!content.value) {
+        tip.innerHTML = '请填写内容'
+        tip.style.display = 'block'
+        return false
+      }
+      var category = document.getElementById('category')
+      if (!!!category.value) {
+        tip.innerHTML = '请选择类别'
+        tip.style.display = 'block'
+        return false
+      }
+      var district = document.getElementById('district')
+      if (!!!district.value) {
+        tip.innerHTML = '请选择地区'
+        tip.style.display = 'block'
+        return false
+      }
+      axios({
+        method: 'POST',
+        url: './api/news',
+        data: {
+          user: localStorage.getItem('auth'),
+          title: title,
+          content: content,
+          category: category,
+          district: district
+        },
+        responseType: 'json'
+      }).then(function (response) {
+        console.log(response.data)
+      })
+    })
+  </script>
+
+  <script>
+    document.getElementById('back').addEventListener('click', function () {
+      location.href = './user-news-list.html'
+    })
+  </script>
+
+</body>
+
+</html>

@@ -5,8 +5,9 @@ module.exports = {
   entry: {
     'index': './src/index.js',
 
-    'user': './src/user.js',
     'login': './src/login.js',
+    'user': './src/user.js',
+    'user.resume': './src/user.resume.js',
 
     'resume': './src/resume.js'
   },
