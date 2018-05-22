@@ -13,7 +13,7 @@ const prodConfig = {
     database: '',
     schema: 'billboard',
     pool: {
-      max: os.cpus().length + 1,
+      max: os.cpus().length * 2 + 1,
       min: 0,
       idle: 10000
     },
@@ -31,12 +31,12 @@ const develConfig = {
   },
   database: {
     user: 'ovaphlow',
-    password: 'ovaph@CDT.1123',
-    host: '192.168.0.108',
+    password: 'ovaph@HD.1123',
+    host: '192.168.1.15',
     database: '',
     schema: 'billboard',
     pool: {
-      max: os.cpus().length + 1,
+      max: os.cpus().length * 2 + 1,
       min: 0,
       idle: 10000
     },

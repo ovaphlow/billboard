@@ -10,10 +10,31 @@ logger.level = 'debug'
 
 const router = express.Router()
 
+router.route('/:uuid').get((req, res) => {
+  let sql = `
+    select
+      uuid, account, nickname
+    from
+      ${config.database.schema}.user
+    where
+      uuid = :uuid
+    limit 1
+  `
+  sequelize.query(sql, {
+    replacements: { uuid: req.params.uuid },
+    type: sequelize.QueryTypes.SELECT
+  }).then(result => {
+    res.json({ content: result, message: '', status: 200 })
+  }).catch(error => {
+    logger.error(error)
+    res.json({ content: '', message: '服务器错误', status: 500 })
+  })
+})
+
 router.route('/login').post((req, res) => {
   let sql = `
     select
-      uuid, account, password
+      uuid, account, password, nickname
     from
       ${config.database.schema}.user
     where
@@ -29,7 +50,7 @@ router.route('/login').post((req, res) => {
     }
     if (rows[0].password === req.body.password) {
       res.json({
-        content: { uuid: rows[0].uuid, account: rows[0].account },
+        content: { uuid: rows[0].uuid, account: rows[0].account, nickname: rows[0].nickname },
         message: 200,
       })
     }
