@@ -8,7 +8,7 @@ let app = new Vue({
     message: '',
   },
   methods: {
-    filter: () => {
+    filter: function () {
       let category = document.getElementById('category')
       axios({
         method: 'POST',
@@ -22,7 +22,7 @@ let app = new Vue({
         app.message = response.data.message
       })
     },
-    favorite: event => {
+    favorite: function () {
       axios({
         method: 'POST',
         url: './api/user/favorite',
@@ -39,7 +39,7 @@ let app = new Vue({
         }
       })
     },
-    reply: event => {
+    reply: function (event) {
       window.console.log(event.target.textContent.trim())
       window.console.log(event.target.getAttribute('data-uuid'))
     }
@@ -50,6 +50,7 @@ let app = new Vue({
       url: './api/job/',
       responseType: 'json'
     }).then(response => {
+      console.log(response.data.content)
       if (response.data.message === 200) {
         this.content = response.data.content
       } else {

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>#billboard</title>
+
+  <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+  <div id="navbar"></div>
+
+  <div id="app" class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <p class="lead" style="text-align:center; font-family:'微软雅黑'">我的简历</p>
+      </div>
+
+      <div class="form-group col-12">
+        <p class="lead text-secondary">姓名</p>
+        <input type="text" class="form-control" v-model="resume.name">
+      </div>
+
+      <div class="form-group col-6">
+        <p class="lead text-secondary">性别</p>
+        <select class="form-control" v-model="resume.gender">
+          <option value="女">女</option>
+          <option value="男" selected>男</option>
+        </select>
+      </div>
+      <div class="form-group col-6">
+        <p class="lead text-secondary">出生日期</p>
+        <input type="date" class="form-control" v-model="resume.birthday">
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="form-group col-12">
+      <p class="lead text-secondary">手机号码</p>
+      <input type="text" class="form-control" v-model="resume.phone">
+      </div>
+
+      <div class="form-group col-12">
+      <p class="lead text-secondary">邮箱地址</p>
+      <input type="text" class="form-control" v-model="resume.email">
+      </div>
+
+
+      <div class="col-12">
+        <p class="lead text-secondary">现居住地址</p>
+      </div>
+      <div class="form-group col-6">
+        <select class="form-control" v-model="resume.area">
+          <option value="黑龙江">黑龙江</option>
+          <option value="河北">河北</option>
+        </select>
+      </div>
+      <div class="form-group col-6">
+        <select class="form-control" v-model="resume.area">
+          <option value="哈尔滨">哈尔滨</option>
+          <option value="大庆">大庆</option>
+        </select>
+      </div>
+
+      <div class="clearfix"></div>
+
+
+      <div class="col-12">
+        <p class="lead text-secondary">教育经历</p>
+      </div>
+
+      <div class="col-12">
+        <ul class="list-group">
+          <a href="user.experience.html" class="list-group-item" style="height:45px;">
+				<span class="pull-right text-secondary">
+                <div class="fa fa-angle-right" aria-hidden="true"> </div>
+            </span>
+          </a>
+        </ul>
+      </div>
+
+      <p><br><br></p>
+
+      <div class="col-12">
+        <p class="lead text-secondary">工作经历</p>
+      </div>
+
+      <div class="col-12">
+        <ul class="list-group">
+          <a href="user.woke-experience.html" class="list-group-item" style="height:45px;">
+				<span class="pull-right text-secondary">
+             <div class="fa fa-angle-right" aria-hidden="true"> </div>
+            </span>
+          </a>
+        </ul>
+      </div>
+
+      <p><br><br></p>
+
+      <div class="col-12">
+        <p class="lead text-secondary">自我评价</p>
+        <TEXTAREA class="col-12" style="height:150px; border-radius:5px 5px 5px 5px;"  NAME="" ROWS="" COLS=""></TEXTAREA>
+      </div>
+
+      <div class="col-12" style="margin-top:30px;">
+        <button type="button" class="btn btn-primary btn-lg btn-block">
+          <i class="fa fa-check-square-o"></i>
+          保存
+        </button>
+        <button type="button" class="btn btn-light btn-lg btn-block">
+          <i class="fa fa-angle-left"></i>
+          返回
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./lib/axios/dist/axios.min.js"></script>
+  <script src="./lib/vue/dist/vue.js"></script>
+  <script src="./lib/jquery/dist/jquery.slim.min.js"></script>
+  <!-- <script src="./lib/popper.js/dist/popper.min.js"></script> -->
+  <script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script src="./assets/js/user.resume.js"></script>
+</body>
+
+</html>
