@@ -64,11 +64,11 @@
       <div class="clearfix"></div>
 
 
-      <div class="col-12">
+      <div style="width:100%">
         <p class="lead text-secondary">教育经历</p>
       </div>
 
-      <div class="col-12">
+      <div style="width:100%">
         <ul class="list-group">
           <a href="user.experience.html" class="list-group-item" style="height:45px;">
 				<span class="pull-right text-secondary">
@@ -80,11 +80,11 @@
 
       <p><br><br></p>
 
-      <div class="col-12">
+      <div style="width:100%"">
         <p class="lead text-secondary">工作经历</p>
       </div>
 
-      <div class="col-12">
+      <div style="width:100%">
         <ul class="list-group">
           <a href="user.woke-experience.html" class="list-group-item" style="height:45px;">
 				<span class="pull-right text-secondary">
@@ -96,12 +96,12 @@
 
       <p><br><br></p>
 
-      <div class="col-12">
+      <div style="width:100%">
         <p class="lead text-secondary">自我评价</p>
         <TEXTAREA class="col-12" style="height:150px; border-radius:5px 5px 5px 5px;"  NAME="" ROWS="" COLS=""></TEXTAREA>
       </div>
 
-      <div class="col-12" style="margin-top:30px;">
+      <div  style=" width:100%; margin-top:30px;">
         <button type="button" class="btn btn-primary btn-lg btn-block">
           <i class="fa fa-check-square-o"></i>
           保存
@@ -126,9 +126,11 @@
  <script>
 window.onload=function(){  
   //创建省份  
-    createProvinces();  
+    createProvinces();
+	
+	
      //选择省份后，切换对应城市列表  
-    province.onchange=createCities;  
+     
 }  
 //声明省份数组  
 var provinces=['请选择','北京','上海','天津','重庆','河北','山西','内蒙古','辽宁','吉林','黑龙江','江苏','浙江','安徽','福建','江西','山东','河南','湖北','湖南','广东','广西','海南','四川','贵州','云南','西藏','陕西','甘肃','宁夏','青海','新疆','香港','澳门','台湾']; 
@@ -180,8 +182,11 @@ function createProvinces(){
         //获取下拉列表集合实例  
         var op=new Option(provinces[i],provinces[i]);  
         //将下拉列表各元素添加到省份元素中  
-        province.options.add(op);  
+        province.options.add(op); 
+		province.onchange=createCities; 
+		
     }  
+
 }  
   
 function createCities(){  
