@@ -25,7 +25,8 @@ router.route('/').get((req, res) => {
     type: sequelize.QueryTypes.SELECT
   }).then(rows => {
     res.json({ content: rows, message: 200 })
-  }).catch(error => {
+  }).catch(err => {
+    logger.error(err)
     res.json({ content: '', message: 500 })
   })
 })
