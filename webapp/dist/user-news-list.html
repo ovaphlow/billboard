@@ -7,22 +7,24 @@
 
   <title>#billboard</title>
 
-  <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
   <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-dark">
     <span class="navbar-brand">#billboard</span>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="./">首页</span></a>
+          <a class="nav-link" href="./">首页</span>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="./resume.html">求职</a>
@@ -45,13 +47,14 @@
   </div>
 
   <div class="clearfix"></div>
-  <p><br/></p>
+  <p>
+    <br/>
+  </p>
 
   <div id="list">
     <div class="card w-100" style="margin-top:1em" v-for="c in content">
       <div class="card-header">
-        <img class="mr-3" src="/assets/image/wallhaven-20867.jpg" alt="image" style="width:2em;height:2em">
-        {{ c.user_name }}
+        <img class="mr-3" src="/assets/image/wallhaven-20867.jpg" alt="image" style="width:2em;height:2em"> {{ c.user_name }}
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ c.title }}</h5>
@@ -72,11 +75,10 @@
     <hr/>
   </div>
 
-  <script src="./lib/jquery/dist/jquery.slim.min.js"></script>
-  <!-- <script src="./lib/popper.js/dist/popper.min.js"></script> -->
-  <script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="./lib/axios/dist/axios.min.js"></script>
-  <script src="./lib/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.min.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {

@@ -2,7 +2,6 @@ const express = require('express')
 const log4js = require('log4js')
 
 const config = require('../config')
-const mysql = require('../util/mysql2')
 const sequelize = require('../util/sequelize')
 
 const logger = log4js.getLogger()
@@ -54,7 +53,8 @@ router.route('/login').post((req, res) => {
         message: 200,
       })
     }
-  }).catch(error => {
+  }).catch(err => {
+    logger.error(err)
     res.json({ content: '', message: 500 })
   })
 })

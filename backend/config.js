@@ -31,12 +31,12 @@ const develConfig = {
   },
   database: {
     user: 'ovaphlow',
-    password: 'ovaph@HD.1123',
-    host: '192.168.1.15',
+    password: 'ovaph@CDT.1123',
+    host: '192.168.0.108',
     database: '',
     schema: 'billboard',
     pool: {
-      max: os.cpus().length * 2 + 1,
+      max: os.cpus().length * 2,
       min: 0,
       idle: 10000
     },
