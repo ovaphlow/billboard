@@ -40,6 +40,9 @@ app.use('/api/user', user)
 const user1 = require('./routes/user.resume')
 app.use('/api/user1', user1)
 
+const company = require('./routes/company')
+app.use('/api/company', company)
+
 // const news = require('./routes/news')
 // app.use('/api/news', news)
 

@@ -11,22 +11,24 @@ logger.level = 'debug'
 const router = express.Router()
 
 
-router.route('/addResume').post((req, res) => {
+/**
+ * 增加个人档案
+ */
+router.route('/:id/addResume').post((req, res) => {
   let sql = `
     insert into 
-    ${config.database.schema}.user_resume(name, sex, phone, e_mail, adress, education, work_experience, personal_data)
-    values(:name, :sex, :phone, :e_mail, :adress, :education, :work_experience, :personal_data)
+    ${config.database.schema}.user_resume(name, sex, phone, e_mail, adress, brithday, user_id)
+    values(:name, :sex, :phone, :e_mail, :adress, :brithday, :id)
   `
   sequelize.query(sql, {
     replacements: { 
+      id: req.params.id,
       name: req.body.name,
       sex: req.body.sex,
       phone: req.body.phone,
-      e_mail: req.body  .e_mail,
-      adress: req.body.adress,
-      education: req.body.education,
-      work_experience: req.body.work_experience,
-      personal_data: req.body.personal_data
+      brithday: req.body.brithday,
+      e_mail: req.body.e_mail,
+      adress: req.body.adress
     },
     type: sequelize.QueryTypes.INSERT
   }).then(result => {
@@ -37,7 +39,11 @@ router.route('/addResume').post((req, res) => {
   })
 })
 
-router.route('/deleteResume/:id').get((req, res) => {
+
+/**
+ * 删除个人档案
+ */
+router.route('/:id/deleteResume').get((req, res) => {
   let sql = `
     delete from ${config.database.schema}.user_resume where id = :id
   `
@@ -56,12 +62,15 @@ router.route('/deleteResume/:id').get((req, res) => {
 })
 
 
-router.route('/findResume').get((req, res) => {
+/**
+ * 查询个人档案 这个查询应该没什么用，后期更改。
+ */
+router.route('/:id/findResume').get((req, res) => {
   let sql = `
-    select id, name, sex, phone, e_mail, adress, education, work_experience, personal_data form ${config.database.schema}.user_resume
+    select id, name, sex, phone, e_mail, adress, brithday ${config.database.schema}.user_resume where id = :id
   `
   sequelize.query(sql, {
-    replacements: {},
+    replacements: {id:req.param.id},
     type: sequelize.QueryTypes.SELECT
   }).then(result => {
     res.json({ content: result, message: '', status: 200 })
@@ -72,7 +81,10 @@ router.route('/findResume').get((req, res) => {
   })
 })
 
-router.route('/updateResume').post((req, res) => {
+/**
+ * 修改个人id
+ */
+router.route('/:id/updateResume').post((req, res) => {
   let sql = `
     update ${config.database.schema}.user_resume set 
     name = :name,
@@ -80,9 +92,7 @@ router.route('/updateResume').post((req, res) => {
     phone = :phone,
     e_mail = :e_mail,
     adress = :adress,
-    education = :education,
-    work_experience = :work_experience,
-    personal_data = :personal_data
+    birthday = :birthday
     where id = :id
   `
   sequelize.query(sql, {
@@ -91,11 +101,9 @@ router.route('/updateResume').post((req, res) => {
       name: req.body.name,
       sex: req.body.sex,
       phone: req.body.phone,
-      e_mail: req.body  .e_mail,
-      adress: req.body.adress,
-      education: req.body.education,
-      work_experience: req.body.work_experience,
-      personal_data: req.body.personal_data
+      brithday: req.body.brithday,
+      e_mail: req.body.e_mail,
+      adress: req.body.adress
     },
     type: sequelize.QueryTypes.UPDATE
   }).then(result => {

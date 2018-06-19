@@ -15,11 +15,20 @@ let app = new Vue({
       methos:'POST',
       url:'/api/user1/' + user.id + '/resume',
       data:{
-        name: this.resume.name
+        name: this.resume.name,
+        sex: this.resume.gender,
+        sex: this.resume.birthday,
+        phone: this.resume.phone,
+        e_mail: this.resume.email,
+        adress: this.resume.adress= 'a',
       },
       responseType:'json'
     }).then(function(){
-      console.log()
+      if(response.data.message === 200){
+          location.href= './user.html'
+      }else{
+        alert(response.data.message)
+      }
     })
   }
 })
