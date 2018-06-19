@@ -32,7 +32,7 @@ const develConfig = {
   database: {
     user: 'ovaphlow',
     password: 'ovaph@CDT.1123',
-    host: '192.168.0.108',
+    host: '192.168.1.193',
     database: '',
     schema: 'billboard',
     pool: {

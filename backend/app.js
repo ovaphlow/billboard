@@ -37,6 +37,9 @@ app.use('/api/job', job)
 const user = require('./routes/user')
 app.use('/api/user', user)
 
+const user1 = require('./routes/user.resume')
+app.use('/api/user1', user1)
+
 // const news = require('./routes/news')
 // app.use('/api/news', news)
 
