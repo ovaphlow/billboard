@@ -1,8 +1,6 @@
 import navbar from './navbar.html'
 document.getElementById('navbar').innerHTML = navbar
 
-console.log('个人简历编辑页面')
-
 let user = JSON.parse(sessionStorage.getItem('auth'))
 let app = new Vue({
   el: '#app',

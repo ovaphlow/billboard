@@ -17,7 +17,7 @@ const router = express.Router()
 router.route('/:id/addResume').post((req, res) => {
   let sql = `
     insert into 
-    ${config.database.schema}.user_resume(name, sex, phone, e_mail, adress, brithday, user_id)
+      ${config.database.schema}.user_resume(name, sex, phone, e_mail, adress, brithday, user_id)
     values(:name, :sex, :phone, :e_mail, :adress, :brithday, :id)
   `
   sequelize.query(sql, {
@@ -87,12 +87,12 @@ router.route('/:id/findResume').get((req, res) => {
 router.route('/:id/updateResume').post((req, res) => {
   let sql = `
     update ${config.database.schema}.user_resume set 
-    name = :name,
-    sex = :sex,
-    phone = :phone,
-    e_mail = :e_mail,
-    adress = :adress,
-    birthday = :birthday
+      name = :name,
+      sex = :sex,
+      phone = :phone,
+      e_mail = :e_mail,
+      adress = :adress,
+      birthday = :birthday
     where id = :id
   `
   sequelize.query(sql, {
