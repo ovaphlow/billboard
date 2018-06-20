@@ -36,7 +36,7 @@ const develConfig = {
     database: '',
     schema: 'billboard',
     pool: {
-      max: os.cpus().length * 2 + 1,
+      max: os.cpus().length * 2,
       min: 0,
       idle: 10000
     },
