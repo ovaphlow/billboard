@@ -52,6 +52,11 @@ router.route('/login').post((req, res) => {
         content: { uuid: rows[0].uuid, account: rows[0].account, nickname: rows[0].nickname },
         message: 200,
       })
+    }else{
+      res.json({
+        content: '',
+        message: 100,
+      })
     }
   }).catch(err => {
     logger.error(err)
