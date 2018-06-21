@@ -169,4 +169,154 @@ router.route('/addWord').post((req, res) => {
     res.json({ content:'', message: '服务器错误', status: 500 })
   })
 })
+
+
+/**
+ * 修改工作经历
+ */
+router.route("/:userId/updateWord").post((req, res) =>{
+  let sql = `
+    update ${config.database.schema}.work_experience
+    set
+    company_name = :company_name,
+    station = :station,
+    hiredate = :hiredate,
+    leavedate = :leavedate,
+    income = :income
+    where
+    id = :id
+  `
+  sequelize.query(sql, {
+    replacements: {
+      company_name: req.body.company_name,
+      station: req.body.station,
+      hiredate: req.body.hiredate,
+      leavedate: req.body.leavedate,
+      income: req.body.income
+    },
+    type: sequelize.QueryTypes.UPDATE
+  }).then(result =>{
+    res.json({content:'', message:'', status:200})
+  }).catch(err =>{
+    res.json({content:'',message:'',status:500})
+  })
+})
+
+
+/**
+ * 修改教育经历
+ */
+router.route("/:id/updateWord").post((req, res) =>{
+  let sql = `
+    update ${config.database.schema}.education_experience
+    set
+    school = :school,
+    qualifications = :qualifications,
+    intake = :intake,
+    graduation_time = :graduation_time,
+    major_name = :major_name
+    where 
+    id = :id
+  `
+  sequelize.query(sql, {
+    replacements: {
+      school: req.body.school,
+      qualifications: req.body.qualifications,
+      intake: req.body.intake,
+      graduation_time: req.body.graduation_time,
+      major_name: req.body.major_name
+    },
+    type: sequelize.QueryTypes.UPDATE
+  }).then(result =>{
+    res.json({content:'', message:'', status:200})
+  }).catch(err =>{
+    res.json({content:'',message:'',status:500})
+  })
+})
+
+/**
+ * 删除教育经历
+ */
+router.route("/:id/deleteEducation").post((req, res) =>{
+  let sql = `
+      delete from ${config.database.schema}.education_experience
+      where
+      id = :id  
+    `
+  sequelize.query(sql, {
+    replacements: {
+      id: req.param.id
+    },
+    type: sequelize.QueryTypes.DELETE
+  }).then(result =>{
+    res.json({content:'', message:'', status:200})
+  }).catch(err =>{
+    res.json({content:'',message:'',status:500})
+  })
+})
+
+/**
+ * 删除工作经历
+ */
+router.route("/:id/deleteWork").post((req, res) =>{
+  let sql = `
+      delete from ${config.database.schema}.work_experience
+      where
+      id = :id  
+    `
+  sequelize.query(sql, {
+    replacements: {
+      id: req.param.id
+    },
+    type: sequelize.QueryTypes.DELETE
+  }).then(result =>{
+    res.json({content:'', message:'', status:200})
+  }).catch(err =>{
+    res.json({content:'',message:'',status:500})
+  })
+})
+
+
+/**
+ * 查询教育经历
+ */
+router.route("/:userId/findEducation").post((req, res) =>{
+  let sql = `
+      select school, qualifications, intake, graduation_time, major_name from ${config.database.schema}.education_experience
+      where
+      userId = :userId  
+    `
+  sequelize.query(sql, {
+    replacements: {
+      id: req.param.id
+    },
+    type: sequelize.QueryTypes.SELECT
+  }).then(result =>{
+    res.json({content:'', message:'', status:200})
+  }).catch(err =>{
+    res.json({content:'',message:'',status:500})
+  })
+})
+
+
+/**
+ * 查询工作经历
+ */
+router.route("/:userId/findWork").post((req, res) =>{
+  let sql = `
+      select school, qualifications, intake, graduation_time, major_name from ${config.database.schema}.work_experience
+      where
+      userId = :userId  
+    `
+  sequelize.query(sql, {
+    replacements: {
+      id: req.param.id
+    },
+    type: sequelize.QueryTypes.SELECT
+  }).then(result =>{
+    res.json({content:'', message:'', status:200})
+  }).catch(err =>{
+    res.json({content:'',message:'',status:500})
+  })
+})
 module.exports = router
