@@ -16,32 +16,32 @@ const router = express.Router()
 router.route('/register').post((req, res) => {
   let sql = `
     select
-      username
+      account
     from 
       ${config.database.schema}.company
     where 
-      username= :username
+    account= :account
   `
   sequelize.query(sql, {
-    replacements: { username: req.body.username },
+    replacements: { account: req.body.account },
     type: sequelize.QueryTypes.SELECT
   }).then(resule => {
     if (resule.length == 0) {
       let sql = `
         insert into ${config.database.schema}.company
-        (username, password, company_name, adress, corporation, phone, email)
+        (account, password, name)
         values
-        (:username, :password, :company_name, :adress, :corporation, :phone, :email)
+        (:account, :password, :name)
       `
       sequelize.query(sql, {
         replacements: {
-          username: req.body.username,
+          account: req.body.account,
           password: req.body.password,
-          company_name: req.body.company_name,
-          adress: req.body.adress,
-          corporation: req.body.corporation,
-          phone: req.body.phone,
-          email: req.body.email
+          name: req.body.name,
+          // adress: req.body.adress,
+          // corporation: req.body.corporation,
+          // phone: req.body.phone,
+          // email: req.body.email
         },
         type: sequelize.QueryTypes.INSERT
       }).then(resule => {
@@ -62,32 +62,32 @@ router.route('/register').post((req, res) => {
 /**
  * 企业登录
  */
-router.route("/companyLogin").post((res, req) => {
+router.route("/login").post((req, res) => {
   let sql = `
     select 
-      username, password 
+    account, password 
     from ${config.database.schema}.company
     where 
-      username = :username
+    account = :account
   `
   sequelize.query(sql, {
     replacements: {
-      username: req.body.username,
-      password: req.body.password
+      account: req.body.account,
+      password: req.body.password,
     },
     type: sequelize.QueryTypes.SELECT
   }).then(rows => {
     if (rows.length != 1) {
-      res.json({ content: '', message: '帐号异常', status: 200 })
+      res.json({ content: '', message: '用户名密码错误', stauts: 403 })
       return false;
     }
-    if (row[0].password == req.body.password) {
-      res.json({ content: { username: row[0].username, company_name: row[0].company_name }, message: '登录成功', status: 200 })
+    if (rows[0].password == req.body.password) {
+      res.json({ content: { account: rows[0].account, namename: rows[0].name, id:rows[0].id}, message: '登录成功', stauts: 200 })
     }
   }).catch(error => {
     logger.error(error)
     res.json({
-      content: '', message: '操作失败', status: 200
+      content: '', message: '操作失败', status: 500
     })
   })
 })
@@ -98,7 +98,7 @@ router.route("/companyLogin").post((res, req) => {
 router.route("/company/:companyId").post((res, req) => {
   let sql = `
     select
-      username, company_name, adress, phone, e_mail, corporation
+      account, name
     from ${config.database.schema}.company
     where 
       id = :companyId

@@ -31,7 +31,7 @@ class CompanyRegister extends React.Component {
     }
 
     axios({
-      method: 'GET',
+      method: 'POST',
       url: './api/company/register',
       data: {
         name: document.getElementById('name').value,

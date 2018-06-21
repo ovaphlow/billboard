@@ -23,9 +23,8 @@ class CompanyLogin extends React.Component {
       this.setState({ message: '请完整填写登录信息。' })
       return false
     }
-
     axios({
-      method: 'GET',
+      method: 'POST',
       url: './api/company/login',
       data: {
         account: document.getElementById('account').value,

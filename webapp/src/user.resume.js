@@ -21,14 +21,14 @@ let app = new Vue({
           phone: this.resume.phone,
           e_mail: this.resume.email,
           adress: this.resume.adress= 'a',
+          personal: this.resume.personal
         },
         responseType:'json'
       }).then(response => {
         if(response.data.status === 200){
-          console.log('11111-------')
             location.href= './user.html'
         }else{
-          alert(response.data.message)
+          message = response.data.message
         }
       })
     }
