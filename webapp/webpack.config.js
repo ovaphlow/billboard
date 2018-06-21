@@ -1,15 +1,20 @@
 const { resolve } = require('path')
 
 module.exports = {
+  // mode: 'development',
   mode: 'production',
+
   entry: {
     'index': './src/index.js',
 
     'login': './src/login.js',
     'user': './src/user.js',
     'user.resume': './src/user.resume.js',
+    'resume': './src/resume.js',
 
-    'resume': './src/resume.js'
+    'company.register': './src/company.register.js',
+    'company.login': './src/company.login.js',
+    'company.index': './src/company.index.js'
   },
 
   // devtool: 'inline-source-map',
@@ -39,6 +44,12 @@ module.exports = {
         template.html的文件内容会被转成一个js字符串, 合并到js文件里.
         */
         use: 'html-loader'
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+        options: { presets: ['env'] }
       },
     ]
   },
