@@ -17,16 +17,16 @@ const router = express.Router()
 router.route('/:id/addResume').post((req, res) => {
   let sql = `
     insert into 
-    ${config.database.schema}.user_resume(name, sex, phone, e_mail, adress, brithday, user_id)
-    values(:name, :sex, :phone, :e_mail, :adress, :brithday, :id)
+    ${config.database.schema}.user_resume(name, sex, phone, e_mail, adress, birthday, user_id)
+    values(:name, :sex, :phone, :e_mail, :adress, :birthday, :id)
   `
   sequelize.query(sql, {
     replacements: { 
       id: req.params.id,
       name: req.body.name,
       sex: req.body.sex,
+      birthday: req.body.birthday,
       phone: req.body.phone,
-      brithday: req.body.brithday,
       e_mail: req.body.e_mail,
       adress: req.body.adress
     },
@@ -101,7 +101,7 @@ router.route('/:id/updateResume').post((req, res) => {
       name: req.body.name,
       sex: req.body.sex,
       phone: req.body.phone,
-      brithday: req.body.brithday,
+      birthday: req.body.birthday,
       e_mail: req.body.e_mail,
       adress: req.body.adress
     },
