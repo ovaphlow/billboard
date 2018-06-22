@@ -123,20 +123,19 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.min.js "></script>
 
   <script src="./assets/js/user.resume.js "></script>
- 
 </body>
  <script>
   window.onload = function () {
-    //创建省份  
+    //创建省份
     createProvinces();
 
 
-    //选择省份后，切换对应城市列表  
+    //选择省份后，切换对应城市列表
 
   }
-  //声明省份数组  
+  //声明省份数组
   var provinces = ['请选择', '北京', '上海', '天津', '重庆', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '宁夏', '青海', '新疆', '香港', '澳门', '台湾'];
-  //声明城市数组  
+  //声明城市数组
   var cities = [
     [],
     ['东城', '西城', '崇文', '宣武', '朝阳', '丰台', '石景山', '海淀', '门头沟', '房山', '通州', '顺义', '昌平', '大兴', '平谷', '怀柔', '密云', '延庆'],
@@ -174,16 +173,16 @@
     ['澳门'],
     ['台北', '高雄', '台中', '台南', '屏东', '南投', '云林', '新竹', '彰化', '苗栗', '嘉义', '花莲', '桃园', '宜兰', '基隆', '台东', '金门', '马祖', '澎湖']
   ];
-  //声明获取的省份节点元素  
+  //声明获取的省份节点元素
   var province = document.getElementById("province ");
-  //声明获取的城市节点元素  
+  //声明获取的城市节点元素
   var city = document.getElementById("city ");
 
   function createProvinces() {
     for (var i in provinces) {
-      //获取下拉列表集合实例  
+      //获取下拉列表集合实例
       var op = new Option(provinces[i], provinces[i]);
-      //将下拉列表各元素添加到省份元素中  
+      //将下拉列表各元素添加到省份元素中
       province.options.add(op);
       province.onchange = createCities;
 
@@ -192,15 +191,15 @@
   }
 
   function createCities() {
-    //获取省份选中项的索引  
+    //获取省份选中项的索引
     var index = province.selectedIndex;
-    //将city下的所有原有option移除  
+    //将city下的所有原有option移除
     city.options.length = 0;
-    //添加对应城市下拉列表  
+    //添加对应城市下拉列表
     for (var i in cities[index]) {
       var op = new Option(cities[index][i], cities[index][i]);
       city.options.add(op);
     }
-  } 
+  }
 </script>
 </html>
