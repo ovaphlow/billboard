@@ -17,8 +17,8 @@ const router = express.Router()
 router.route('/:id/addResume').post((req, res) => {
   let sql = `
     insert into 
-    ${config.database.schema}.user_resume(name, sex, phone, e_mail, adress, birthday, user_id, personal)
-    values(:name, :sex, :phone, :e_mail, :adress, :birthday, :id, :personal)
+    ${config.database.schema}.user_resume(name, sex, phone, e_mail, address, birthday, user_id, personal)
+    values(:name, :sex, :phone, :e_mail, :address, :birthday, :id, :personal)
   `
   sequelize.query(sql, {
     replacements: { 
@@ -28,7 +28,7 @@ router.route('/:id/addResume').post((req, res) => {
       birthday: req.body.birthday,
       phone: req.body.phone,
       e_mail: req.body.e_mail,
-      adress: req.body.adress,
+      address: req.body.address,
       personal: req.body.personal
     },
     type: sequelize.QueryTypes.INSERT
@@ -68,7 +68,7 @@ router.route('/:id/deleteResume').get((req, res) => {
  */
 router.route('/:id/findResume').get((req, res) => {
   let sql = `
-    select id, name, sex, phone, e_mail, adress, brithday ${config.database.schema}.user_resume where id = :id
+    select id, name, sex, phone, e_mail, address, brithday ${config.database.schema}.user_resume where id = :id
   `
   sequelize.query(sql, {
     replacements: {id:req.param.id},
@@ -92,7 +92,7 @@ router.route('/:id/updateResume').post((req, res) => {
       sex = :sex,
       phone = :phone,
       e_mail = :e_mail,
-      adress = :adress,
+      address = :address,
       birthday = :birthday,
       personal = :personal
     where id = :id
@@ -105,7 +105,7 @@ router.route('/:id/updateResume').post((req, res) => {
       phone: req.body.phone,
       birthday: req.body.birthday,
       e_mail: req.body.e_mail,
-      adress: req.body.adress,
+      address: req.body.address,
       personal: req.body.personal
     },
     type: sequelize.QueryTypes.UPDATE
