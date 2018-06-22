@@ -174,7 +174,7 @@ router.route('/addWord').post((req, res) => {
 /**
  * 修改工作经历
  */
-router.route("/:userId/updateWord").post((req, res) =>{
+router.route("/:id/updateWord").post((req, res) =>{
   let sql = `
     update ${config.database.schema}.work_experience
     set
@@ -188,6 +188,7 @@ router.route("/:userId/updateWord").post((req, res) =>{
   `
   sequelize.query(sql, {
     replacements: {
+      id: req.param.id,
       company_name: req.body.company_name,
       station: req.body.station,
       hiredate: req.body.hiredate,
@@ -220,6 +221,7 @@ router.route("/:id/updateWord").post((req, res) =>{
   `
   sequelize.query(sql, {
     replacements: {
+      id: req.param.id,
       school: req.body.school,
       qualifications: req.body.qualifications,
       intake: req.body.intake,
@@ -288,7 +290,7 @@ router.route("/:userId/findEducation").post((req, res) =>{
     `
   sequelize.query(sql, {
     replacements: {
-      id: req.param.id
+      userId: req.param.userId
     },
     type: sequelize.QueryTypes.SELECT
   }).then(result =>{
@@ -310,7 +312,7 @@ router.route("/:userId/findWork").post((req, res) =>{
     `
   sequelize.query(sql, {
     replacements: {
-      id: req.param.id
+      userId: req.param.userId
     },
     type: sequelize.QueryTypes.SELECT
   }).then(result =>{
