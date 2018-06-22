@@ -83,7 +83,7 @@ router.route('/:id/findResume').get((req, res) => {
 })
 
 /**
- * 修改个人id
+ * 修改个人档案
  */
 router.route('/:id/updateResume').post((req, res) => {
   let sql = `
@@ -148,7 +148,7 @@ router.route('/addEducation').post((req, res) => {
 /**
  * 增加工作经历
  */
-router.route('/addWord').post((req, res) => {
+router.route('/addWork').post((req, res) => {
   let sql = `
     insert into ${config.database.schema}.work_experience(company_name, station, hiredate, leavedate, income, userId)
     values(:company_name, :station, :hiredate, :leavedate, :income, :userId)
@@ -174,7 +174,7 @@ router.route('/addWord').post((req, res) => {
 /**
  * 修改工作经历
  */
-router.route("/:id/updateWord").post((req, res) =>{
+router.route("/updateWork").post((req, res) =>{
   let sql = `
     update ${config.database.schema}.work_experience
     set
@@ -188,7 +188,7 @@ router.route("/:id/updateWord").post((req, res) =>{
   `
   sequelize.query(sql, {
     replacements: {
-      id: req.param.id,
+      id: req.body.id,
       company_name: req.body.company_name,
       station: req.body.station,
       hiredate: req.body.hiredate,
@@ -199,6 +199,7 @@ router.route("/:id/updateWord").post((req, res) =>{
   }).then(result =>{
     res.json({content:'', message:'', status:200})
   }).catch(err =>{
+    logger.error(err)
     res.json({content:'',message:'',status:500})
   })
 })
@@ -207,7 +208,7 @@ router.route("/:id/updateWord").post((req, res) =>{
 /**
  * 修改教育经历
  */
-router.route("/:id/updateWord").post((req, res) =>{
+router.route("/education").post((req, res) =>{
   let sql = `
     update ${config.database.schema}.education_experience
     set
@@ -221,7 +222,7 @@ router.route("/:id/updateWord").post((req, res) =>{
   `
   sequelize.query(sql, {
     replacements: {
-      id: req.param.id,
+      id: req.body.id,
       school: req.body.school,
       qualifications: req.body.qualifications,
       intake: req.body.intake,
@@ -232,6 +233,7 @@ router.route("/:id/updateWord").post((req, res) =>{
   }).then(result =>{
     res.json({content:'', message:'', status:200})
   }).catch(err =>{
+    logger.error(err)
     res.json({content:'',message:'',status:500})
   })
 })
@@ -239,7 +241,7 @@ router.route("/:id/updateWord").post((req, res) =>{
 /**
  * 删除教育经历
  */
-router.route("/:id/deleteEducation").post((req, res) =>{
+router.route("/:id/deleteEducation").get((req, res) =>{
   let sql = `
       delete from ${config.database.schema}.education_experience
       where
@@ -247,12 +249,13 @@ router.route("/:id/deleteEducation").post((req, res) =>{
     `
   sequelize.query(sql, {
     replacements: {
-      id: req.param.id
+      id: req.params.id
     },
     type: sequelize.QueryTypes.DELETE
   }).then(result =>{
     res.json({content:'', message:'', status:200})
   }).catch(err =>{
+    logger.error(err)
     res.json({content:'',message:'',status:500})
   })
 })
@@ -260,7 +263,7 @@ router.route("/:id/deleteEducation").post((req, res) =>{
 /**
  * 删除工作经历
  */
-router.route("/:id/deleteWork").post((req, res) =>{
+router.route("/:id/deleteWork").get((req, res) =>{
   let sql = `
       delete from ${config.database.schema}.work_experience
       where
@@ -268,7 +271,7 @@ router.route("/:id/deleteWork").post((req, res) =>{
     `
   sequelize.query(sql, {
     replacements: {
-      id: req.param.id
+      id: req.params.id
     },
     type: sequelize.QueryTypes.DELETE
   }).then(result =>{
@@ -282,7 +285,7 @@ router.route("/:id/deleteWork").post((req, res) =>{
 /**
  * 查询教育经历
  */
-router.route("/:userId/findEducation").post((req, res) =>{
+router.route("/:userId/findEducation").get((req, res) =>{
   let sql = `
       select school, qualifications, intake, graduation_time, major_name from ${config.database.schema}.education_experience
       where
@@ -290,12 +293,13 @@ router.route("/:userId/findEducation").post((req, res) =>{
     `
   sequelize.query(sql, {
     replacements: {
-      userId: req.param.userId
+      userId: req.params.userId
     },
     type: sequelize.QueryTypes.SELECT
-  }).then(result =>{
-    res.json({content:'', message:'', status:200})
+  }).then(rows =>{
+    res.json({content: rows, message:'', status:200})
   }).catch(err =>{
+    logger.error(err)
     res.json({content:'',message:'',status:500})
   })
 })
@@ -304,20 +308,22 @@ router.route("/:userId/findEducation").post((req, res) =>{
 /**
  * 查询工作经历
  */
-router.route("/:userId/findWork").post((req, res) =>{
+router.route("/:userId/findWork").get((req, res) =>{
   let sql = `
-      select school, qualifications, intake, graduation_time, major_name from ${config.database.schema}.work_experience
+      select company_name, station, hiredate, leavedate,income 
+      from ${config.database.schema}.work_experience
       where
       userId = :userId  
     `
   sequelize.query(sql, {
     replacements: {
-      userId: req.param.userId
+      userId: req.params.userId
     },
     type: sequelize.QueryTypes.SELECT
-  }).then(result =>{
-    res.json({content:'', message:'', status:200})
+  }).then(rows =>{
+    res.json({content: rows, message:'', status:200})
   }).catch(err =>{
+    logger.error(err)
     res.json({content:'',message:'',status:500})
   })
 })

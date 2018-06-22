@@ -30,8 +30,8 @@ const develConfig = {
     secretKey: 'ovaphlow'
   },
   database: {
-    user: 'ovaphlow',
-    password: 'ovaph@CDT.1123',
+    user: 'billboard',
+    password: 'billb@CDT.1123',
     host: '118.24.1.214',
     database: '',
     schema: 'billboard',
