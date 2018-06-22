@@ -20,7 +20,7 @@ let app = new Vue({
           birthday: this.resume.birthday,
           phone: this.resume.phone,
           e_mail: this.resume.email,
-          adress: this.resume.adress= 'a',
+          address: this.resume.address,
           personal: this.resume.personal
         },
         responseType:'json'
