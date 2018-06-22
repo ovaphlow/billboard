@@ -24,7 +24,7 @@ CREATE TABLE `company` (
   `account` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `adress` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `corporation` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,

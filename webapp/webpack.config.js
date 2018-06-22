@@ -14,7 +14,9 @@ module.exports = {
 
     'company.register': './src/company.register.js',
     'company.login': './src/company.login.js',
-    'company.index': './src/company.index.js'
+    'company.index': './src/company.index.js',
+
+    'hypervisor.login': './src/hypervisor/login.js'
   },
 
   // devtool: 'inline-source-map',
