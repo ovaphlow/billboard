@@ -16,7 +16,9 @@ module.exports = {
     'company.login': './src/company.login.js',
     'company.index': './src/company.index.js',
 
-    'hypervisor.login': './src/hypervisor/login.js'
+    'hypervisor.login': './src/hypervisor/login.js',
+    'hypervisor.index': './src/hypervisor/index.js',
+    'hypervisor.post.save': './src/hypervisor/post.save.js'
   },
 
   // devtool: 'inline-source-map',

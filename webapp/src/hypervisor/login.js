@@ -10,6 +10,8 @@ class Login extends React.Component {
   }
 
   submit() {
+    this.setState({ message: '' })
+
     if (!!!document.getElementById('account').value || !!! document.getElementById('password').value) {
       this.setState({ message: '请完整填写用户信息。' })
       return false
@@ -20,13 +22,14 @@ class Login extends React.Component {
       url: '../api/hypervisor/login',
       data: {
         account: document.getElementById('account').value,
-        password: document.getElementById('password').value
+        password: md5(document.getElementById('password').value)
       },
       responseType: 'json'
     }).then(response => {
       if (response.data.message) {
         this.setState({ message: response.data.message })
       } else {
+        sessionStorage.setItem('auth', JSON.stringify(response.data.content))
         location.href = './index.html'
       }
     })
