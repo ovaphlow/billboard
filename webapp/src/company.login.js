@@ -32,11 +32,12 @@ class CompanyLogin extends React.Component {
       },
       responseType: 'json'
     }).then(response => {
-      if (response.data.stauts === 200) {
+      console.log(response.data)
+      if (response.data.message) {
+        this.setState({ message: response.data.message })
+      } else {
         sessionStorage.setItem('auth', JSON.stringify(response.data.content))
         location.href = './company.index.html'
-      } else {
-        this.setState({ message: response.data.message })
       }
     })
   }

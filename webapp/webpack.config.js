@@ -16,6 +16,9 @@ module.exports = {
     'company.register': './src/company.register.js',
     'company.login': './src/company.login.js',
     'company.index': './src/company.index.js',
+    'company.update': './src/company.update.js',
+    'company.job.list': './src/company.job.list.js',
+    'company.job.save': './src/company.job.save.js',
 
     'hypervisor.login': './src/hypervisor/login.js',
     'hypervisor.index': './src/hypervisor/index.js',

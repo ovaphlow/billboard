@@ -10,6 +10,53 @@ logger.level = 'debug'
 
 const router = express.Router()
 
+router.route('/:uuid/job/').get((req, res) => {
+  let sql = `
+    select
+      *
+    from
+      ${config.database.schema}.job
+    where
+      master_uuid = :uuid
+  `
+  sequelize.query(sql, {
+    replacements: { uuid: req.params.uuid },
+    type: sequelize.QueryTypes.SELECT
+  }).then(result => {
+    res.json({ content: result, message: '' })
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误。' })
+  })
+})
+
+router.route('/:uuid').put((req, res) => {
+  req.body.uuid = req.params.uuid
+  let sql = `
+    update
+      ${config.database.schema}.company
+    set
+      phone = :phone,
+      email = :email,
+      province = :province,
+      city = :city,
+      district = :district,
+      address = :address,
+      intro = :intro
+    where
+      uuid = :uuid
+  `
+  sequelize.query(sql, {
+    replacements: req.body,
+    type: sequelize.QueryTypes.UPDATE
+  }).then(result => {
+    res.json({ content: '', message: '' })
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误。' })
+  })
+})
+
 /**
  *  企业注册
  */
@@ -36,23 +83,23 @@ router.route('/register').post((req, res) => {
           password = :password,
           name = :name,
           licence = :licence,
-          licence_type = :licence_type,
+          licence_type = :licence_type
       `
       sequelize.query(sql, {
         replacements: req.body,
         type: sequelize.QueryTypes.INSERT
       }).then(resule => {
-        res.json({ content: '', message: '注册成功', status: 200 })
+        res.json({ content: '', message: '' })
       }).catch(error => {
         logger.error(error)
-        res.json({ content: '', message: '服务器错误', status: 500 })
+        res.json({ content: '', message: '服务器错误' })
       })
     } else {
-      res.json({ content: '', message: '用户名已存在', status: 200 })
+      res.json({ content: '', message: '用户名已存在' })
     }
   }).catch(error => {
     logger.error(error)
-    res.json({ content: '', message: '服务器错误', status: 500 })
+    res.json({ content: '', message: '服务器错误' })
   })
 })
 
@@ -62,30 +109,28 @@ router.route('/register').post((req, res) => {
 router.route("/login").post((req, res) => {
   let sql = `
     select 
-    account, password 
-    from ${config.database.schema}.company
+      *
+    from
+      ${config.database.schema}.company
     where 
-    account = :account
+      account = :account
   `
   sequelize.query(sql, {
-    replacements: {
-      account: req.body.account,
-      password: req.body.password,
-    },
+    replacements: req.body,
     type: sequelize.QueryTypes.SELECT
-  }).then(rows => {
-    if (rows.length != 1) {
-      res.json({ content: '', message: '用户名密码错误', stauts: 403 })
+  }).then(result => {
+    if (result.length !== 1) {
+      res.json({ content: '', message: '账号或密码错误' })
       return false;
     }
-    if (rows[0].password == req.body.password) {
-      res.json({ content: { account: rows[0].account, namename: rows[0].name, id:rows[0].id}, message: '登录成功', stauts: 200 })
+    if (result[0].password === req.body.password) {
+      delete result[0].id
+      delete result[0].password
+      res.json({ content: result[0], message: '' })
     }
   }).catch(error => {
     logger.error(error)
-    res.json({
-      content: '', message: '操作失败', status: 500
-    })
+    res.json({ content: '', message: '服务器错误。' })
   })
 })
 

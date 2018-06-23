@@ -48,11 +48,10 @@ class CompanyRegister extends React.Component {
       },
       responseType: 'json'
     }).then(response => {
-      if (response.data.status === 200) {
-        sessionStorage.setItem('auth', JSON.stringify(response.data.content))
-        location.href = './company.index.html'
-      } else {
+      if (response.data.message) {
         this.setState({ message: response.data.message })
+      } else {
+        location.href = './company.login.html'
       }
     })
   }
