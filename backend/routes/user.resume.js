@@ -64,11 +64,16 @@ router.route('/:id/deleteResume').get((req, res) => {
 
 
 /**
- * 查询个人档案 这个查询应该没什么用，后期更改。
+ * 查询全部档案
  */
-router.route('/:id/findResume').get((req, res) => {
+router.route('/findResume').get((req, res) => {
   let sql = `
-    select id, name, sex, phone, e_mail, address, brithday ${config.database.schema}.user_resume where id = :id
+    select id, name, sex, phone, e_mail, adress, birthday,
+      school, qualifications, intake, graduation_time, major_name,
+      company_name, station, hiredate, leavedate, income
+    from ${config.database.schema}.user_resume a left join
+    ${config.database.schema}.resume_company b on a.id = b.userId 
+    ${config.database.schema}.education_experience c on b.companyId = c.id
   `
   sequelize.query(sql, {
     replacements: {id:req.param.id},
@@ -79,6 +84,32 @@ router.route('/:id/findResume').get((req, res) => {
     console.log(req.params.id);
     logger.error(error)
     res.json({ content: '', message: '服务器错误', status: 500 })
+  })
+})
+
+/**
+ *  根据部门id 查询所投入部门简历
+ */
+router.route('/:companyId/findResume').get((req, res) => {
+  let sql = `
+    select id, name, sex, phone, e_mail, adress, birthday,
+      school, qualifications, intake, graduation_time, major_name,
+      company_name, station, hiredate, leavedate, income
+    from ${config.database.schema}.user_resume a left join
+    ${config.database.schema}.resume_company b on a.id = b.userId 
+    ${config.database.schema}.education_experience c on b.companyId = c.id
+    where 
+    companyId = :companyId 
+  ` 
+  sequelize.query(sql, {
+    replacements: {
+      companyId: req.params.companyId
+    },
+    type: sequelize.QueryTypes.SELECT
+  }).then(rows => {
+    res.json({ content: rows, message: '', status: 200 })
+  }).catch(err => {
+    res.json({ content: '', message: '', status: 500 })
   })
 })
 
@@ -123,7 +154,8 @@ router.route('/:id/updateResume').post((req, res) => {
  */
 router.route('/addEducation').post((req, res) => {
   let sql = `
-    insert into ${config.database.schema}.education_experience(school, qualifications, intake, graduation_time, major_name, userId)
+    insert into ${config.database.schema}.education_experience(school, qualifications, 
+      intake, graduation_time, major_name, userId)
     values(:school, :qualifications, :intake, :graduation_time, :major_name, :userId)
   `
   sequelize.query(sql, {
