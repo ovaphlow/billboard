@@ -35,6 +35,8 @@ class CompanyRegister extends React.Component {
       url: './api/company/register',
       data: {
         name: document.getElementById('name').value,
+        licence_type: document.getElementById('licence_type').value,
+        licence: document.getElementById('licence').value,
         account: document.getElementById('account').value,
         password: md5(document.getElementById('password').value)
       },
@@ -61,6 +63,15 @@ class CompanyRegister extends React.Component {
           <div className="col-12 form-group">
             <label>公司名称</label>
             <input type="text" id="name" className="form-control"/>
+          </div>
+
+          <div className="col-12 form-group">
+            <label>统一社会信用代码/营业执照注册号</label>
+            <select id="licence_type" className="form-control">
+              <option value="统一社会信用代码">统一社会信用代码</option>
+              <option value="营业执照注册号">营业执照注册号</option>
+            </select>
+            <input type="text" id="licence" className="form-control mt-2"/>
           </div>
 
           <div className="col-12 form-group">
