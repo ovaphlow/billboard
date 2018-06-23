@@ -10,6 +10,7 @@ module.exports = {
     'login': './src/login.js',
     'user': './src/user.js',
     'user.resume': './src/user.resume.js',
+    'user.resume.save': './src/user.resume.save.js',
     'resume': './src/resume.js',
 
     'company.register': './src/company.register.js',

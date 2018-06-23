@@ -4,24 +4,26 @@ document.getElementById('navbar').innerHTML = navbar
 let user = JSON.parse(sessionStorage.getItem('auth'))
 let app = new Vue({
   el: '#app',
+
   data: {
     resume: {},
     message:''
   },
+
   methods: {
     submit: function () {
       this.message='';
       axios({
-        method:'POST',
-        url:'/api/resume/'+ user.uuid +'/addResume',
+        method: 'POST',
+        url: '/api/resume/'+ user.uuid +'/addResume',
         data:{
           name: this.resume.name,
-          sex: this.resume.gender,
+          gender: this.resume.gender,
           birthday: this.resume.birthday,
           phone: this.resume.phone,
-          e_mail: this.resume.email,
-          address: this.resume.address,
-          personal: this.resume.personal
+          email: this.resume.email,
+          privince: this.resume.province,
+          city: this.resume.city
         },
         responseType:'json'
       }).then(response => {
@@ -32,5 +34,9 @@ let app = new Vue({
         }
       })
     }
+  },
+
+  created: function () {
+
   }
 })
