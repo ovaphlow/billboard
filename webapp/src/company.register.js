@@ -30,6 +30,12 @@ class CompanyRegister extends React.Component {
       return false
     }
 
+    let valid_len = [15, 18]
+    if (valid_len.indexOf(document.getElementById('licence').value.length) < 0) {
+      this.setState({ message: '统一社会信用代码/营业执照注册号 格式错误。' })
+      return false
+    }
+
     axios({
       method: 'POST',
       url: './api/company/register',

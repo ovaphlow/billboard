@@ -20,7 +20,7 @@ router.route('/register').post((req, res) => {
     from 
       ${config.database.schema}.company
     where 
-    account= :account
+      account = :account
   `
   sequelize.query(sql, {
     replacements: { account: req.body.account },
@@ -28,21 +28,18 @@ router.route('/register').post((req, res) => {
   }).then(resule => {
     if (resule.length == 0) {
       let sql = `
-        insert into ${config.database.schema}.company
-        (account, password, name)
-        values
-        (:account, :password, :name)
+        insert into
+          ${config.database.schema}.company
+        set
+          uuid = uuid(),
+          account = :account,
+          password = :password,
+          name = :name,
+          licence = :licence,
+          licence_type = :licence_type,
       `
       sequelize.query(sql, {
-        replacements: {
-          account: req.body.account,
-          password: req.body.password,
-          name: req.body.name,
-          // adress: req.body.adress,
-          // corporation: req.body.corporation,
-          // phone: req.body.phone,
-          // email: req.body.email
-        },
+        replacements: req.body,
         type: sequelize.QueryTypes.INSERT
       }).then(resule => {
         res.json({ content: '', message: '注册成功', status: 200 })
