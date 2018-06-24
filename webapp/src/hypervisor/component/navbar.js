@@ -1,7 +1,8 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 export default class Navbar extends React.Component {
-  render() {
+  render () {
     return (
       <nav className="navbar navbar-expand-sm fixed-top navbar-dark bg-dark">
         <span className="navbar-brand">龙江学子就业网</span>
@@ -13,13 +14,7 @@ export default class Navbar extends React.Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <a className="nav-link" href="./">首页 <span className="sr-only">(current)</span></a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="./resume.html">求职</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="./user.html">用户中心</a>
+              <a className="nav-link" href="./"><i className="fa fa-fw fa-home"></i> 首页</a>
             </li>
           </ul>
         </div>

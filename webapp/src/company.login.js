@@ -23,9 +23,8 @@ class CompanyLogin extends React.Component {
       this.setState({ message: '请完整填写登录信息。' })
       return false
     }
-
     axios({
-      method: 'GET',
+      method: 'POST',
       url: './api/company/login',
       data: {
         account: document.getElementById('account').value,
@@ -33,11 +32,12 @@ class CompanyLogin extends React.Component {
       },
       responseType: 'json'
     }).then(response => {
-      if (response.data.stauts === 200) {
+      console.log(response.data)
+      if (response.data.message) {
+        this.setState({ message: response.data.message })
+      } else {
         sessionStorage.setItem('auth', JSON.stringify(response.data.content))
         location.href = './company.index.html'
-      } else {
-        this.setState({ message: response.data.message })
       }
     })
   }

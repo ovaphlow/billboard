@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- 主机:                           192.168.0.107
--- 服务器版本:                        10.2.14-MariaDB - MariaDB Server
--- 服务器操作系统:                      Linux
+-- 主机:                           118.24.1.214
+-- 服务器版本:                        10.2.13-MariaDB - mariadb.org binary distribution
+-- 服务器操作系统:                      Win64
 -- HeidiSQL 版本:                  9.5.0.5196
 -- --------------------------------------------------------
 
@@ -16,6 +16,52 @@
 CREATE DATABASE IF NOT EXISTS `billboard` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `billboard`;
 
+-- 导出  表 billboard.company 结构
+CREATE TABLE IF NOT EXISTS `company` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) NOT NULL DEFAULT '',
+  `account` varchar(255) NOT NULL DEFAULT '',
+  `password` char(32) NOT NULL DEFAULT '',
+  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '公司名',
+  `licence` varchar(20) NOT NULL DEFAULT '' COMMENT '代码/编号',
+  `licence_type` varchar(20) NOT NULL DEFAULT '' COMMENT '统一社会信用代码/营业执照注册号',
+  `phone` varchar(20) NOT NULL DEFAULT '' COMMENT '联系电话',
+  `email` varchar(50) NOT NULL DEFAULT '',
+  `province` varchar(20) NOT NULL DEFAULT '' COMMENT '省/直辖市',
+  `city` varchar(20) NOT NULL DEFAULT '' COMMENT '市/直辖市区',
+  `district` varchar(20) NOT NULL DEFAULT '' COMMENT '区/地级市',
+  `address` varchar(50) NOT NULL DEFAULT '' COMMENT '详细地址',
+  `intro` text DEFAULT '' COMMENT '公司简介',
+  PRIMARY KEY (`id`),
+  KEY `uuid` (`uuid`),
+  KEY `account` (`account`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='企业用户';
+
+-- 数据导出被取消选择。
+-- 导出  表 billboard.education_experience 结构
+CREATE TABLE IF NOT EXISTS `education_experience` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `school` varchar(255) DEFAULT NULL COMMENT '毕业院校',
+  `qualifications` varchar(255) DEFAULT NULL COMMENT '学位学历',
+  `intake` varchar(255) DEFAULT NULL COMMENT '入学时间',
+  `graduation_time` varchar(255) DEFAULT NULL COMMENT '毕业时间',
+  `major_name` varchar(255) DEFAULT NULL COMMENT '专业名称',
+  `userId` int(11) DEFAULT NULL COMMENT '用户Id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
+-- 数据导出被取消选择。
+-- 导出  表 billboard.employee 结构
+CREATE TABLE IF NOT EXISTS `employee` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) NOT NULL DEFAULT '',
+  `account` varchar(20) NOT NULL DEFAULT '',
+  `password` char(32) NOT NULL DEFAULT '',
+  `name` varchar(20) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='网站运营人员';
+
+-- 数据导出被取消选择。
 -- 导出  表 billboard.favorite 结构
 CREATE TABLE IF NOT EXISTS `favorite` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -45,22 +91,18 @@ CREATE TABLE IF NOT EXISTS `img` (
 CREATE TABLE IF NOT EXISTS `job` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uuid` char(36) NOT NULL DEFAULT '',
-  `user_uuid` char(36) NOT NULL DEFAULT '',
+  `master_uuid` char(36) NOT NULL DEFAULT '',
   `category` varchar(20) NOT NULL DEFAULT '',
-  `city` varchar(20) NOT NULL DEFAULT '',
-  `district` varchar(20) NOT NULL DEFAULT '',
-  `user` varchar(50) NOT NULL DEFAULT '',
-  `date` date NOT NULL DEFAULT '0001-01-01',
-  `time` time NOT NULL DEFAULT '00:00:00',
+  `date` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `title` varchar(50) NOT NULL DEFAULT '',
   `content` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uuid` (`uuid`),
   KEY `category` (`category`),
-  KEY `city` (`city`),
-  KEY `district` (`district`),
-  KEY `user_uuid` (`user_uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `user_uuid` (`master_uuid`),
+  KEY `date` (`date`),
+  KEY `title` (`title`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='招聘广告';
 
 -- 数据导出被取消选择。
 -- 导出  表 billboard.platform_news 结构
@@ -115,20 +157,19 @@ CREATE TABLE IF NOT EXISTS `platform_news_img` (
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `uuid` char(36) NOT NULL DEFAULT '',
-  `account` varchar(50) NOT NULL DEFAULT '' COMMENT '用户名称(nickName)',
+  `account` varchar(20) NOT NULL DEFAULT '' COMMENT '用户名称(nickName)',
   `password` char(32) NOT NULL DEFAULT '',
+  `name` varchar(20) NOT NULL DEFAULT '',
   `gender` varchar(10) NOT NULL DEFAULT '',
-  `city` varchar(30) NOT NULL DEFAULT '' COMMENT '所在城市',
   `province` varchar(30) NOT NULL DEFAULT '' COMMENT '所在省份',
-  `country` varchar(30) NOT NULL DEFAULT '' COMMENT '所在国家',
-  `language` varchar(5) NOT NULL DEFAULT '' COMMENT '用户语言 中文:zh_CN 繁体:zh_TW 英文:en',
+  `city` varchar(30) NOT NULL DEFAULT '' COMMENT '所在城市',
   `avatar_url` text DEFAULT NULL,
   `create_time` datetime NOT NULL DEFAULT current_timestamp(),
   `update_time` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `user_uuid_idx` (`uuid`) USING BTREE,
   KEY `user_account_idx` (`account`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='001-用户基本系信息表 by kill_8268';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='001-用户基本系信息表 by kill_8268';
 
 -- 数据导出被取消选择。
 -- 导出  表 billboard.user_consumption 结构
@@ -186,6 +227,37 @@ CREATE TABLE IF NOT EXISTS `user_recharge` (
   KEY `USER_RECHARGE_USER_ID_index` (`user_id`),
   KEY `USER_RECHARGE_ORDER_ID_index` (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='003-用户充值记录 by kill8268';
+
+-- 数据导出被取消选择。
+-- 导出  表 billboard.user_resume 结构
+CREATE TABLE IF NOT EXISTS `user_resume` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) NOT NULL DEFAULT '',
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
+  `name` varchar(20) NOT NULL DEFAULT '' COMMENT '姓名',
+  `birthday` varchar(20) NOT NULL DEFAULT '' COMMENT '教育经历',
+  `gender` varchar(10) NOT NULL DEFAULT '' COMMENT '性别',
+  `phone` varchar(20) NOT NULL DEFAULT '' COMMENT '电话',
+  `email` varchar(50) NOT NULL DEFAULT '' COMMENT '邮箱',
+  `province` varchar(20) NOT NULL DEFAULT '' COMMENT '地址',
+  `city` varchar(20) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `uuid` (`uuid`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+
+-- 数据导出被取消选择。
+-- 导出  表 billboard.work_experience 结构
+CREATE TABLE IF NOT EXISTS `work_experience` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(255) DEFAULT NULL COMMENT '公司名称',
+  `station` varchar(255) DEFAULT NULL COMMENT '岗位名称',
+  `hiredate` varchar(255) DEFAULT NULL COMMENT '入职时间',
+  `leavedate` varchar(255) DEFAULT NULL COMMENT '离职时间',
+  `income` varchar(255) DEFAULT NULL COMMENT '税前收入',
+  `userId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- 数据导出被取消选择。
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

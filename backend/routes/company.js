@@ -10,85 +10,127 @@ logger.level = 'debug'
 
 const router = express.Router()
 
+router.route('/:uuid/job/').get((req, res) => {
+  let sql = `
+    select
+      *
+    from
+      ${config.database.schema}.job
+    where
+      master_uuid = :uuid
+  `
+  sequelize.query(sql, {
+    replacements: { uuid: req.params.uuid },
+    type: sequelize.QueryTypes.SELECT
+  }).then(result => {
+    res.json({ content: result, message: '' })
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误。' })
+  })
+})
+
+router.route('/:uuid').put((req, res) => {
+  req.body.uuid = req.params.uuid
+  let sql = `
+    update
+      ${config.database.schema}.company
+    set
+      phone = :phone,
+      email = :email,
+      province = :province,
+      city = :city,
+      district = :district,
+      address = :address,
+      intro = :intro
+    where
+      uuid = :uuid
+  `
+  sequelize.query(sql, {
+    replacements: req.body,
+    type: sequelize.QueryTypes.UPDATE
+  }).then(result => {
+    res.json({ content: '', message: '' })
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误。' })
+  })
+})
+
 /**
  *  企业注册
  */
 router.route('/register').post((req, res) => {
   let sql = `
     select
-      username
+      account
     from 
       ${config.database.schema}.company
     where 
-      username= :username
+      account = :account
   `
   sequelize.query(sql, {
-    replacements: { username: req.body.username },
+    replacements: { account: req.body.account },
     type: sequelize.QueryTypes.SELECT
   }).then(resule => {
     if (resule.length == 0) {
       let sql = `
-        insert into ${config.database.schema}.company
-        (username, password, company_name, adress, corporation, phone, email)
-        values
-        (:username, :password, :company_name, :adress, :corporation, :phone, :email)
+        insert into
+          ${config.database.schema}.company
+        set
+          uuid = uuid(),
+          account = :account,
+          password = :password,
+          name = :name,
+          licence = :licence,
+          licence_type = :licence_type
       `
       sequelize.query(sql, {
-        replacements: {
-          username: req.body.username,
-          password: req.body.password,
-          company_name: req.body.company_name,
-          adress: req.body.adress,
-          corporation: req.body.corporation,
-          phone: req.body.phone,
-          email: req.body.email
-        },
+        replacements: req.body,
         type: sequelize.QueryTypes.INSERT
       }).then(resule => {
-        res.json({ content: '', message: '注册成功', status: 200 })
+        res.json({ content: '', message: '' })
       }).catch(error => {
         logger.error(error)
-        res.json({ content: '', message: '服务器错误', status: 500 })
+        res.json({ content: '', message: '服务器错误' })
       })
     } else {
-      res.json({ content: '', message: '用户名已存在', status: 200 })
+      res.json({ content: '', message: '用户名已存在' })
     }
   }).catch(error => {
     logger.error(error)
-    res.json({ content: '', message: '服务器错误', status: 500 })
+    res.json({ content: '', message: '服务器错误' })
   })
 })
 
 /**
  * 企业登录
  */
-router.route("/companyLogin").post((res, req) => {
+router.route("/login").post((req, res) => {
   let sql = `
     select 
-      username, password 
-    from ${config.database.schema}.company
+      *
+    from
+      ${config.database.schema}.company
     where 
-      username = :username
+      account = :account
   `
   sequelize.query(sql, {
-    replacements: {
-      username: req.body.username,
-      password: req.body.password
-    },
+    replacements: req.body,
     type: sequelize.QueryTypes.SELECT
-  }).then(rows => {
-    if (rows.length != 1) {
-      res.json({ content: '', message: '帐号异常', status: 200 })
+  }).then(result => {
+    if (result.length !== 1) {
+      res.json({ content: '', message: '账号或密码错误' })
       return false;
     }
-    if (row[0].password == req.body.password) {
-      res.json({ content: { username: row[0].username, company_name: row[0].company_name }, message: '登录成功', status: 200 })
+    if (result[0].password === req.body.password) {
+      delete result[0].id
+      delete result[0].password
+      res.json({ content: result[0], message: '' })
     }
   }).catch(error => {
     logger.error(error)
-    res.json({
-      content: '', message: '操作失败', status: 200
-    })
+    res.json({ content: '', message: '服务器错误。' })
   })
 })
 
@@ -98,7 +140,7 @@ router.route("/companyLogin").post((res, req) => {
 router.route("/company/:companyId").post((res, req) => {
   let sql = `
     select
-      username, company_name, adress, phone, e_mail, corporation
+      account, name
     from ${config.database.schema}.company
     where 
       id = :companyId
