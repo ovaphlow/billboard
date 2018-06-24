@@ -4,10 +4,7 @@ document.getElementById('navbar').innerHTML = navbar
 let app = new Vue({
   el: '#app',
 
-  data: {
-    content: [],
-    message: '',
-  },
+  data: { content: [], message: '', },
 
   methods: {
     filter: function () {

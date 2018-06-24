@@ -9,6 +9,24 @@ logger.level = 'debug'
 
 const router = express.Router()
 
+/**
+ * 职位对应简历列表
+ * 需要调整表结构
+ */
+router.route('/job/:uuid/').get((req, res) => {
+  let sql = `
+
+  `
+  sequelize.query(sql, {
+    replacements: {},
+    type: sequelize.QueryTypes.SELECT
+  }).then(result => {
+    res.json({ content: result, message: '' })
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误。' })
+  })
+})
 
 /**
  * 增加个人档案

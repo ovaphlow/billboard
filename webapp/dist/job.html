@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>龙江学子就业网</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+  <div id="navbar"></div>
+
+  <div class="container-fluid" id="app">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mt-3">
+          <div class="card-header">
+            招聘信息
+          </div>
+
+          <div class="card-body">
+            <ul class="list-inline">
+              <li class="list-inline-item text-secondary">职位</li>
+              <li class="list-inline-item">{{ job.title }}</li>
+            </ul>
+
+            <ul class="list-inline">
+              <li class="list-inline-item text-secondary">任职要求</li>
+              <li class="list-inline-item">{{ job.requirement }}</li>
+            </ul>
+
+            <ul class="list-inline">
+              <li class="list-inline-item text-secondary">岗位责任</li>
+              <li class="list-inline-item">{{ job.duty }}</li>
+            </ul>
+
+            <ul class="list-inline">
+              <li class="list-inline-item text-secondary">详细内容</li>
+              <li class="list-inline-item">{{ job.content }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card mt-3">
+          <div class="card-header">
+            公司信息
+          </div>
+
+          <div class="card-body">
+            <ul class="list-inline">
+              <li class="list-inline-item text-secondary">公司名称</li>
+              <li class="list-inline-item">{{ job.name }}</li>
+            </ul>
+
+            <ul class="list-inline">
+              <li class="list-inline-item text-secondary">地址</li>
+              <li class="list-inline-item">{{ job.province }}</li>
+              <li class="list-inline-item">{{ job.city }}</li>
+              <li class="list-inline-item">{{ job.district }}</li>
+              <li class="list-inline-item">{{ job.address }}</li>
+            </ul>
+
+            <ul class="list-inline">
+              <li class="list-inline-item text-secondary">公司简介</li>
+              <li class="list-inline-item">{{ job.intro }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <br/>
+      </div>
+
+      <div class="col-12">
+        <div class="alert alert-danger mt-3" role="alert" v-if="message">
+          {{ message }}
+        </div>
+      </div>
+
+      <div class="col-12">
+        <button type="button" class="btn btn-primary btn-block btn-large" v-on:click="submit">
+          <i class="fa fa-fw fa-check-square-o"></i> 投递简历
+        </button>
+
+        <a href="#" class="btn btn-block btn-sm btn-outline-dark" onclick="history.go(-1)">
+          <i class="fa fa-fw fa-arrow-left"></i> 返回
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.min.js"></script>
+
+  <script src="./assets/lib/url-parameter.js"></script>
+  <script src="./assets/js/job.js"></script>
+
+</body>
+
+</html>
