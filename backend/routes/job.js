@@ -12,13 +12,14 @@ const router = express.Router()
 router.route('/').get((req, res) => {
   let sql = `
     select
-      uuid, user_uuid, category, city, district, user, date, time, title, content
+      j.uuid,j.category, c.name, c.province, c.city, c.district, j.date, j.title, j.requirement 
     from
-      ${config.database.schema}.job
+      ${config.database.schema}.job as j
+    join ${config.database.schema}.company as c on
+      c.uuid = j.master_uuid
     order by
-      id desc
-    limit
-      200
+      j.id desc
+    limit 200
   `
   sequelize.query(sql, {
     replacements: {},

@@ -2,7 +2,6 @@ const express = require('express')
 const log4js = require('log4js')
 
 const config = require('../config')
-const mysql = require('../util/mysql2')
 const sequelize = require('../util/sequelize')
 
 const logger = log4js.getLogger()
@@ -359,4 +358,5 @@ router.route("/:userId/findWork").get((req, res) =>{
     res.json({content:'',message:'',status:500})
   })
 })
+
 module.exports = router

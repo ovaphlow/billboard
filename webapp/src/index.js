@@ -3,10 +3,12 @@ document.getElementById('navbar').innerHTML = navbar
 
 let app = new Vue({
   el: '#app',
+
   data: {
     content: [],
     message: '',
   },
+
   methods: {
     filter: function () {
       let category = document.getElementById('category')
@@ -22,35 +24,14 @@ let app = new Vue({
         app.message = response.data.message
       })
     },
-    favorite: function () {
-      axios({
-        method: 'POST',
-        url: './api/user/favorite',
-        data: {
-          item: event.target.getAttribute('data-uuid'),
-          user: localStorage.getItem('auth'),
-          type: '招聘'
-        },
-        responseType: 'json'
-      }).then(response => {
-        if (response.data.status === 200) {
-          event.target.innerHTML = '<i class="fa fa-heart"></i> ' +
-              (parseInt(event.target.textContent.trim()) + 1)
-        }
-      })
-    },
-    reply: function (event) {
-      window.console.log(event.target.textContent.trim())
-      window.console.log(event.target.getAttribute('data-uuid'))
-    }
   },
+
   created: function () {
     axios({
       method: 'GET',
       url: './api/job/',
       responseType: 'json'
     }).then(response => {
-      console.log(response.data.content)
       if (response.data.message === 200) {
         this.content = response.data.content
       } else {

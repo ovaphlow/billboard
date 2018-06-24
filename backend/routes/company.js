@@ -2,7 +2,6 @@ const express = require('express')
 const log4js = require('log4js')
 
 const config = require('../config')
-const mysql = require('../util/mysql2')
 const sequelize = require('../util/sequelize')
 
 const logger = log4js.getLogger()
@@ -10,6 +9,93 @@ logger.level = 'debug'
 
 const router = express.Router()
 
+/**
+ * 修改招聘岗位信息
+ */
+router.route('/:master_uuid/job/:uuid').put((req, res) => {
+  req.body.master_uuid = req.params.master_uuid
+  req.body.uuid = req.params.uuid
+  let sql = `
+    update
+      ${config.database.schema}.job
+    set
+      title = :title,
+      requirement = :requirement,
+      duty = :duty,
+      content = :content
+    where
+      master_uuid = :master_uuid
+      and uuid = :uuid
+  `
+  sequelize.query(sql, {
+    replacements: req.body,
+    type: sequelize.QueryTypes.SELECT
+  }).then(result => {
+    res.json({ content: result [0], message: '' })
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误。' })
+  })
+})
+
+/**
+ * 修改招聘岗位信息
+ */
+router.route('/:master_uuid/job/:uuid').get((req, res) => {
+  let sql = `
+    select
+      *
+    from
+      ${config.database.schema}.job
+    where
+      master_uuid = :master_uuid
+      and uuid = :uuid
+  `
+  sequelize.query(sql, {
+    replacements: { master_uuid: req.params.master_uuid, uuid: req.params.uuid },
+    type: sequelize.QueryTypes.SELECT
+  }).then(result => {
+    res.json({ content: result [0], message: '' })
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误。' })
+  })
+})
+
+/**
+ * 添加招聘岗位
+ */
+router.route('/:uuid/job/').post((req, res) => {
+  req.body.uuid = req.params.uuid
+  let sql = `
+    insert into
+      ${config.database.schema}.job
+    set
+      uuid = uuid(),
+      master_uuid = :uuid,
+      title = :title,
+      requirement = :requirement,
+      duty = :duty,
+      content = :content
+  `
+  sequelize.query(sql, {
+    replacements: req.body,
+    type: sequelize.QueryTypes.INSERT
+  }).then(result => {
+    if (result[1] === 1) {
+      res.json({ content: result[1], message: '' })
+    } else {
+      res.json({ content: '', message: '添加数据失败。' })
+    }
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误。' })
+  })
+})
+
+/**
+ * 招聘职位列表
+ */
 router.route('/:uuid/job/').get((req, res) => {
   let sql = `
     select
@@ -30,6 +116,9 @@ router.route('/:uuid/job/').get((req, res) => {
   })
 })
 
+/**
+ * 修改公司信息
+ */
 router.route('/:uuid').put((req, res) => {
   req.body.uuid = req.params.uuid
   let sql = `

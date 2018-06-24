@@ -8,25 +8,25 @@ ReactDOM.render(
   document.getElementById('navbar')
 )
 
-class JobList extends React.Component {
+class Job extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = { item: {} }
   }
 
   componentDidMount() {
-    console.log(this.props.jobList)
+    this.setState({ item: this.props.item })
   }
 
   render() {
     return (
-      <div className="list-group">
-        <a href="#" className="list-group-item list-group-item-action">
-          123321
-          <span className="pull-right">
-            <i className="fa fa-fw fa-angle-right"></i>
-          </span>
-        </a>
-      </div>
+      <a href={'./company.job.html?uuid=' + this.state.item.uuid} className="list-group-item list-group-item-action">
+        {this.state.item.title}
+        <span className="pull-right">
+          <i className="fa fa-fw fa-angle-right"></i>
+        </span>
+      </a>
     )
   }
 }
@@ -70,7 +70,11 @@ class CompanyJobList extends React.Component {
         </div>
 
         <div className="col-12">
-          <JobList jobList={this.state.jobList}/>
+          <div className="list-group">
+          {this.state.jobList.map(item =>
+            <Job item={item} key={item.id}/>
+          )}
+          </div>
         </div>
       </div>
     )

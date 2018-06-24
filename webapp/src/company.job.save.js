@@ -45,6 +45,10 @@ class CompanyJobSave extends React.Component {
         <div className="col-12">
           <div className="card">
             <div className="card-body">
+              {this.state.message && <div className="col-12">
+                <div className="alert alert-danger">{this.state.message}</div>
+              </div>}
+
               <div className="form-group">
                 <label>标题</label>
                 <input type="text" className="form-control" id="title"/>
