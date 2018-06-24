@@ -164,5 +164,6 @@ class CompanyUpdate extends React.Component {
   }
 }
 
-let auth = JSON.parse(sessionStorage.getItem('auth'))
+let auth = JSON.parse(sessionStorage.getItem('authCompany'))
+
 ReactDOM.render(<CompanyUpdate auth={auth}/>, document.getElementById('app'))

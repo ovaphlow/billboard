@@ -39,7 +39,7 @@ class CompanyJobList extends React.Component {
   }
 
   componentDidMount() {
-    let auth = JSON.parse(sessionStorage.getItem('auth'))
+    let auth = JSON.parse(sessionStorage.getItem('authCompany'))
 
     axios({
       method: 'get',

@@ -16,7 +16,7 @@ class CompanyIndex extends React.Component {
   }
 
   componentDidMount() {
-    let company = JSON.parse(sessionStorage.getItem('auth')) || {
+    let company = JSON.parse(sessionStorage.getItem('authCompany')) || {
       name: '获取信息失败',
       phone: '获取信息失败',
       email: '获取信息失败',

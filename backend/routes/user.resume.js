@@ -57,7 +57,6 @@ router.route('/:id/addResume').post((req, res) => {
   })
 })
 
-
 /**
  * 删除个人档案
  */

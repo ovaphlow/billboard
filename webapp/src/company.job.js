@@ -116,7 +116,7 @@ class CompanyJobUpdate extends React.Component {
   }
 }
 
-let auth = JSON.parse(sessionStorage.getItem('auth'))
+let auth = JSON.parse(sessionStorage.getItem('authCompany'))
 if (!!!auth) location.href = './company.login.html'
 
 ReactDOM.render(<CompanyJobUpdate auth={auth}/>, document.getElementById('app'))
