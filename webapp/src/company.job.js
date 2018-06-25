@@ -9,7 +9,7 @@ ReactDOM.render(
   document.getElementById('navbar')
 )
 
-class CompanyJobUpdate extends React.Component {
+class CompanyJob extends React.Component {
   constructor(props) {
     super(props)
 
@@ -94,13 +94,13 @@ class CompanyJobUpdate extends React.Component {
               <hr/>
 
               <div className="list-group">
-                <ResumeItem/>
+                {this.state.resumeList.map( item => <ResumeItem item={item}/>)}
               </div>
               
               <hr/>
 
               <div className="form-group">
-                <button type="button" className="btn btn-primary btn-block" onClick={this.remove}>
+                <button type="button" className="btn btn-danger btn-block" onClick={this.remove}>
                   <i className="fa fa-fw fa-check-square-o"></i> 删除
                 </button>
 
@@ -119,4 +119,4 @@ class CompanyJobUpdate extends React.Component {
 let auth = JSON.parse(sessionStorage.getItem('authCompany'))
 if (!!!auth) location.href = './company.login.html'
 
-ReactDOM.render(<CompanyJobUpdate auth={auth}/>, document.getElementById('app'))
+ReactDOM.render(<CompanyJob auth={auth}/>, document.getElementById('app'))
