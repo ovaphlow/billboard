@@ -1,4 +1,5 @@
 import navbar from './navbar.html'
+import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
 document.getElementById('navbar').innerHTML = navbar
 
 let user = JSON.parse(sessionStorage.getItem('auth'))
@@ -7,6 +8,7 @@ let app = new Vue({
   el: '#app',
 
   data: {
+    auth: {},
     resume: {},
     misc: {},
     message: ''
@@ -34,31 +36,42 @@ let app = new Vue({
       this.message = ''
 
       axios({
-        method: 'post',
-        url: './api/resume/'+ user.uuid +'/',
+        method: 'put',
+        url: './api/resume/user/'+ this.auth.uuid,
         data: {
           name: this.resume.name || '',
           gender: this.resume.gender || '',
           birthday: this.resume.birthday || '',
           phone: this.resume.phone || '',
           email: this.resume.email || '',
-          province: this.resume.province || '',
-          city: this.resume.city || ''
+          province: document.getElementById('province').options[document.getElementById('province').options.selectedIndex].text,
+          city: document.getElementById('city').options[document.getElementById('city').options.selectedIndex].text
         },
         responseType:'json'
       }).then(response => {
         if(response.data.message){
           this.message = response.data.message
-        }else{
-          location.href= './user.html'
+        } else {
+          location.href= './user.resume.html'
         }
       })
     }
   },
 
   created: function () {
+    let auth = JSON.parse(sessionStorage.getItem('auth'))
+
     this.resume.province = ''
     this.resume.city = ''
+    this.auth = auth
+
+    axios({
+      method: 'get',
+      url: './api/resume/user/' + auth.uuid,
+      responseType: 'json'
+    }).then(response => {
+      this.resume = response.data.content
+    })
 
     axios({
       method: 'GET',

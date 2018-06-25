@@ -11,6 +11,7 @@ module.exports = {
     'user': './src/user.js',
     'user.resume': './src/user.resume.js',
     'user.resume.save': './src/user.resume.save.js',
+    'user.resume.update': './src/user.resume.update.js',
     'resume': './src/resume.js',
     'job': './src/job.js',
 

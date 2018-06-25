@@ -29,31 +29,60 @@ router.route('/job/:uuid/').get((req, res) => {
 })
 
 /**
- * 增加个人档案
+ * 个人简历
  */
-router.route('/:id/addResume').post((req, res) => {
+router.route('/user/:uuid').get((req, res) => {
   let sql = `
-    insert into 
-    ${config.database.schema}.user_resume(name, sex, phone, e_mail, address, birthday, user_id, personal)
-    values(:name, :sex, :phone, :e_mail, :address, :birthday, :id, :personal)
+    select
+      *
+    from
+      ${config.database.schema}.resume
+    where
+      user_uuid = :uuid
+    limit 1
   `
   sequelize.query(sql, {
-    replacements: { 
-      id: req.params.id,
-      name: req.body.name,
-      sex: req.body.sex,
-      birthday: req.body.birthday,
-      phone: req.body.phone,
-      e_mail: req.body.e_mail,
-      address: req.body.address,
-      personal: req.body.personal
-    },
+    replacements: { uuid: req.params.uuid },
+    type: sequelize.QueryTypes.SELECT
+  }).then(result => {
+    res.json({ content: result[0], message: '' })
+  }).catch(err => {
+    logger.error(err)
+    json.res({ content: '', message: '服务器错误。' })
+  })
+})
+
+/**
+ * 增加个人档案
+ */
+router.route('/:uuid/').post((req, res) => {
+  req.body.uuid = req.params.uuid
+  let sql = `
+    insert into 
+      ${config.database.schema}.resume
+    set
+      uuid = uuid(),
+      user_uuid = :uuid,
+      name = :name,
+      gender = :gender,
+      birthday = :birthday,
+      phone = :phone,
+      email = :email,
+      province = :province,
+      city = :city
+  `
+  sequelize.query(sql, {
+    replacements: req.body,
     type: sequelize.QueryTypes.INSERT
   }).then(result => {
-    res.json({ content: result, message: '', status: 200 })
+    if (result[1] === 1) {
+      res.json({ content: result[0], message: '' })
+    } else {
+      res.json({ content: '', message: '保存简历失败。' })
+    }
   }).catch(error => {
     logger.error(error)
-    res.json({ content: '', message: '服务器错误', status: 500 })
+    res.json({ content: '', message: '服务器错误' })
   })
 })
 
@@ -132,36 +161,30 @@ router.route('/:companyId/findResume').get((req, res) => {
 /**
  * 修改个人档案
  */
-router.route('/:id/updateResume').post((req, res) => {
+router.route('/user/:uuid').put((req, res) => {
+  req.body.uuid = req.params.uuid
   let sql = `
-    update ${config.database.schema}.user_resume set 
+    update
+      ${config.database.schema}.resume
+    set 
       name = :name,
-      sex = :sex,
-      phone = :phone,
-      e_mail = :e_mail,
-      address = :address,
+      gender = :gender,
       birthday = :birthday,
-      personal = :personal
-    where id = :id
+      phone = :phone,
+      email = :email,
+      province = :province,
+      city = :city
+    where
+      user_uuid = :uuid
   `
   sequelize.query(sql, {
-    replacements: { 
-      id: req.body.id,
-      name: req.body.name,
-      sex: req.body.sex,
-      phone: req.body.phone,
-      birthday: req.body.birthday,
-      e_mail: req.body.e_mail,
-      address: req.body.address,
-      personal: req.body.personal
-    },
+    replacements: req.body,
     type: sequelize.QueryTypes.UPDATE
   }).then(result => {
-    res.json({ content: '', message: '', status: 200 })
+    res.json({ content: '', message: '' })
   }).catch(error => {
-    console.log(req.params.id);
     logger.error(error)
-    res.json({ content: '', message: '服务器错误', status: 500 })
+    res.json({ content: '', message: '服务器错误。' })
   })
 })
 

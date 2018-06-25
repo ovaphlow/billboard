@@ -20,8 +20,13 @@
       <div class="col-12">
         <p class="lead text-center">我的简历</p>
         <hr/>
-        <a href="user.resume.save.html" class="btn btn-outline-primary btn-sm pull-right">
+
+        <a href="./user.resume.update.html" class="btn btn-outline-primary btn-sm pull-right" v-if="resume.uuid">
           <i class="fa fa-fw fa-edit"></i> 编辑简历
+        </a>
+
+        <a href="./user.resume.save.html" class="btn btn-outline-primary btn-sm pull-right" v-if="!!!resume.uuid">
+          <i class="fa fa-fw fa-edit"></i> 填写简历
         </a>
       </div>
 
@@ -87,7 +92,7 @@
 
       <div class="col-12">
         <br/>
-        <a href="./user.html " class="btn btn-secondary btn-lg btn-block">
+        <a href="./user.html " class="btn btn-outline-dark btn-block">
           <i class="fa fa-fw fa-arrow-left "></i>
           返回
         </a>
