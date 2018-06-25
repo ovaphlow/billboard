@@ -25,7 +25,7 @@ class CompanyLogin extends React.Component {
     }
 
     axios({
-      method: 'POST',
+      method: 'post',
       url: './api/company/login',
       data: {
         account: document.getElementById('account').value,

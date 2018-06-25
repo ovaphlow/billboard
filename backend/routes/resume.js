@@ -10,15 +10,54 @@ logger.level = 'debug'
 const router = express.Router()
 
 /**
+ * 简历
+ */
+router.route('/:uuid').get((req, res) => {
+  let sql = `
+    select
+      *
+    from
+      ${config.database.schema}.resume
+    where
+      uuid = :uuid
+    limit 1
+  `
+  sequelize.query(sql, {
+    replacements: { uuid: req.params.uuid },
+    type: sequelize.QueryTypes.SELECT
+  }).then(result => {
+    if (result.length === 1) {
+      res.json({ content: result[0], message: '' })
+    } else {
+      res.json({ content: '', message: '未找到指定简历。' })
+    }
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误。' })
+  })
+})
+
+/**
  * 职位对应简历列表
- * 需要调整表结构
+ * 需要调整表结构 ---?
  */
 router.route('/job/:uuid/').get((req, res) => {
   let sql = `
-
+    select
+      r.uuid, r.name, r.gender, r.birthday, pr.date
+    from  
+      ${config.database.schema}.post_resume as pr
+    join
+      ${config.database.schema}.resume as r
+      on r.uuid = pr.resume_uuid
+    where
+      job_uuid = :job_uuid
+    order by
+      pr.id desc
+    limit 200
   `
   sequelize.query(sql, {
-    replacements: {},
+    replacements: { job_uuid: req.params.uuid },
     type: sequelize.QueryTypes.SELECT
   }).then(result => {
     res.json({ content: result, message: '' })
@@ -396,6 +435,28 @@ router.route("/:userId/findWork").get((req, res) =>{
   }).catch(err =>{
     logger.error(err)
     res.json({content:'',message:'',status:500})
+  })
+})
+
+/**
+ * 查询个人简历
+ */
+router.route("/:user_uuid/findResume").get((req, res) => {
+  let sql = `
+      select name, birthday, gender, phone, email, province, city, date
+      from ${config.database.schema}.resume
+      where
+      user_uuid = :user_uuid
+  `
+  sequelize.query(sql, {
+    replacements: { user_uuid: req.param.user_uuid },
+    type: sequelize.QueryTypes.SELECT
+  }).then(rows =>{
+    console.log(rows)
+    res.json({ content: 1, message: '', status: 200 })
+  }).catch(err =>{
+    logger.error(err)
+    res.json({ content: 2, message: '服务器错误', status: 500 })
   })
 })
 

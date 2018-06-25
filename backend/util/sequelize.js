@@ -18,8 +18,9 @@ const sequelize = new Sequelize(config.database.database, config.database.user, 
   // pool configuration used to pool database connections
   pool: {
     max: config.database.pool.max,
+    min: config.database.pool.min,
     idle: config.database.pool.idle,
-    acquire: 60000,
+    acquire: 1000, // 默认10000
   },
 
 })

@@ -39,7 +39,7 @@ router.route('/:master_uuid/job/:uuid').put((req, res) => {
 })
 
 /**
- * 修改招聘岗位信息
+ * 招聘岗位信息
  */
 router.route('/:master_uuid/job/:uuid').get((req, res) => {
   let sql = `

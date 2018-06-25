@@ -15,7 +15,8 @@ const prodConfig = {
     pool: {
       max: os.cpus().length * 2,
       min: 0,
-      idle: 10000
+      idle: 3000,
+      acquire: 1000
     },
     packSize: 20000,
     logging: true,
@@ -38,7 +39,8 @@ const develConfig = {
     pool: {
       max: os.cpus().length * 2,
       min: 0,
-      idle: 10000
+      idle: 3000,
+      acquire: 1000
     },
     packSize: 20000,
     logging: false,

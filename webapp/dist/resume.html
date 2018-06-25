@@ -13,93 +13,16 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-dark">
-    <span class="navbar-brand">龙江学子就业网</span>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <div id="navbar"></div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="./">首页</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="./resume.html">求职
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./user.html">用户中心</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <select class="form-control" id="location">
-            <option value="">不限地区</option>
-            <option value="">阿城区</option>
-            <option value="">道里区</option>
-            <option value="">道外区</option>
-            <option value="">呼兰区</option>
-            <option value="">南岗区</option>
-            <option value="">平房区</option>
-            <option value="">松北区</option>
-            <option value="">香坊区</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="form-group">
-          <select class="form-control" id="category">
-            <option value="">不限类别</option>
-            <option value="">财务 / 行政</option>
-            <option value="">餐饮 / 服务</option>
-            <option value="">技工 / 普工</option>
-            <option value="">物流 / 交通</option>
-            <option value="">销售 / 客服</option>
-            <option value="">兼职</option>
-            <option value="">其它</option>
-          </select>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="list">
-    <div class="card w-100" style="margin-top:1em">
-      <div class="card-header">
-        <img class="mr-3" src="/assets/image/wallhaven-20867.jpg" alt="image" style="width:2em;height:2em"> 用户名
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">标题</h5>
-        <p class="card-text">正文</p>
-        <ul class="list-inline text-muted float-right">
-          <li class="list-inline-item float-left">
-            <span class="float-right">2018-04-03 21:55</span>
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-heart"></i> 5
-          </li>
-          <li class="list-inline-item">
-            <i class="fa fa-comments"></i> 10
-          </li>
-        </ul>
-      </div>
-    </div>
-    <hr/>
-  </div>
+  <div class="container-fluid" id="app"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.min.js"></script>
+
+  <script src="./assets/lib/url-parameter.js"></script>
+  <script src="./assets/js/resume.js"></script>
 </body>
 
 </html>
