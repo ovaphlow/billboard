@@ -40,7 +40,7 @@ let app = new Vue({
           birthday: this.resume.birthday,
           phone: this.resume.phone,
           email: this.resume.email,
-          privince: this.resume.province,
+          province: this.resume.province,
           city: this.resume.city
         },
         responseType:'json'

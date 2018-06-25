@@ -34,19 +34,19 @@ router.route('/job/:uuid/').get((req, res) => {
 router.route('/:id/addResume').post((req, res) => {
   let sql = `
     insert into 
-    ${config.database.schema}.user_resume(name, sex, phone, e_mail, address, birthday, user_id, personal)
-    values(:name, :sex, :phone, :e_mail, :address, :birthday, :id, :personal)
+    ${config.database.schema}.resume(name, gender, phone, email, province, city, birthday, user_uuid)
+    values(:name, :gender, :phone, :email, :province, :city, :birthday, :id)
   `
   sequelize.query(sql, {
     replacements: { 
       id: req.params.id,
       name: req.body.name,
-      sex: req.body.sex,
+      gender: req.body.gender,
       birthday: req.body.birthday,
       phone: req.body.phone,
-      e_mail: req.body.e_mail,
-      address: req.body.address,
-      personal: req.body.personal
+      email: req.body.email,
+      province: req.body.province,
+      city: req.body.city
     },
     type: sequelize.QueryTypes.INSERT
   }).then(result => {
@@ -373,6 +373,28 @@ router.route("/:userId/findWork").get((req, res) =>{
   }).catch(err =>{
     logger.error(err)
     res.json({content:'',message:'',status:500})
+  })
+})
+
+/**
+ * 查询个人简历
+ */
+router.route("/:user_uuid/findResume").get((req, res) => {
+  let sql = `
+      select name, birthday, gender, phone, email, province, city, date
+      from ${config.database.schema}.resume
+      where
+      user_uuid = :user_uuid
+  `
+  sequelize.query(sql, {
+    replacements: { user_uuid: req.param.user_uuid },
+    type: sequelize.QueryTypes.SELECT
+  }).then(rows =>{
+    console.log(rows)
+    res.json({ content: 1, message: '', status: 200 })
+  }).catch(err =>{
+    logger.error(err)
+    res.json({ content: 2, message: '服务器错误', status: 500 })
   })
 })
 
