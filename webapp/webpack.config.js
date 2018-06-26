@@ -12,9 +12,13 @@ module.exports = {
     'user.resume': './src/user.resume.js',
     'user.resume.save': './src/user.resume.save.js',
     'user.resume.update': './src/user.resume.update.js',
-    'user.experience': './src/user.experience.js',
     'resume': './src/resume.js',
     'job': './src/job.js',
+    
+    'resume.exp-education': './src/resume.exp-education.js',
+    'resume.exp-education.save': './src/resume.exp-education.save.js',
+    'resume.exp-work': './src/resume.exp-work.js',
+    'resume.exp-work.save': './src/resume.exp-work.save.js',
 
     'company.register': './src/company.register.js',
     'company.login': './src/company.login.js',

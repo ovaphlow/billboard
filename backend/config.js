@@ -14,7 +14,7 @@ const prodConfig = {
     schema: 'billboard',
     pool: {
       max: os.cpus().length * 2,
-      min: 0,
+      min: os.cpus().length * 2,
       idle: 3000,
       acquire: 1000
     },
