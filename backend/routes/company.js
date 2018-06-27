@@ -246,4 +246,5 @@ router.route("/company/:companyId").post((res, req) => {
     res.json({ content: '', message: '操作失败', status: 500 })
   })
 })
+
 module.exports = router
