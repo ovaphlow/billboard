@@ -1,15 +1,38 @@
 const { resolve } = require('path')
 
 module.exports = {
+  // mode: 'development',
   mode: 'production',
+
   entry: {
     'index': './src/index.js',
 
     'login': './src/login.js',
     'user': './src/user.js',
     'user.resume': './src/user.resume.js',
+    'user.resume.save': './src/user.resume.save.js',
+    'user.resume.update': './src/user.resume.update.js',
+    'user.resume.post': './src/user.resume.post.js',
+    'user.job': './src/user.job.js',
+    'resume': './src/resume.js',
+    'job': './src/job.js',
+    
+    'resume.exp-education': './src/resume.exp-education.js',
+    'resume.exp-education.save': './src/resume.exp-education.save.js',
+    'resume.exp-work': './src/resume.exp-work.js',
+    'resume.exp-work.save': './src/resume.exp-work.save.js',
 
-    'resume': './src/resume.js'
+    'company.register': './src/company.register.js',
+    'company.login': './src/company.login.js',
+    'company.index': './src/company.index.js',
+    'company.update': './src/company.update.js',
+    'company.job.list': './src/company.job.list.js',
+    'company.job.save': './src/company.job.save.js',
+    'company.job': './src/company.job.js',
+
+    'hypervisor.login': './src/hypervisor/login.js',
+    'hypervisor.index': './src/hypervisor/index.js',
+    'hypervisor.post.save': './src/hypervisor/post.save.js'
   },
 
   // devtool: 'inline-source-map',
@@ -39,6 +62,12 @@ module.exports = {
         template.html的文件内容会被转成一个js字符串, 合并到js文件里.
         */
         use: 'html-loader'
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+        options: { presets: ['env'] }
       },
     ]
   },

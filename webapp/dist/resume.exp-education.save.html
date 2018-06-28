@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>龙江学子就业网</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+  <div id="navbar"></div>
+
+  <div class="container-fluid" id="app">
+    <div class="col-12 mt-3">
+      <p class="lead">
+        <i class="fa fa-fw fa-plus"></i> 添加教育经历
+        <hr/>
+      </p>
+    </div>
+
+    <div class="col-12" v-if="message">
+      <div class="alert alert-danger">
+        {{ message }}
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+            <label>学校</label>
+            <input type="text" class="form-control" v-model="resume.school">
+          </div>
+
+          <div class="form-group">
+            <label>专业</label>
+            <input type="text" class="form-control" v-model="resume.major">
+          </div>
+
+          <div class="form-group">
+            <label>学历</label>
+            <input type="text" class="form-control" v-model="resume.degree">
+          </div>
+
+          <div class="form-group">
+            <label>起止日期</label>
+            <input type="date" class="form-control" v-model="resume.begin">
+            <input type="date" class="form-control mt-3" v-model="resume.end">
+          </div>
+
+          <div class="form-group">
+            <button type="button" class="btn btn-block btn-primary btn-lg" v-on:click="submit">
+              <i class="fa fa-fw fa-check-square-o"></i> 确定
+            </button>
+
+            <a href="./resume.exp-education.html" class="btn btn-block btn-outline-secondary btn-sm mt-3">
+              <i class="fa fa-fw fa-arrow-left"></i> 返回
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.min.js"></script>
+
+  <script src="./assets/js/resume.exp-education.save.js"></script>
+</body>
+
+</html>

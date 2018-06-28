@@ -2,7 +2,6 @@ const express = require('express')
 const log4js = require('log4js')
 
 const config = require('../config')
-const mysql = require('../util/mysql2')
 const sequelize = require('../util/sequelize')
 
 const logger = log4js.getLogger()
@@ -13,7 +12,7 @@ const router = express.Router()
 router.route('/:uuid').get((req, res) => {
   let sql = `
     select
-      uuid, account, nickname
+      uuid, account, name
     from
       ${config.database.schema}.user
     where
@@ -24,17 +23,17 @@ router.route('/:uuid').get((req, res) => {
     replacements: { uuid: req.params.uuid },
     type: sequelize.QueryTypes.SELECT
   }).then(result => {
-    res.json({ content: result, message: '', status: 200 })
+    res.json({ content: result, message: '' })
   }).catch(error => {
     logger.error(error)
-    res.json({ content: '', message: '服务器错误', status: 500 })
+    res.json({ content: '', message: '服务器错误' })
   })
 })
 
 router.route('/login').post((req, res) => {
   let sql = `
     select
-      uuid, account, password, nickname
+      uuid, account, password, name
     from
       ${config.database.schema}.user
     where
@@ -43,19 +42,20 @@ router.route('/login').post((req, res) => {
   sequelize.query(sql, {
     replacements: { account: req.body.account },
     type: sequelize.QueryTypes.SELECT
-  }).then(rows => {
-    if (rows.length !== 1) {
-      res.json({ message: 401, content: '' })
+  }).then(result => {
+    if (result.length !== 1) {
+      res.json({ message: '用户名不存在或账号密码错误。', content: '' })
       return false
     }
-    if (rows[0].password === req.body.password) {
-      res.json({
-        content: { uuid: rows[0].uuid, account: rows[0].account, nickname: rows[0].nickname },
-        message: 200,
-      })
+    if (result[0].password === req.body.password) {
+      delete result[0].password
+      res.json({ content: result[0], message: '', })
+    }else{
+      res.json({ content: '', message: '', })
     }
-  }).catch(error => {
-    res.json({ content: '', message: 500 })
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误。' })
   })
 })
 

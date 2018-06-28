@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>#billboard</title>
+  <title>龙江学子就业网</title>
 
-  <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
@@ -17,14 +17,14 @@
 
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
+      <!-- <div class="carousel-item active">
+        <img class="d-block w-100" src="./assets/image/banner1.jpg" alt="">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="./assets/image/banner2.jpg" alt="">
+      </div> -->
       <div class="carousel-item active">
-        <img class="d-block w-100" src="./assets/image/wallhaven-44138.jpg" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="./assets/image/wallhaven-20867.jpg" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="./assets/image/wallhaven-98728.jpg" alt="Third slide">
+        <img class="d-block w-100" src="./assets/image/banner3.jpg" alt="宣传图">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -38,15 +38,20 @@
   </div>
 
   <div class="clearfix"></div>
-  <p><br/></p>
+
+  <p>
+    <br/>
+  </p>
 
   <div class="container-fluid" id="app">
     <div class="row">
-      <div class="alert alert-danger" role="alert" v-if="message">
-        {{ message }}
+      <div class="col-12">
+        <div class="alert alert-danger" role="alert" v-if="message">
+          {{ message }}
+        </div>
       </div>
-      <br>
-      <div class="col">
+
+      <div class="col-12">
         <div class="form-group">
           <select class="form-control" id="category" v-on:change="filter">
             <option value="">不限类别</option>
@@ -61,43 +66,32 @@
       </div>
     </div>
 
-    <div class="clearfix"></div>
-    <p><br></p>
-
-    <div class="card w-100" style="margin-top:1em" v-for="c in content">
+    <div class="card w-100 mt-3" v-for="item in content">
       <div class="card-header">
-        <img class="mr-3" src="./assets/image/wallhaven-20867.jpg" alt="image" style="width:2em;height:2em">
-        {{ c.user_name }}
-        <span class="text-muted float-right">{{ c.create_time }}</span>
+        {{ item.name }}
+        <span class="text-muted float-right">{{ item.date }}</span>
       </div>
       <div class="card-body">
         <h5 class="card-title">
-          {{ c.title }}
+          <a v-bind:href="'./job.html?uuid=' + item.uuid">{{ item.title }}</a>
         </h5>
-        <p class="card-text">{{ c.content }}</p>
-        <ul class="list-inline text-muted float-right">
-          <li class="list-inline-item">
-            <button type="button" class="btn" v-bind:data-uuid="c.uuid" v-on:click="favorite">
-              <i class="fa fa-heart"></i>
-              5
-            </button>
-          </li>
-          <li class="list-inline-item">
-            <button type="button" class="btn" v-bind:data-uuid="c.uuid" v-on:click="reply">
-              <i class="fa fa-comments"></i>
-              10
-            </button>
-          </li>
-        </ul>
+
+        <p class="card-text">
+          {{ item.requirement }}
+
+          <ul class="list-inline pull-right">
+            <li class="list-inline-item text-secondary">{{ item.city }}</li>
+            <li class="list-inline-item text-secondary">{{ item.district }}</li>
+          </ul>
+        </p>
       </div>
     </div>
-
   </div>
 
-  <script src="./lib/axios/dist/axios.min.js"></script>
-  <script src="./lib/vue/dist/vue.min.js"></script>
-  <script src="./lib/jquery/dist/jquery.slim.min.js"></script>
-  <script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.min.js"></script>
 
   <script src="./assets/js/index.js"></script>
 

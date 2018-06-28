@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>龙江学子就业网</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+	<div id = "navbar"></div>
+
+  <div class="container-fluid" id="app">
+    <div class="col-12 mt-3">
+      <div class="btn-group pull-right">
+        <a href="./user.resume.html" class="btn btn-outline-secondary btn-sm">
+          <i class="fa fa-fw fa-arrow-left"></i> 返回
+        </a>
+
+        <a href="./resume.exp-work.save.html" class="btn btn-outline-secondary btn-sm">
+          <i class="fa fa-fw fa-plus"></i> 添加工作经历
+        </a>
+      </div>
+
+      <p class="lead">工作经历
+        <hr/>
+      </p>
+    </div>
+
+    <div class="col-12">
+      <ul class="list-group">
+        <li class="list-group-item" v-for="item in work">
+          {{ item.company }} - {{ item.title }}
+          <br/>
+          <i class="fa fa-fw fa-cny"></i> {{ item.salary }}
+          <span class="pull-right text-secondary">{{ item.begin }} ~ {{ item.end }}</span>
+
+          <br/>
+
+          <button type="button" class="btn btn-sm btn-outline-danger pull-right mt-3" v-bind:data-uuid="item.uuid" v-on:click="remove">
+            <i class="fa fa-fw fa-trash"></i> 删除
+          </button>
+        </li>
+      </ul>
+    </div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.min.js"></script>
+
+	<script src="./assets/js/resume.exp-work.js"></script>
+</body>
+
+</html>

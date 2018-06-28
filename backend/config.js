@@ -13,9 +13,10 @@ const prodConfig = {
     database: '',
     schema: 'billboard',
     pool: {
-      max: os.cpus().length * 2 + 1,
-      min: 0,
-      idle: 10000
+      max: os.cpus().length * 2,
+      min: os.cpus().length * 2,
+      idle: 3000,
+      acquire: 1000
     },
     packSize: 20000,
     logging: true,
@@ -30,15 +31,16 @@ const develConfig = {
     secretKey: 'ovaphlow'
   },
   database: {
-    user: 'ovaphlow',
-    password: 'ovaph@HD.1123',
-    host: '192.168.1.15',
+    user: 'billboard',
+    password: 'billb@CDT.1123',
+    host: '118.24.1.214',
     database: '',
     schema: 'billboard',
     pool: {
-      max: os.cpus().length * 2 + 1,
+      max: os.cpus().length * 2,
       min: 0,
-      idle: 10000
+      idle: 3000,
+      acquire: 1000
     },
     packSize: 20000,
     logging: false,

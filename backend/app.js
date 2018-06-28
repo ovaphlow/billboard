@@ -37,6 +37,15 @@ app.use('/api/job', job)
 const user = require('./routes/user')
 app.use('/api/user', user)
 
+const resume = require('./routes/resume')
+app.use('/api/resume', resume)
+
+const company = require('./routes/company')
+app.use('/api/company', company)
+
+const hypervisor =require('./routes/hypervisor')
+app.use('/api/hypervisor', hypervisor)
+
 // const news = require('./routes/news')
 // app.use('/api/news', news)
 

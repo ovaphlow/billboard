@@ -17,17 +17,15 @@ let app = new Vue({
       axios({
         method: 'POST',
         url: './api/user/login',
-        data: {
-          account: this.user.account,
-          password: md5(this.user.password)
-        },
+        data: { account: this.user.account, password: md5(this.user.password) },
         responseType: 'json'
       }).then(response => {
-        if (response.data.message === 200) {
+        console.log(response.data)
+        if (response.data.message) {
+          this.message = response.data.message
+        } else {
           sessionStorage.setItem('auth', JSON.stringify(response.data.content))
           location.href = './user.html'
-        } else {
-          this.message = '账号或密码错误。'
         }
       })
     }
