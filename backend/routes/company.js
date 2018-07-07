@@ -208,14 +208,21 @@ router.route("/login").post((req, res) => {
     replacements: req.body,
     type: sequelize.QueryTypes.SELECT
   }).then(result => {
-    if (result.length !== 1) {
-      res.json({ content: '', message: '账号或密码错误' })
+    logger.info(result.length)
+    if (result.length !== 1 && result.length != 0) {
+      res.json({ content: '', message: '帐号异常，请联系管理员' })
+      return false;
+    }
+    if (result.length == 0) {
+      res.json({ content: '', message: '账号不存在，请注册帐号' })
       return false;
     }
     if (result[0].password === req.body.password) {
       delete result[0].id
       delete result[0].password
       res.json({ content: result[0], message: '' })
+    }else{
+      res.json({ content: '', message: '账号或密码错误' })
     }
   }).catch(error => {
     logger.error(error)
