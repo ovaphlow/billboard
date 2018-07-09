@@ -10,11 +10,8 @@ let app = new Vue({
     filter: function () {
       let category = document.getElementById('category')
       axios({
-        method: 'POST',
-        url: './api/news/filter',
-        data: {
-          category: category.value,
-        },
+        method: 'get',
+        url: './api/job/category/' + category.value,
         responseType: 'json'
       }).then(response => {
         app.content = response.data.content

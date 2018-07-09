@@ -12,6 +12,7 @@ class CompanyJobSave extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = { message: '' }
     this.submit = this.submit.bind(this)
   }
 
@@ -20,6 +21,7 @@ class CompanyJobSave extends React.Component {
       method: 'post',
       url: './api/company/' + this.props.auth.uuid + '/job/',
       data: {
+        category: document.getElementById('category').value,
         title: document.getElementById('title').value,
         requirement: document.getElementById('requirement').value,
         duty: document.getElementById('duty').value,
@@ -48,6 +50,19 @@ class CompanyJobSave extends React.Component {
               {this.state.message && <div className="col-12">
                 <div className="alert alert-danger">{this.state.message}</div>
               </div>}
+
+              <div className="form-group">
+                <label>类别</label>
+                <select className="form-control" id="category">
+                  <option value="">未分类</option>
+                  <option value="产品技术">产品/技术</option>
+                  <option value="金融保险">金融/保险</option>
+                  <option value="销售市场">销售/市场</option>
+                  <option value="生产制造">生产/制造</option>
+                  <option value="地产建筑">地产/建筑</option>
+                  <option value="职能其它">职能/其它</option>
+                </select>
+              </div>
 
               <div className="form-group">
                 <label>标题</label>

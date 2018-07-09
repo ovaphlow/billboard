@@ -9,6 +9,32 @@ logger.level = 'debug'
 
 const router = express.Router()
 
+router.get('/category/:category', (req, res) => {
+  let sql = `
+    select
+      j.uuid, j.category, j.date, j.title, j.requirement, j.duty, j.content,
+      c.name, c.province, c.city, c.district, c.address, c.intro
+    from
+      ${config.database.schema}.job as j
+    join ${config.database.schema}.company as c on
+      c.uuid = j.master_uuid
+    where
+      j.category = :category
+    order by
+      j.id desc
+    limit 200
+  `
+  sequelize.query(sql, {
+    replacements: { category: req.params.category },
+    type: sequelize.QueryTypes.SELECT
+  }).then(result => {
+    res.json({ content: result, message: '' })
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误'})
+  })
+})
+
 router.route('/:job_uuid/user').post((req, res) => {
   req.body.job_uuid = req.params.job_uuid
   let sql = `

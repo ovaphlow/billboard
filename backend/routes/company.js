@@ -73,6 +73,7 @@ router.route('/:uuid/job/').post((req, res) => {
     set
       uuid = uuid(),
       master_uuid = :uuid,
+      category = :category,
       title = :title,
       requirement = :requirement,
       duty = :duty,
