@@ -149,7 +149,7 @@ router.route('/:uuid/').post((req, res) => {
 })
 
 /**
- * 修改简历
+ * 删除简历
  */
 router.route('/:uuid').delete((req, res) => {
   let sql = `
@@ -248,14 +248,14 @@ router.route('/user/:uuid').put((req, res) => {
 /**
  * 增加教育经历
  */
-router.route('/user/:uuid/education').post((req, res) => {
+router.route('/:uuid/education').post((req, res) => {
   req.body.uuid = req.params.uuid
   let sql = `
     insert into
       ${config.database.schema}.education
     set
       uuid = uuid(),
-      user_uuid = :uuid,
+      master_uuid = :uuid,
       school = :school,
       major = :major,
       degree = :degree,
@@ -276,14 +276,14 @@ router.route('/user/:uuid/education').post((req, res) => {
 /**
  * 增加工作经历
  */
-router.route('/user/:uuid/work/').post((req, res) => {
+router.route('/:uuid/work').post((req, res) => {
   req.body.uuid = req.params.uuid
   let sql = `
     insert into
       ${config.database.schema}.work
     set
       uuid = uuid(),
-      user_uuid = :uuid,
+      master_uuid = :uuid,
       company = :company,
       title = :title,
       salary = :salary,
@@ -348,14 +348,9 @@ router.route("/work/:uuid").delete((req, res) =>{
 /**
  * 查询教育经历
  */
-router.route("/user/:uuid/education/").get((req, res) =>{
+router.route("/:uuid/education").get((req, res) =>{
   let sql = `
-    select
-      *
-    from
-      ${config.database.schema}.education
-    where
-      user_uuid = :uuid  
+    select * from ${config.database.schema}.education where master_uuid = :uuid  
   `
   sequelize.query(sql, {
     replacements: { uuid: req.params.uuid },
@@ -371,14 +366,9 @@ router.route("/user/:uuid/education/").get((req, res) =>{
 /**
  * 查询工作经历
  */
-router.route("/user/:uuid/work/").get((req, res) =>{
+router.route("/:uuid/work").get((req, res) =>{
   let sql = `
-    select
-      *
-    from
-      ${config.database.schema}.work
-    where
-      user_uuid = :uuid  
+    select * from ${config.database.schema}.work where master_uuid = :uuid  
   `
   sequelize.query(sql, {
     replacements: { uuid: req.params.uuid },

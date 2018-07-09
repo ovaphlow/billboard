@@ -3,7 +3,6 @@ import React from 'react'
 export default class ResumeItem extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props.item)
   }
 
   render() {

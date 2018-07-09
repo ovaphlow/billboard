@@ -70,7 +70,7 @@
       <div class="col-12">
         <label>教育经历</label>
         <ul class="list-group">
-          <a href="./resume.exp-education.html" class="list-group-item list-group-item-action" style="height:45px;">
+          <a v-bind:href="'./resume.exp-education.html?uuid=' + resume.uuid" class="list-group-item list-group-item-action" style="height:45px;">
             编辑教育经历
             <span class="pull-right text-secondary">
               <i class="fa fa-fw fa-angle-right" aria-hidden="true"></i>
@@ -83,7 +83,7 @@
         <br/>
         <label>工作经历</label>
         <ul class="list-group">
-          <a href="./resume.exp-work.html " class="list-group-item list-group-item-action" style="height:45px;">
+          <a v-bind:href="'./resume.exp-work.html?uuid=' + resume.uuid" class="list-group-item list-group-item-action" style="height:45px;">
             编辑工作经历
             <span class="pull-right text-secondary ">
               <i class="fa fa-fw fa-angle-right " aria-hidden="true "></i>

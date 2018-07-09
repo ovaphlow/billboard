@@ -9,7 +9,8 @@ class Resume extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { message: '', resume: {} }
+    this.state = { message: '', resume: {}, educationList: [], workList: [] }
+    this.back = this.back.bind(this)
   }
 
   componentDidMount() {
@@ -24,6 +25,38 @@ class Resume extends React.Component {
         this.setState({ resume: response.data.content })
       }
     })
+
+    axios({
+      method: 'get',
+      url: './api/resume/' + urlParameter('uuid') + '/education',
+      responseType: 'json'
+    }).then(response => {
+      if (response.data.message) {
+        this.setState({ message: response.data.message })
+        return false
+      }
+      if (response.data.content.length > 0) {
+        this.setState({ educationList: response.data.content })
+      }
+    })
+
+    axios({
+      method: 'get',
+      url: './api/resume/' + urlParameter('uuid') + '/work',
+      responseType: 'json'
+    }).then(response => {
+      if (response.data.message) {
+        this.setState({ message: response.data.message })
+        return false
+      }
+      if (response.data.content.length > 0) {
+        this.setState({ workList: response.data.content })
+      }
+    })
+  }
+
+  back() {
+    window.history.go(-1)
   }
 
   render() {
@@ -60,7 +93,14 @@ class Resume extends React.Component {
                 <span className="text-secondary">教育经历</span>
 
                 <ul className="list-group">
-                  <li className="list-group-item">123</li>
+                  {this.state.educationList.map(item => <li className="list-group-item">
+                    <ul className="list-inline">
+                      <li className="list-inline-item">{item.school}</li>
+                      <li className="list-inline-item">{item.major}</li>
+                      <li className="list-inline-item">{item.degree}</li>
+                      <li className="list-inline-item text-secondary">{item.begin} - {item.end}</li>
+                    </ul>
+                  </li>)}
                 </ul>
               </div>
 
@@ -70,8 +110,24 @@ class Resume extends React.Component {
                 <span className="text-secondary">工作经历</span>
 
                 <ul className="list-group">
-                  <li className="list-group-item">123</li>
+                  {this.state.workList.map(item => <li className="list-group-item">
+                    <ul className="list-inline">
+                      <li className="list-inline-item">{item.company}</li>
+                      <li className="list-inline-item text-secondary">{item.begin} - {item.end}</li>
+                      <li className="list-inline-item">{item.title}</li>
+                      <li className="list-inline-item">{item.salary}</li>
+                      <li className="list-inline-item">{item.duty}</li>
+                    </ul>
+                  </li>)}
                 </ul>
+              </div>
+
+              <div className="col-12"><br/></div>
+
+              <div className="col-12">
+                <button className="btn btn-block btn-lg btn-outline-secondary" onClick={this.back}>
+                  <i className="fa fa-fw fa-arrow-left"></i> 返回
+                </button>
               </div>
             </div>
           </div>

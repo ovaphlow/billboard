@@ -31,9 +31,11 @@ let app = new Vue({
   },
 
   created: function () {
+    sessionStorage.setItem('resume', urlParameter('uuid'))
+
     axios({
       method: 'get',
-      url: './api/resume/user/' + auth.uuid + '/work/',
+      url: './api/resume/' + urlParameter('uuid') + '/work',
       responseType: 'json'
     }).then(response => {
       this.work = response.data.content

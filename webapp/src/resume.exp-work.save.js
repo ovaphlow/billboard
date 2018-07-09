@@ -16,7 +16,7 @@ let app = new Vue({
     submit: function () {
       axios({
         method: 'post',
-        url: './api/resume/user/' + auth.uuid + '/work/',
+        url: './api/resume/' + sessionStorage.getItem('resume') + '/work',
         data: {
           company: this.work.company || '',
           title: this.work.title || '',
@@ -28,7 +28,7 @@ let app = new Vue({
         responseType: 'json'
       }).then(response => {
         if (response.data.message) this.message = response.data.message
-        else location.href = './resume.exp-work.html'
+        else location.href = './user.resume.html'
       })
     }
   },

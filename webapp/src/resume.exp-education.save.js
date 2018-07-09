@@ -18,7 +18,7 @@ let app = new Vue({
 
       axios({
         method: 'post',
-        url: './api/resume/user/' + auth.uuid + '/education',
+        url: './api/resume/' + sessionStorage.getItem('resume') + '/education',
         data: {
           school: this.resume.school || '',
           major: this.resume.major || '',
@@ -31,7 +31,7 @@ let app = new Vue({
         if(response.data.message){
           this.message = response.data.message
         }else{
-            location.href = 'user.resume.html'
+          location.href = 'user.resume.html'
         }
       })
     }
