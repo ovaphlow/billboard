@@ -61,12 +61,12 @@ class CompanyRegister extends React.Component {
       <div className="card">
         <div className="row card-body">
           <div className="col-12 card-title">
-            <h4>注册公司账号</h4>
+            <h4>注册企业账号</h4>
             <hr/>
           </div>
 
           <div className="col-12 form-group">
-            <label>公司名称</label>
+            <label>企业名称</label>
             <input type="text" id="name" className="form-control"/>
           </div>
 

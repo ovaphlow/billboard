@@ -47,7 +47,7 @@ class CompanyLogin extends React.Component {
       <div className="card">
         <div className="row card-body">
           <div className="col-12 card-title">
-            <h4>登录公司账号</h4>
+            <h4>登录企业账号</h4>
             <hr/>
           </div>
 
