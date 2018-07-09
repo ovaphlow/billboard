@@ -59,4 +59,34 @@ router.route('/login').post((req, res) => {
   })
 })
 
+router.post('/register', (req, res) => {
+  let sql = `
+    select id, account from ${config.database.schema}.user where account = :account
+  `
+  sequelize.query(sql, {
+    replacements: req.body,
+    type: sequelize.QueryTypes.SELECT
+  }).then(result => {
+    if (result.length > 0) {
+      res.json({ content: '', message: '用户已存在' })
+      return false
+    }
+    sql = `
+      insert into ${config.database.schema}.user set uuid = uuid(), account = :account, password = :password, name = :account
+    `
+    sequelize.query(sql, {
+      replacements: req.body,
+      type: sequelize.QueryTypes.INSERT
+    }).then(result => {
+      res.json({ content: result, message: '' })
+    }).catch(err => {
+      logger.error(err)
+      res.json({ content: '', message: '服务器错误' })
+    })
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误' })
+  })
+})
+
 module.exports = router
