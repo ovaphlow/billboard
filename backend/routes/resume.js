@@ -10,6 +10,29 @@ logger.level = 'debug'
 const router = express.Router()
 
 /**
+ * 简历投递记录
+ */
+router.route('/user/:uuid/post').get((req, res) => {
+  let sql = `
+    select
+      *, (select title from ${config.database.schema}.job where uuid = pr.job_uuid) as title
+    from
+      ${config.database.schema}.post_resume as pr
+    where
+      resume_uuid = (select uuid from ${config.database.schema}.resume where user_uuid = :uuid limit 1)
+  `
+  sequelize.query(sql, {
+    replacements: { uuid: req.params.uuid },
+    type: sequelize.QueryTypes.SELECT
+  }).then(result => {
+    res.json({ content: result, message: '' })
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误。' })
+  })
+})
+
+/**
  * 简历
  */
 router.route('/:uuid').get((req, res) => {

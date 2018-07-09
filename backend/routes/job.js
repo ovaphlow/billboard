@@ -17,7 +17,7 @@ router.route('/:job_uuid/user').post((req, res) => {
     set
       uuid = uuid(),
       job_uuid = :job_uuid,
-      user_uuid = :user_uuid
+      resume_uuid = (select uuid from ${config.database.schema}.resume where user_uuid = :user_uuid limit 1)
   `
   sequelize.query(sql, {
     replacements: req.body,
@@ -51,6 +51,7 @@ router.route('/:uuid').get((req, res) => {
     replacements: { uuid: req.params.uuid },
     type: sequelize.QueryTypes.SELECT
   }).then(result => {
+    logger.info(result)
     res.json({ content: result[0], message: '' })
   }).catch(err => {
     logger.error(err)

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>龙江学子就业网</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+  <div id="navbar"></div>
+
+  <div id="app" class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <p class="lead">简历投递记录</p>
+      </div>
+
+      <div class="col-12">
+        <div class="list-group">
+          <a v-bind:href="'./user.job.html?uuid=' + item.job_uuid" class="list-group-item list-group-item-action" v-for="item in jobList">
+            {{ item.title }}
+            <span class="pull-right text-secondary">{{ item.date }}</span>
+          </a>
+        </div>
+      </div>
+     
+      <div class="col-12">
+        <br/>
+        <a href="./user.html " class="btn btn-outline-dark btn-block">
+          <i class="fa fa-fw fa-arrow-left "></i>
+          返回
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js "></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js "></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.min.js "></script>
+
+  <script src="./assets/js/user.resume.post.js "></script>
+</body>
+
+</html>

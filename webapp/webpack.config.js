@@ -13,6 +13,8 @@ module.exports = {
     'user.resume': './src/user.resume.js',
     'user.resume.save': './src/user.resume.save.js',
     'user.resume.update': './src/user.resume.update.js',
+    'user.resume.post': './src/user.resume.post.js',
+    'user.job': './src/user.job.js',
     'resume': './src/resume.js',
     'job': './src/job.js',
     
