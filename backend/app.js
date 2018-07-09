@@ -43,6 +43,9 @@ app.use('/api/resume', resume)
 const company = require('./routes/company')
 app.use('/api/company', company)
 
+const message = require('./routes/message')
+app.use('/api/message', message)
+
 const hypervisor =require('./routes/hypervisor')
 app.use('/api/hypervisor', hypervisor)
 

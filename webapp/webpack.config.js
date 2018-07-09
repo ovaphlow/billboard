@@ -17,6 +17,8 @@ module.exports = {
     'user.job': './src/user.job.js',
     'resume': './src/resume.js',
     'job': './src/job.js',
+    'user.message-list': './src/user.message-list.js',
+    'user.message': './src/user.message.js',
     
     'resume.exp-education': './src/resume.exp-education.js',
     'resume.exp-education.save': './src/resume.exp-education.save.js',
