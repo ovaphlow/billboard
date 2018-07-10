@@ -35,20 +35,23 @@ CREATE TABLE IF NOT EXISTS `company` (
   PRIMARY KEY (`id`),
   KEY `uuid` (`uuid`),
   KEY `account` (`account`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='企业用户';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='企业用户';
 
 -- 数据导出被取消选择。
--- 导出  表 billboard.education_experience 结构
-CREATE TABLE IF NOT EXISTS `education_experience` (
+-- 导出  表 billboard.education 结构
+CREATE TABLE IF NOT EXISTS `education` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `school` varchar(255) DEFAULT NULL COMMENT '毕业院校',
-  `qualifications` varchar(255) DEFAULT NULL COMMENT '学位学历',
-  `intake` varchar(255) DEFAULT NULL COMMENT '入学时间',
-  `graduation_time` varchar(255) DEFAULT NULL COMMENT '毕业时间',
-  `major_name` varchar(255) DEFAULT NULL COMMENT '专业名称',
-  `userId` int(11) DEFAULT NULL COMMENT '用户Id',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+  `uuid` char(36) NOT NULL DEFAULT '' COMMENT '用户Id',
+  `master_uuid` char(36) NOT NULL DEFAULT '',
+  `school` varchar(50) NOT NULL DEFAULT '' COMMENT '毕业院校',
+  `major` varchar(20) NOT NULL DEFAULT '' COMMENT '专业名称',
+  `degree` varchar(20) NOT NULL DEFAULT '' COMMENT '学位学历',
+  `begin` date DEFAULT NULL COMMENT '入学时间',
+  `end` date DEFAULT NULL COMMENT '毕业时间',
+  PRIMARY KEY (`id`),
+  KEY `uuid` (`uuid`),
+  KEY `user_uuid` (`master_uuid`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- 数据导出被取消选择。
 -- 导出  表 billboard.employee 结构
@@ -95,14 +98,32 @@ CREATE TABLE IF NOT EXISTS `job` (
   `category` varchar(20) NOT NULL DEFAULT '',
   `date` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `title` varchar(50) NOT NULL DEFAULT '',
+  `requirement` text DEFAULT NULL,
+  `duty` text DEFAULT NULL,
   `content` text DEFAULT NULL,
+  PRIMARY KEY (`id`,`uuid`),
+  KEY `master_uuid` (`master_uuid`),
+  KEY `category` (`category`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='招聘广告';
+
+-- 数据导出被取消选择。
+-- 导出  表 billboard.message 结构
+CREATE TABLE IF NOT EXISTS `message` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) NOT NULL DEFAULT '',
+  `category` enum('','用户','企业') NOT NULL DEFAULT '',
+  `source` varchar(50) NOT NULL DEFAULT '' COMMENT '消息发送自',
+  `source_uuid` char(36) NOT NULL DEFAULT '',
+  `target` varchar(50) NOT NULL DEFAULT '' COMMENT '消息发送至',
+  `target_uuid` char(36) NOT NULL DEFAULT '',
+  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '标题',
+  `content` text NOT NULL DEFAULT '' COMMENT '内容',
+  `status` enum('未读','已读') NOT NULL DEFAULT '未读' COMMENT '状态',
+  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '发送时间',
   PRIMARY KEY (`id`),
-  KEY `uuid` (`uuid`),
-  KEY `category` (`category`),
-  KEY `user_uuid` (`master_uuid`),
-  KEY `date` (`date`),
-  KEY `title` (`title`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='招聘广告';
+  KEY `source` (`source_uuid`),
+  KEY `target` (`target_uuid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='消息';
 
 -- 数据导出被取消选择。
 -- 导出  表 billboard.platform_news 结构
@@ -153,6 +174,39 @@ CREATE TABLE IF NOT EXISTS `platform_news_img` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='005-消息图片表 by kill8268';
 
 -- 数据导出被取消选择。
+-- 导出  表 billboard.post_resume 结构
+CREATE TABLE IF NOT EXISTS `post_resume` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) NOT NULL DEFAULT '',
+  `job_uuid` char(36) NOT NULL DEFAULT '',
+  `resume_uuid` char(36) NOT NULL DEFAULT '',
+  `date` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `post_resume_uuid_idx` (`uuid`) USING BTREE,
+  KEY `post_resume_job_uuid_idx` (`job_uuid`) USING BTREE,
+  KEY `post_resume_user_uuid_idx` (`resume_uuid`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='投递简历';
+
+-- 数据导出被取消选择。
+-- 导出  表 billboard.resume 结构
+CREATE TABLE IF NOT EXISTS `resume` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) NOT NULL DEFAULT '',
+  `user_uuid` char(36) NOT NULL DEFAULT '',
+  `name` varchar(20) NOT NULL DEFAULT '' COMMENT '姓名',
+  `birthday` varchar(20) NOT NULL DEFAULT '' COMMENT '教育经历',
+  `gender` varchar(10) NOT NULL DEFAULT '' COMMENT '性别',
+  `phone` varchar(20) NOT NULL DEFAULT '' COMMENT '电话',
+  `email` varchar(50) NOT NULL DEFAULT '' COMMENT '邮箱',
+  `province` varchar(20) NOT NULL DEFAULT '' COMMENT '省',
+  `city` varchar(20) NOT NULL DEFAULT '' COMMENT '市',
+  `date` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `uuid` (`uuid`),
+  KEY `user_id` (`user_uuid`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+
+-- 数据导出被取消选择。
 -- 导出  表 billboard.user 结构
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
@@ -169,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `user_uuid_idx` (`uuid`) USING BTREE,
   KEY `user_account_idx` (`account`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='001-用户基本系信息表 by kill_8268';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='001-用户基本系信息表 by kill_8268';
 
 -- 数据导出被取消选择。
 -- 导出  表 billboard.user_consumption 结构
@@ -229,35 +283,19 @@ CREATE TABLE IF NOT EXISTS `user_recharge` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='003-用户充值记录 by kill8268';
 
 -- 数据导出被取消选择。
--- 导出  表 billboard.user_resume 结构
-CREATE TABLE IF NOT EXISTS `user_resume` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `uuid` char(36) NOT NULL DEFAULT '',
-  `user_id` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(20) NOT NULL DEFAULT '' COMMENT '姓名',
-  `birthday` varchar(20) NOT NULL DEFAULT '' COMMENT '教育经历',
-  `gender` varchar(10) NOT NULL DEFAULT '' COMMENT '性别',
-  `phone` varchar(20) NOT NULL DEFAULT '' COMMENT '电话',
-  `email` varchar(50) NOT NULL DEFAULT '' COMMENT '邮箱',
-  `province` varchar(20) NOT NULL DEFAULT '' COMMENT '地址',
-  `city` varchar(20) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `uuid` (`uuid`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
-
--- 数据导出被取消选择。
--- 导出  表 billboard.work_experience 结构
-CREATE TABLE IF NOT EXISTS `work_experience` (
+-- 导出  表 billboard.work 结构
+CREATE TABLE IF NOT EXISTS `work` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `company_name` varchar(255) DEFAULT NULL COMMENT '公司名称',
-  `station` varchar(255) DEFAULT NULL COMMENT '岗位名称',
-  `hiredate` varchar(255) DEFAULT NULL COMMENT '入职时间',
-  `leavedate` varchar(255) DEFAULT NULL COMMENT '离职时间',
-  `income` varchar(255) DEFAULT NULL COMMENT '税前收入',
-  `userId` int(11) DEFAULT NULL,
+  `uuid` char(36) NOT NULL DEFAULT '',
+  `master_uuid` char(36) NOT NULL DEFAULT '',
+  `company` varchar(20) NOT NULL DEFAULT '' COMMENT '公司名称',
+  `title` varchar(20) NOT NULL DEFAULT '' COMMENT '职位',
+  `salary` varchar(10) NOT NULL DEFAULT '' COMMENT '税前收入',
+  `duty` text DEFAULT '',
+  `begin` date DEFAULT NULL COMMENT '入职时间',
+  `end` date DEFAULT NULL COMMENT '离职时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- 数据导出被取消选择。
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
