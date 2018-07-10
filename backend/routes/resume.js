@@ -11,8 +11,13 @@ const router = express.Router()
 
 /**
  * 搜索简历
+ * 参数：任职方向、学历、专业
+ * params: category, degree, major
+ * 去掉专业吧
  */
 router.post('/filter', (req, res) => {
+  let sql = `
+  `
   res.json({ content: '', message: '' })
 })
 
@@ -231,9 +236,12 @@ router.route('/user/:uuid').put((req, res) => {
     update
       ${config.database.schema}.resume
     set 
+      category = :category,
       name = :name,
       gender = :gender,
       birthday = :birthday,
+      degree = :degree,
+      major = :major,
       phone = :phone,
       email = :email,
       province = :province,
