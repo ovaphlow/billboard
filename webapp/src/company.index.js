@@ -74,6 +74,11 @@ class CompanyIndex extends React.Component {
               <i className="fa fa-fw fa-address-book-o"></i> 收到的简历
               <span className="pull-right"><i className="fa fa-fw fa-angle-right"></i></span>
             </a>
+
+			<a href="company.search.html" className="list-group-item list-group-item-action">
+              <i className="fa fa-fw fa-search"></i> 搜索人才
+              <span className="pull-right"><i className="fa fa-fw fa-angle-right"></i></span>
+            </a>
           </div>
         </div>
 
