@@ -10,6 +10,13 @@ logger.level = 'debug'
 const router = express.Router()
 
 /**
+ * 搜索简历
+ */
+router.post('/filter', (req, res) => {
+  res.json({ content: '', message: '' })
+})
+
+/**
  * 简历投递记录
  */
 router.route('/user/:uuid/post').get((req, res) => {
