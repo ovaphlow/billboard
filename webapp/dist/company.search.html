@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>龙江学子就业网</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+</head>
+
+<body>
+<div id="navbar"></div>
+<br><br>
+<div class="form-group">
+  <div class="input-group col-lg-5">
+    <input type="text" name="keyword" id="keyword" v-mdel="msg" class="form-control" >
+        <span class="input-group-btn">
+            <button class="btn btn-default" id="search_submit" type="submit">搜索人才</button>
+        </span>
+  </div>
+</div>
+<div id="box">
+  <br>
+  {{msg}}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.min.js"></script>
+<script src="./assets/js/company.search.js"></script>
+<script>
+  window.onload=function(){
+    new Vue({
+      el:'#box',
+      data:{
+        msg:'welcome vue'
+      }
+    });
+  };
+</script>
+</body>
+
+</html>
+
+
