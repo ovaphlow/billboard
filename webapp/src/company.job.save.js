@@ -48,7 +48,7 @@ class CompanyJobSave extends React.Component {
           <div className="card">
             <div className="card-body">
               {this.state.message && <div className="col-12">
-                <div className="alert alert-danger">{this.state.message}</div>
+                <div className="alert alert-primary">{this.state.message}</div>
               </div>}
 
               <div className="form-group">

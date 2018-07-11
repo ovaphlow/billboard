@@ -99,7 +99,7 @@ class CompanyUpdate extends React.Component {
         </div>
 
         {this.state.message &&<div className="col-12">
-          <div className="alert alert-danger">
+          <div className="alert alert-primary">
             {this.state.message}
           </div>
         </div>}

@@ -205,6 +205,7 @@ router.route('/:uuid').delete((req, res) => {
 
 /**
  * 查询全部档案
+ * 暂未使用
  */
 router.route('/findResume').get((req, res) => {
   let sql = `
@@ -228,6 +229,7 @@ router.route('/findResume').get((req, res) => {
 
 /**
  *  根据部门id 查询所投入部门简历
+ * 暂未使用
  */
 router.route('/:companyId/findResume').get((req, res) => {
   let sql = `
@@ -292,7 +294,7 @@ router.route('/:uuid/education').post((req, res) => {
   req.body.uuid = req.params.uuid
   let sql = `
     insert into
-      ${config.database.schema}.education
+      ${config.database.schema}.resume_education
     set
       uuid = uuid(),
       master_uuid = :uuid,
@@ -316,11 +318,11 @@ router.route('/:uuid/education').post((req, res) => {
 /**
  * 增加工作经历
  */
-router.route('/:uuid/work').post((req, res) => {
+router.route('/:uuid/career').post((req, res) => {
   req.body.uuid = req.params.uuid
   let sql = `
     insert into
-      ${config.database.schema}.work
+      ${config.database.schema}.resume_career
     set
       uuid = uuid(),
       master_uuid = :uuid,
@@ -349,7 +351,7 @@ router.route('/:uuid/work').post((req, res) => {
 router.route("/education/:uuid").delete((req, res) =>{
   let sql = `
     delete from
-      ${config.database.schema}.education
+      ${config.database.schema}.resume_education
     where
       uuid = :uuid  
   `
@@ -367,10 +369,10 @@ router.route("/education/:uuid").delete((req, res) =>{
 /**
  * 删除工作经历
  */
-router.route("/work/:uuid").delete((req, res) =>{
+router.route("/career/:uuid").delete((req, res) =>{
   let sql = `
     delete from
-      ${config.database.schema}.work
+      ${config.database.schema}.resume_career
     where
       uuid = :uuid  
     `
@@ -390,7 +392,7 @@ router.route("/work/:uuid").delete((req, res) =>{
  */
 router.route("/:uuid/education").get((req, res) =>{
   let sql = `
-    select * from ${config.database.schema}.education where master_uuid = :uuid  
+    select * from ${config.database.schema}.resume_education where master_uuid = :uuid  
   `
   sequelize.query(sql, {
     replacements: { uuid: req.params.uuid },
@@ -406,9 +408,9 @@ router.route("/:uuid/education").get((req, res) =>{
 /**
  * 查询工作经历
  */
-router.route("/:uuid/work").get((req, res) =>{
+router.route("/:uuid/career").get((req, res) =>{
   let sql = `
-    select * from ${config.database.schema}.work where master_uuid = :uuid  
+    select * from ${config.database.schema}.resume_career where master_uuid = :uuid  
   `
   sequelize.query(sql, {
     replacements: { uuid: req.params.uuid },

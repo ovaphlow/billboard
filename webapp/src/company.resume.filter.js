@@ -83,7 +83,7 @@ class CompanySearch extends React.Component {
             <hr/>
           </div>
 
-          {this.state.message && <div className="alert alert-danger">
+          {this.state.message && <div className="alert alert-primary">
             {this.state.message}
           </div>}
 
