@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>龙江学子就业网</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+</head>
+
+<body>
+<div id="navbar"></div>
+
+<p class="lead">　搜索人才</p>
+<div class="col-12">
+  <div class="form-group">
+    <select class="form-control" id="category" v-on:change="filter">
+      <option value="">任职方向</option>
+      <option value="产品技术">产品/技术</option>
+      <option value="金融保险">金融/保险</option>
+      <option value="销售市场">销售/市场</option>
+      <option value="生产制造">生产/制造</option>
+      <option value="地产建筑">地产/建筑</option>
+      <option value="职能其它">职能/其它</option>
+    </select>
+  </div>
+</div>
+
+<div class="col-12">
+  <div class="form-group">
+    <select class="form-control" id="category" v-on:change="filter">
+      <option value="">学历</option>
+      <option value="小学">小学</option>
+      <option value="初中">初中</option>
+      <option value="高中">高中</option>
+      <option value="中专">中专</option>
+      <option value="高职">高职</option>
+      <option value="大学本科">大学本科</option>
+      <option value="大学专科">大学专科</option>
+      <option value="硕士生">硕士生</option>
+    </select>
+  </div>
+</div>
+
+<div class="col-12">
+  <div class="form-group">
+    <input type="text" class="form-control" id="name" placeholder="请输入专业">
+  </div>
+</div>
+
+
+<div class="card w-100 mt-3" v-for="item in content">
+  <div class="card-header">
+    求职意向：{{ joba }}
+  </div>
+  <div class="card-body" id="job">
+
+    <p class="card-text">
+      <h6>姓名：{{name}}</h6>
+      <h6>联系方式：{{tel}}</h6>
+      <h6>期望薪资：{{sal}}</h6>
+      <h6>期望城市：{{city}}</h6>
+    <ul class="list-inline pull-right">
+      <li class="list-inline-item text-secondary"><i class="fa fa-eye"></i> {{browse}}</li>
+    </ul>
+    </p>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.min.js"></script>
+<script src="./assets/js/company.search.js"></script>
+
+</body>
+<script type="text/javascript">
+  var vm = new Vue({
+    el:'#job',
+    data:{
+      joba:"JAVA",
+      name:"张XX",
+      tel:"13836623068",
+      sal:"2001-4000",
+      city:"哈尔滨",
+      browse:"87",
+      alexa:"8000"
+    }
+  })
+
+</script>
+</html>
+
+

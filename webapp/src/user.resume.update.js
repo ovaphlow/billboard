@@ -39,9 +39,12 @@ let app = new Vue({
         method: 'put',
         url: './api/resume/user/'+ this.auth.uuid,
         data: {
+          category: this.resume.category || '',
           name: this.resume.name || '',
           gender: this.resume.gender || '',
           birthday: this.resume.birthday || '',
+          degree: this.resume.degree || '',
+          major: this.resume.major || '',
           phone: this.resume.phone || '',
           email: this.resume.email || '',
           province: document.getElementById('province').options[document.getElementById('province').options.selectedIndex].text,
