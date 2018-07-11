@@ -53,6 +53,14 @@ class Resume extends React.Component {
         this.setState({ workList: response.data.content })
       }
     })
+
+    setTimeout(() => {
+      axios({
+        method: 'post',
+        url: './api/resume/' + urlParameter('uuid') + '/views',
+        responseType: 'json'
+      })
+    }, 3000)
   }
 
   back() {

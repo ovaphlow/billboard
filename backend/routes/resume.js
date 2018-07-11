@@ -9,18 +9,32 @@ logger.level = 'debug'
 
 const router = express.Router()
 
+router.post('/:uuid/views', (req, res) => {
+  let sql = `
+    update ${config.database.schema}.resume set views = views + 1 where uuid = :uuid
+  `
+  sequelize.query(sql, {
+    replacements: { uuid: req.params.uuid },
+    type: sequelize.QueryTypes.UPDATE
+  }).then(result => {
+    res.json({ content: result, message: '' })
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '' })
+  })
+})
+
 /**
  * 搜索简历
  * 参数：任职方向、学历、专业
  * params: category, degree, major
- * 去掉专业吧
  */
 router.post('/filter', (req, res) => {
   let sql = `
     select
       *
     from
-      resume
+      ${config.database.schema}.resume
     where
       position(:category in category) > 0
       and position(:degree in degree) > 0
@@ -30,9 +44,10 @@ router.post('/filter', (req, res) => {
   sequelize.query(sql, {
     replacements: req.body,
     type: sequelize.QueryTypes.SELECT
-  }).then(reuslt => {
+  }).then(result => {
     res.json({ content: result, message: '' })
   }).catch(err => {
+    logger.error(err)
     res.json({ content: '', message: '服务器错误' })
   })
 })

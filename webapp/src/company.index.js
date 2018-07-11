@@ -65,18 +65,18 @@ class CompanyIndex extends React.Component {
 
         <div className="col-12">
           <div className="list-group">
-            <a href="company.job.list.html" className="list-group-item list-group-item-action">
+            <a href="./company.job.list.html" className="list-group-item list-group-item-action">
               <i className="fa fa-fw fa-calendar-o"></i> 发布的职位
               <span className="pull-right"><i className="fa fa-fw fa-angle-right"></i></span>
             </a>
 
-            <a href="company.resume.list.html" className="list-group-item list-group-item-action">
+            <a href="./company.resume.list.html" className="list-group-item list-group-item-action">
               <i className="fa fa-fw fa-address-book-o"></i> 收到的简历
               <span className="pull-right"><i className="fa fa-fw fa-angle-right"></i></span>
             </a>
 
-			<a href="company.search.html" className="list-group-item list-group-item-action">
-              <i className="fa fa-fw fa-search"></i> 搜索人才
+            <a href="./company.resume.filter.html" className="list-group-item list-group-item-action">
+              <i className="fa fa-fw fa-search"></i> 搜索简历
               <span className="pull-right"><i className="fa fa-fw fa-angle-right"></i></span>
             </a>
           </div>
