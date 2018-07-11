@@ -42,7 +42,7 @@ class Resume extends React.Component {
 
     axios({
       method: 'get',
-      url: './api/resume/' + urlParameter('uuid') + '/work',
+      url: './api/resume/' + urlParameter('uuid') + '/career',
       responseType: 'json'
     }).then(response => {
       if (response.data.message) {

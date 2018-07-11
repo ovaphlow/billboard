@@ -18,7 +18,7 @@ let app = new Vue({
 
       axios({
         method: 'delete',
-        url: './api/resume/work/' + event.target.getAttribute('data-uuid'),
+        url: './api/resume/career/' + event.target.getAttribute('data-uuid'),
         responseType: 'json'
       }).then(response => {
         if (response.data.message) {
@@ -35,7 +35,7 @@ let app = new Vue({
 
     axios({
       method: 'get',
-      url: './api/resume/' + urlParameter('uuid') + '/work',
+      url: './api/resume/' + urlParameter('uuid') + '/career',
       responseType: 'json'
     }).then(response => {
       this.work = response.data.content
