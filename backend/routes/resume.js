@@ -44,13 +44,7 @@ router.route('/user/:uuid/post').get((req, res) => {
  */
 router.route('/:uuid').get((req, res) => {
   let sql = `
-    select
-      *
-    from
-      ${config.database.schema}.resume
-    where
-      uuid = :uuid
-    limit 1
+    select * from ${config.database.schema}.resume where uuid = :uuid limit 1
   `
   sequelize.query(sql, {
     replacements: { uuid: req.params.uuid },
