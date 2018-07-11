@@ -17,8 +17,24 @@ const router = express.Router()
  */
 router.post('/filter', (req, res) => {
   let sql = `
+    select
+      *
+    from
+      resume
+    where
+      position(:category in category) > 0
+      and position(:degree in degree) > 0
+      and position(:major in major) > 0
+    limit 200
   `
-  res.json({ content: '', message: '' })
+  sequelize.query(sql, {
+    replacements: req.body,
+    type: sequelize.QueryTypes.SELECT
+  }).then(reuslt => {
+    res.json({ content: result, message: '' })
+  }).catch(err => {
+    res.json({ content: '', message: '服务器错误' })
+  })
 })
 
 /**
