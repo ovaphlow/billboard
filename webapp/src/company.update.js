@@ -69,6 +69,14 @@ class CompanyUpdate extends React.Component {
   }
 
   submit() {
+    this.setState({ message: '' })
+
+
+    let valid_len = [7,11]
+    if (valid_len.indexOf(document.getElementById('phone').value.length) < 0) {
+      this.setState({ message: '请填写正确的电话号码' })
+      return false
+    }
     axios({
       method: 'put',
       url: './api/company/' + this.props.auth.uuid,
@@ -130,21 +138,24 @@ class CompanyUpdate extends React.Component {
 
               <div className="form-group">
                 <label>公司地址</label>
-                <select id="province" className="form-control" defaultValue={this.state.company.province} onChange={this.changeProvince}>
-                  <option value="">未选择</option>
+                <select id="province"  className="form-control" defaultValue={this.state.company.province} onChange={this.changeProvince}>
+                  <option value="">{this.state.company.province}</option>
+
                 </select>
                 <select id="city" className="form-control mt-3" defaultValue={this.state.company.city} onChange={this.changeCity}>
-                  <option value="">未选择</option>
+                  <option value="">{this.state.company.city}</option>
                 </select>
-                <select id="district" className="form-control mt-3" defaultValue={this.state.company.district}>
-                  <option value="">未选择</option>
+                <select id="district" className="form-control mt-3" defaultValue={this.state.company.district} onChange={this.changedistrict}>
+                  <option value="">{this.state.company.district}</option>
                 </select>
                 <input type="text" defaultValue={this.state.company.address} className="form-control mt-3" id="address"/>
               </div>
 
               <div className="form-group">
                 <label>公司简介</label>
-                <textarea rows="3" className="form-control" id="intro" defaultValue={this.state.company.intro}/>
+                <textarea rows="3" className="form-control" id="intro"  defaultValue={this.state.company.intro} value={this.state.company.intro} onChange={this.changeintro}>
+
+                </textarea>
               </div>
 
               <div className="col-12">
