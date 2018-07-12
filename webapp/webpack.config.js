@@ -33,6 +33,8 @@ module.exports = {
     'company.job.save': './src/company.job.save.js',
     'company.job': './src/company.job.js',
     'company.resume.filter': './src/company.resume.filter.js',
+	'company.resume.list': './src/company.resume.list.js',
+		
 
     'hypervisor.login': './src/hypervisor/login.js',
     'hypervisor.index': './src/hypervisor/index.js',

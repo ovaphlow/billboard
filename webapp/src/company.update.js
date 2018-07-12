@@ -11,7 +11,6 @@ ReactDOM.render(
 class CompanyUpdate extends React.Component {
   constructor(props) {
     super(props)
-
     this.state = { message: '', company: {} }
     this.changeProvince = this.changeProvince.bind(this)
     this.changeCity = this.changeCity.bind(this)
@@ -68,15 +67,10 @@ class CompanyUpdate extends React.Component {
     }
   }
 
+
   submit() {
     this.setState({ message: '' })
 
-
-    let valid_len = [7,11]
-    if (valid_len.indexOf(document.getElementById('phone').value.length) < 0) {
-      this.setState({ message: '请填写正确的电话号码' })
-      return false
-    }
     axios({
       method: 'put',
       url: './api/company/' + this.props.auth.uuid,
@@ -153,16 +147,20 @@ class CompanyUpdate extends React.Component {
 
               <div className="form-group">
                 <label>公司简介</label>
-                <textarea rows="3" className="form-control" id="intro"  defaultValue={this.state.company.intro} value={this.state.company.intro} onChange={this.changeintro}>
-
+                <textarea rows="3" className="form-control" id="intro" value={this.state.company.intro} defaultValue={this.state.company.intro} onChange={this.changeIntro}>
+					
                 </textarea>
               </div>
 
               <div className="col-12">
                 <br/>
+
+                <div class="alert alert-primary">修改公司信息后需要重新登录</div>
+
                 <button type="button" className="btn btn-primary btn-block" onClick={this.submit}>
                   <i className="fa fa-fw fa-check-square-o"></i> 确定
                 </button>
+
                 <a href="./company.index.html" className="btn btn-outline-secondary btn-block">
                   <i className="fa fa-fw fa-arrow-left"></i> 返回
                 </a>
