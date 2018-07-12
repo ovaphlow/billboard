@@ -160,9 +160,13 @@ class CompanyUpdate extends React.Component {
 
               <div className="col-12">
                 <br/>
+
+                <div class="alert alert-primary">修改公司信息后需要重新登录</div>
+
                 <button type="button" className="btn btn-primary btn-block" onClick={this.submit}>
                   <i className="fa fa-fw fa-check-square-o"></i> 确定
                 </button>
+
                 <a href="./company.index.html" className="btn btn-outline-secondary btn-block">
                   <i className="fa fa-fw fa-arrow-left"></i> 返回
                 </a>

@@ -13,11 +13,11 @@ export default class Navbar extends React.Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <a className="nav-link" href="./company.inex.html">首页 <span className="sr-only">(current)</span></a>
+              <a className="nav-link" href="./company.resume.filter.html">搜索简历 <span className="sr-only">(current)</span></a>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link" href="./user.html">用户中心</a>
+              <a className="nav-link" href="./company.index.html">用户中心</a>
             </li>
 
             <li className="nav-item">
