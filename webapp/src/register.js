@@ -72,7 +72,7 @@ class Register extends React.Component {
             <input type="password" className="form-control" id="password1"/>
           </div>
 
-          {this.state.message && <div className="col-12 alert alert-danger">
+          {this.state.message && <div className="col-12 alert alert-primary">
             {this.state.message}
           </div>}
 

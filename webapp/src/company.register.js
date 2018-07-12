@@ -94,7 +94,7 @@ class CompanyRegister extends React.Component {
             <input type="password" id="password1" className="form-control"/>
           </div>
 
-          {this.state.message && <div className="col-12 alert alert-danger">
+          {this.state.message && <div className="col-12 alert alert-primary">
             {this.state.message}
           </div>}
 
