@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>龙江学子就业网</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+  <div id="navbar"></div>
+
+  <p>
+    <br/>
+  </p>
+
+  <div class="container-fluid" id="app">
+  <div class="card mt-3">
+	<div class="card-body">
+	<div class="card-title">
+       收到的简历
+    </div>
+	<hr/>
+    <div class="card w-100 mt-3" v-for="item in content">
+      <div class="card-header">
+       求职意向：
+      </div>
+      <div class="card-body">
+              <h6>姓名：</h6>
+
+              <ul class="list-inline">
+                <li class="list-inline-item">性别：</li>
+                <li class="list-inline-item">出生日期：</li><br>
+                <li class="list-inline-item">学历：</li>
+                <li class="list-inline-item">专业：</li>
+              </ul>
+
+              <h6 class="text-secondary">
+                <i class="fa fa-eye"></i> 
+                <a href="#" class="btn btn-sm btn-outline-secondary pull-right">
+                  查看详情
+                </a>
+              </h6>
+            </div>
+    </div>
+	</div>
+  </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.min.js"></script>
+
+  <script src="./assets/js/company.resume.list.js"></script>
+
+</body>
+
+</html>
