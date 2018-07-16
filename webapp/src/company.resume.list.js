@@ -12,6 +12,7 @@ let app = new Vue({
   created: function () {
     let auth = JSON.parse(sessionStorage.getItem('authCompany'))
     axios({
+
       method: 'get',
       url: './api/resume/company/' + auth.uuid,
       responseType: 'json'
@@ -19,6 +20,7 @@ let app = new Vue({
       console.info(response.data)
       if (response.data.message) {
         this.message = response.data.message
+
       } else {
         this.content = response.data.content
       }
