@@ -4,21 +4,24 @@ document.getElementById('navbar').innerHTML = navbar
 let app = new Vue({
   el: '#app',
 
-  data: { resumelist: [], message: '', },
+  data: { content: [], message: '', },
 
   methods: {
   },
 
   created: function () {
+    let auth = JSON.parse(sessionStorage.getItem('authConpany'))
     axios({
-      method: 'GET',
-      url: './api/job/',   //后端的地址
+
+      method: 'get',
+      url: './api/resume/company/' + auth.uuid,
       responseType: 'json'
     }).then(response => {
-      if (response.data.message === 200) {
-        this.resumelist = response.data.resumelist
+      if (response.data.message) {
+        this.message = response.data.message
+
       } else {
-        this.message = '服务器异常。'
+        this.content = response.data.content
       }
     })
   }

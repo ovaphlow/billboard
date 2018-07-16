@@ -9,6 +9,28 @@ logger.level = 'debug'
 
 const router = express.Router()
 
+router.get('/company/:uuid', function (req, res) {
+  var sql = `
+    select
+      r.*
+    from
+      post_resume as pr
+      join job as j on pr.job_uuid = j.uuid
+      join resume as r on pr.resume_uuid = r.uuid
+    where
+      j.master_id = :uuid
+  `
+  sequelize.query(sql, {
+    replacements: { uuid: req.params.uuid },
+    type: sequelize.QueryTypes.SELECT
+  }).then(function (result) {
+    res.json({ content: result, message: '' })
+  }).catch(function (err) {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误' })
+  })
+})
+
 /**
  * 更新简历浏览量
  */
