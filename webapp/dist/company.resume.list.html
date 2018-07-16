@@ -20,36 +20,37 @@
   </p>
 
   <div class="container-fluid" id="app">
-  <div class="card mt-3">
-	<div class="card-body">
-	<div class="card-title">
-       收到的简历
-    </div>
-	<hr/>
-    <div class="card w-100 mt-3" v-for="item in content">
-      <div class="card-header">
-       求职意向：
-      </div>
+    <div class="card mt-3">
       <div class="card-body">
-              <h6>姓名：</h6>
+        <div class="card-title">
+          收到的简历
+        </div>
+        <hr/>
+        <div class="card w-100 mt-3" v-for="item in resumelist">
+          <div class="card-header">
+            求职意向：{{job.id}}
+          </div>
+          <div class="card-body">
+            <h6>姓名：{{job.name}}</h6>
 
-              <ul class="list-inline">
-                <li class="list-inline-item">性别：</li>
-                <li class="list-inline-item">出生日期：</li><br>
-                <li class="list-inline-item">学历：</li>
-                <li class="list-inline-item">专业：</li>
-              </ul>
+            <ul class="list-inline">
+              <li class="list-inline-item">性别：{{job.sex}}</li>
+              <li class="list-inline-item">出生日期：{{job.birthday}}</li>
+              <br>
+              <li class="list-inline-item">学历：{{job.education}}</li>
+              <li class="list-inline-item">专业：{{job.profession}}</li>
+            </ul>
 
-              <h6 class="text-secondary">
-                <i class="fa fa-eye"></i> 
-                <a href="#" class="btn btn-sm btn-outline-secondary pull-right">
-                  查看详情
-                </a>
-              </h6>
-            </div>
+            <h6 class="text-secondary">
+              <i class="fa fa-eye"></i>
+              <a href="#" class="btn btn-sm btn-outline-secondary pull-right">
+                查看详情
+              </a>
+            </h6>
+          </div>
+        </div>
+      </div>
     </div>
-	</div>
-  </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>

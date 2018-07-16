@@ -9,6 +9,9 @@ logger.level = 'debug'
 
 const router = express.Router()
 
+/**
+ * 更新简历浏览量
+ */
 router.post('/:uuid/views', (req, res) => {
   let sql = `
     update ${config.database.schema}.resume set views = views + 1 where uuid = :uuid
