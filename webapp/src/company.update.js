@@ -151,9 +151,7 @@ class CompanyUpdate extends React.Component {
 
               <div className="form-group">
                 <label>公司简介</label>
-
                 <textarea rows="3" className="form-control" id="intro" value={this.state.intro} onChange={this.changeIntro}>
-
 
                 </textarea>
               </div>
