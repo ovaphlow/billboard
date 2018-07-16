@@ -9,6 +9,9 @@ logger.level = 'debug'
 
 const router = express.Router()
 
+/**
+ * 按类别过滤岗位
+ */
 router.get('/category/:category', (req, res) => {
   let sql = `
     select

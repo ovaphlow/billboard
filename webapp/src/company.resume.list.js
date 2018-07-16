@@ -7,17 +7,6 @@ let app = new Vue({
   data: { content: [], message: '', },
 
   methods: {
-    filter: function () {
-      let category = document.getElementById('category')
-      axios({
-        method: 'get',
-        url: './api/resume/filter' + category.value,
-        responseType: 'json'
-      }).then(response => {
-        app.content = response.data.content
-        app.message = response.data.message
-      })
-    },
   },
 
   created: function () {
