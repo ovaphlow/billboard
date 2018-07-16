@@ -10,13 +10,14 @@ let app = new Vue({
   },
 
   created: function () {
-    let auth = JSON.parse(sessionStorage.getItem('authConpany'))
+    let auth = JSON.parse(sessionStorage.getItem('authCompany'))
     axios({
 
       method: 'get',
       url: './api/resume/company/' + auth.uuid,
       responseType: 'json'
     }).then(response => {
+      console.info(response.data)
       if (response.data.message) {
         this.message = response.data.message
 

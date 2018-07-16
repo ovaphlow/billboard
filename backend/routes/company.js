@@ -105,6 +105,7 @@ router.route('/:uuid/job/').get((req, res) => {
       ${config.database.schema}.job
     where
       master_uuid = :uuid
+      and removed = 0
   `
   sequelize.query(sql, {
     replacements: { uuid: req.params.uuid },

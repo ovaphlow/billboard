@@ -28,23 +28,22 @@
         <hr/>
         <div class="card w-100 mt-3" v-for="item in content">
           <div class="card-header">
-            求职意向：{{123}}
+            求职意向：
           </div>
           <div class="card-body">
-            <h6>姓名：{{123}}</h6>
+            <h6>姓名：{{item.name}}</h6>
 
             <ul class="list-inline">
-              <li class="list-inline-item">性别：{{123}}</li>
-              <li class="list-inline-item">出生日期：{{123}}</li>
+              <li class="list-inline-item">性别：{{item.gender}}</li>
+              <li class="list-inline-item">出生日期：{{item.birthday}}</li>
               <br>
-              <li class="list-inline-item">学历：{{123}}</li>
-              <li class="list-inline-item">专业：{{123}}</li>
-
+              <li class="list-inline-item">学历：{{item.degree}}</li>
+              <li class="list-inline-item">专业：{{item.major}}</li>
             </ul>
 
             <h6 class="text-secondary">
-              <i class="fa fa-eye"></i>
-              <a href="#" class="btn btn-sm btn-outline-secondary pull-right">
+              <i class="fa fa-eye"></i> {{item.views}}
+              <a v-bind:href="'resume.html?uuid=' + item.uuid" class="btn btn-sm btn-outline-secondary pull-right">
                 查看详情
               </a>
             </h6>

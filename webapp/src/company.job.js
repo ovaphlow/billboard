@@ -46,7 +46,7 @@ class CompanyJob extends React.Component {
   remove() {
     axios({
       method: 'delete',
-      url: './api/company/' + this.props.auth.uuid + '/job/' + urlParameter('uuid'),
+      url: './api/job/' + urlParameter('uuid'),
       responseType: 'json'
     }).then(response => {
       if (response.data.message) {
