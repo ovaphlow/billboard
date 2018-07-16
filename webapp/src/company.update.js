@@ -65,13 +65,23 @@ class CompanyUpdate extends React.Component {
       }
     } 
   }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	
+=======
+>>>>>>> 87e5c5d49eb90a68f13f45b2d9bdff876b87785b
 
   changeIntro() {
     this.setState({
       intro: document.getElementById('intro').value
     })
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> df2e7726943ffe96cda73f75697801b03f4725f0
+>>>>>>> 87e5c5d49eb90a68f13f45b2d9bdff876b87785b
 
   submit() {
     this.setState({ message: '' })
@@ -151,10 +161,20 @@ class CompanyUpdate extends React.Component {
 
               <div className="form-group">
                 <label>公司简介</label>
+<<<<<<< HEAD
 
                 <textarea rows="3" className="form-control" id="intro" value={this.state.intro} onChange={this.changeIntro}>
 
 
+=======
+<<<<<<< HEAD
+                <textarea rows="3" className="form-control" id="intro" placeholder={this.state.company.intro}>
+					
+=======
+                <textarea rows="3" className="form-control" id="intro" value={this.state.intro} onChange={this.changeIntro}>
+
+>>>>>>> df2e7726943ffe96cda73f75697801b03f4725f0
+>>>>>>> 87e5c5d49eb90a68f13f45b2d9bdff876b87785b
                 </textarea>
               </div>
 
