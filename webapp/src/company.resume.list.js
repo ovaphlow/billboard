@@ -10,15 +10,16 @@ let app = new Vue({
   },
 
   created: function () {
+    let auth = JSON.parse(sessionStorage.getItem('authConpany'))
     axios({
-      method: 'GET',
-      url: './api/job/',
+      method: 'get',
+      url: './api/resume/company/' + auth.uuid,
       responseType: 'json'
     }).then(response => {
-      if (response.data.message === 200) {
-        this.content = response.data.content
+      if (response.data.message) {
+        this.message = response.data.message
       } else {
-        this.message = '服务器异常。'
+        this.content = response.data.content
       }
     })
   }
