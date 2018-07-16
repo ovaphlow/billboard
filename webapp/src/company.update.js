@@ -3,22 +3,21 @@ import ReactDOM from 'react-dom'
 
 import Navbar from './component/navbar'
 
-ReactDOM.render(
-  <Navbar/>,
-  document.getElementById('navbar')
-)
+ReactDOM.render(<Navbar />, document.getElementById('navbar'))
 
 class CompanyUpdate extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { message: '', company: {} }
+    this.state = { message: '', company: {}, intro: '' }
     this.changeProvince = this.changeProvince.bind(this)
     this.changeCity = this.changeCity.bind(this)
+    this.changeIntro = this.changeIntro.bind(this)
     this.submit = this.submit.bind(this)
   }
 
   componentDidMount() {
     this.setState({ company: this.props.auth })
+    this.setState({ intro: this.props.auth.intro })
     axios({
       method: 'GET',
       url: './assets/data/region.json',
@@ -66,7 +65,16 @@ class CompanyUpdate extends React.Component {
       }
     } 
   }
+<<<<<<< HEAD
 	
+=======
+
+  changeIntro() {
+    this.setState({
+      intro: document.getElementById('intro').value
+    })
+  }
+>>>>>>> df2e7726943ffe96cda73f75697801b03f4725f0
 
   submit() {
     this.setState({ message: '' })
@@ -97,10 +105,10 @@ class CompanyUpdate extends React.Component {
     return (
       <div className="row">
         <div className="col-12">
-          <p className="lead">编辑公司信息<hr/></p>
+          <p className="lead">编辑公司信息<hr /></p>
         </div>
 
-        {this.state.message &&<div className="col-12">
+        {this.state.message && <div className="col-12">
           <div className="alert alert-primary">
             {this.state.message}
           </div>
@@ -111,30 +119,29 @@ class CompanyUpdate extends React.Component {
             <div class="card-body">
               <div className="form-group">
                 <label>公司名称</label>
-                <input type="text" defaultValue={this.state.company.name} readOnly id="name" className="form-control"/>
+                <input type="text" defaultValue={this.state.company.name} readOnly id="name" className="form-control" />
               </div>
 
               <div className="form-group">
                 <label>统一社会信用代码/营业执照注册号</label>
-                <input type="text" defaultValue={this.state.company.licence_type} readOnly className="form-control" id="licence_type"/>
-                <input type="text" defaultValue={this.state.company.licence} readOnly className="form-control mt-3" id="licence"/>
+                <input type="text" defaultValue={this.state.company.licence_type} readOnly className="form-control" id="licence_type" />
+                <input type="text" defaultValue={this.state.company.licence} readOnly className="form-control mt-3" id="licence" />
               </div>
 
               <div className="form-group">
                 <label>联系电话</label>
-                <input type="text" className="form-control" id="phone" defaultValue={this.state.company.phone}/>
+                <input type="text" className="form-control" id="phone" defaultValue={this.state.company.phone} />
               </div>
 
               <div className="form-group">
                 <label>Email</label>
-                <input type="text" id="email" className="form-control" defaultValue={this.state.company.email}/>
+                <input type="text" id="email" className="form-control" defaultValue={this.state.company.email} />
               </div>
 
               <div className="form-group">
                 <label>公司地址</label>
-                <select id="province"  className="form-control" defaultValue={this.state.company.province} onChange={this.changeProvince}>
+                <select id="province" className="form-control" defaultValue={this.state.company.province} onChange={this.changeProvince}>
                   <option value="">{this.state.company.province}</option>
-
                 </select>
                 <select id="city" className="form-control mt-3" defaultValue={this.state.company.city} onChange={this.changeCity}>
                   <option value="">{this.state.company.city}</option>
@@ -142,18 +149,23 @@ class CompanyUpdate extends React.Component {
                 <select id="district" className="form-control mt-3" defaultValue={this.state.company.district} onChange={this.changedistrict}>
                   <option value="">{this.state.company.district}</option>
                 </select>
-                <input type="text" defaultValue={this.state.company.address} className="form-control mt-3" id="address"/>
+                <input type="text" defaultValue={this.state.company.address} className="form-control mt-3" id="address" />
               </div>
 
               <div className="form-group">
                 <label>公司简介</label>
+<<<<<<< HEAD
                 <textarea rows="3" className="form-control" id="intro" placeholder={this.state.company.intro}>
 					
+=======
+                <textarea rows="3" className="form-control" id="intro" value={this.state.intro} onChange={this.changeIntro}>
+
+>>>>>>> df2e7726943ffe96cda73f75697801b03f4725f0
                 </textarea>
               </div>
 
               <div className="col-12">
-                <br/>
+                <br />
 
                 <div class="alert alert-primary">修改公司信息后需要重新登录</div>
 
@@ -175,4 +187,4 @@ class CompanyUpdate extends React.Component {
 
 let auth = JSON.parse(sessionStorage.getItem('authCompany'))
 
-ReactDOM.render(<CompanyUpdate auth={auth}/>, document.getElementById('app'))
+ReactDOM.render(<CompanyUpdate auth={auth} />, document.getElementById('app'))
