@@ -100,7 +100,7 @@ class CompanyJob extends React.Component {
               <hr/>
 
               <div className="form-group">
-                <button type="button" className="btn btn-danger btn-block" onClick={this.remove}>
+                <button type="button" className="btn btn-outline-primary btn-block btn-sm" onClick={this.remove}>
                   <i className="fa fa-fw fa-check-square-o"></i> 删除
                 </button>
 
