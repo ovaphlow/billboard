@@ -14,9 +14,9 @@ router.get('/company/:uuid', function (req, res) {
     select
       r.*
     from
-      post_resume as pr
-      join job as j on pr.job_uuid = j.uuid
-      join resume as r on pr.resume_uuid = r.uuid
+      ${config.database.schema}.post_resume as pr
+      join ${config.database.schema}.job as j on pr.job_uuid = j.uuid
+      join ${config.database.schema}.resume as r on pr.resume_uuid = r.uuid
     where
       j.master_id = :uuid
   `
