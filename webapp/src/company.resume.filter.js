@@ -73,7 +73,7 @@ class CompanySearch extends React.Component {
           </div>
 
           <div className="form-group">
-            <input type="text" className="form-control" id="major" />
+            <input type="text" className="form-control" id="major" placeholder="专业"/>
           </div>
 
           <div className="form-group">

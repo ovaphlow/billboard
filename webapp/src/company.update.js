@@ -64,9 +64,9 @@ class CompanyUpdate extends React.Component {
       if (key.substr(0, 4) === document.getElementById('city').value.substr(0, 4) && key.substr(4, 2) !== '00') {
         document.getElementById('district').options.add(new Option(this.state.region[key], key))
       }
-    }
+    } 
   }
-
+	
 
   submit() {
     this.setState({ message: '' })
@@ -147,7 +147,7 @@ class CompanyUpdate extends React.Component {
 
               <div className="form-group">
                 <label>公司简介</label>
-                <textarea rows="3" className="form-control" id="intro" value={this.state.company.intro} defaultValue={this.state.company.intro} onChange={this.changeIntro}>
+                <textarea rows="3" className="form-control" id="intro" placeholder={this.state.company.intro}>
 					
                 </textarea>
               </div>
