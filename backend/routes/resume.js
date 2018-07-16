@@ -9,16 +9,20 @@ logger.level = 'debug'
 
 const router = express.Router()
 
+/**
+ * 指定公司收到的简历
+ */
 router.get('/company/:uuid', function (req, res) {
   var sql = `
     select
       r.*
     from
-      post_resume as pr
-      join job as j on pr.job_uuid = j.uuid
-      join resume as r on pr.resume_uuid = r.uuid
+      ${config.database.schema}.post_resume as pr
+      join ${config.database.schema}.job as j on pr.job_uuid = j.uuid
+      join ${config.database.schema}.resume as r on pr.resume_uuid = r.uuid
     where
-      j.master_id = :uuid
+      j.master_uuid = :uuid
+      and j.removed = 0
   `
   sequelize.query(sql, {
     replacements: { uuid: req.params.uuid },
@@ -86,8 +90,10 @@ router.route('/user/:uuid/post').get((req, res) => {
       *, (select title from ${config.database.schema}.job where uuid = pr.job_uuid) as title
     from
       ${config.database.schema}.post_resume as pr
+      join ${config.database.schema}.job as j on j.uuid = pr.job_uuid
     where
       resume_uuid = (select uuid from ${config.database.schema}.resume where user_uuid = :uuid limit 1)
+      and j.removed = 0
   `
   sequelize.query(sql, {
     replacements: { uuid: req.params.uuid },

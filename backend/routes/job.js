@@ -10,6 +10,29 @@ logger.level = 'debug'
 const router = express.Router()
 
 /**
+ * 删除职位
+ */
+router.delete('/:uuid', function (req, res) {
+  var sql = `
+    update
+      ${config.database.schema}.job
+    set
+      removed = 1
+    where
+      uuid = :uuid
+  `
+  sequelize.query(sql, {
+    replacements: { uuid: req.params.uuid },
+    type: sequelize.QueryTypes.UPDATE
+  }).then(function (result) {
+    res.json({ content: result, message: '' })
+  }).catch(function (err) {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误' })
+  })
+})
+
+/**
  * 按类别过滤岗位
  */
 router.get('/category/:category', (req, res) => {
@@ -23,6 +46,7 @@ router.get('/category/:category', (req, res) => {
       c.uuid = j.master_uuid
     where
       j.category = :category
+      and removed = 0
     order by
       j.id desc
     limit 200
@@ -38,6 +62,9 @@ router.get('/category/:category', (req, res) => {
   })
 })
 
+/**
+ * 指定职位投递的简历
+ */
 router.route('/:job_uuid/user').post((req, res) => {
   req.body.job_uuid = req.params.job_uuid
   let sql = `
@@ -97,6 +124,8 @@ router.route('/').get((req, res) => {
       ${config.database.schema}.job as j
     join ${config.database.schema}.company as c on
       c.uuid = j.master_uuid
+    where
+      removed = 0
     order by
       j.id desc
     limit 200
