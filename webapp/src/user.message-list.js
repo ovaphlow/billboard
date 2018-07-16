@@ -44,6 +44,7 @@ class UserMessageList extends React.Component {
           </div>
         </div>
       </div>
+
     )
   }
 }

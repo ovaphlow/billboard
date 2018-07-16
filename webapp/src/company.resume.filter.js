@@ -81,6 +81,9 @@ class CompanySearch extends React.Component {
               <i className="fa fa-fw fa-search"></i> 搜索
             </button>
             <hr/>
+			  <a href="./company.index.html" className="btn btn-outline-secondary btn-block">
+                  <i className="fa fa-fw fa-arrow-left"></i> 返回
+                </a>
           </div>
 
           {this.state.message && <div className="alert alert-primary">

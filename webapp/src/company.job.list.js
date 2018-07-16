@@ -75,7 +75,12 @@ class CompanyJobList extends React.Component {
             <Job item={item} key={item.id}/>
           )}
           </div>
+			<hr/>
+			<a href="./company.index.html" className="btn btn-outline-secondary btn-block">
+                  <i className="fa fa-fw fa-arrow-left"></i> 返回
+            </a>
         </div>
+			  
       </div>
     )
   }
