@@ -14,7 +14,6 @@ class PostList extends React.Component {
   }
 
   componentDidMount() {
-    console.log('mount')
   }
 
   render() {
