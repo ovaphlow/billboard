@@ -17,7 +17,6 @@ let app = new Vue({
       url: './api/resume/company/' + auth.uuid,
       responseType: 'json'
     }).then(response => {
-      console.info(response.data)
       if (response.data.message) {
         this.message = response.data.message
 
