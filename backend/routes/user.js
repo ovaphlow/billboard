@@ -51,7 +51,7 @@ router.route('/login').post((req, res) => {
       delete result[0].password
       res.json({ content: result[0], message: '', })
     }else{
-      res.json({ content: '', message: '', })
+      res.json({ content: '', message: '账号或密码错误', })
     }
   }).catch(err => {
     logger.error(err)
