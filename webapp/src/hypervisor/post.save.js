@@ -20,7 +20,6 @@ class PostSave extends React.Component {
   }
 
   submit() {
-    console.log('submit')
   }
 
   render() {
