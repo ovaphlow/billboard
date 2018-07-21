@@ -8,7 +8,7 @@ let app = new Vue({
   el: '#app',
 
   data: {
-    resume: {},
+    education: [],
     message: ''
   },
 
