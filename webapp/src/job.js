@@ -8,6 +8,9 @@ let app = new Vue({
 
   methods: {
     submit: function () {
+	  if(this.auth == null){
+	  app.message = '请登录用户'
+	  }else{
       axios({
         method: 'post',
         url: './api/job/' + urlParameter('uuid') + '/user/',
@@ -21,7 +24,8 @@ let app = new Vue({
         }
       })
     }
-  },
+  }
+ },
 
   created: function () {
     this.auth = JSON.parse(sessionStorage.getItem('auth'))

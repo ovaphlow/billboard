@@ -20,7 +20,6 @@ let app = new Vue({
         data: { account: this.user.account, password: md5(this.user.password) },
         responseType: 'json'
       }).then(response => {
-        console.log(response.data)
         if (response.data.message) {
           this.message = response.data.message
         } else {

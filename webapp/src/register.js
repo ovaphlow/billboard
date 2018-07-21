@@ -39,7 +39,6 @@ class Register extends React.Component {
       },
       responseType: 'json'
     }).then(response => {
-      console && console.info(response.data)
       if (response.data.message) {
         this.setState({ message: response.data.message })
       } else {

@@ -14,6 +14,8 @@ let app = new Vue({
 
   methods: {
     submit: function () {
+	  this.message='';
+
       axios({
         method: 'post',
         url: './api/resume/' + sessionStorage.getItem('resume') + '/career',

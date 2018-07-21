@@ -62,8 +62,7 @@
             <button type="button" class="btn btn-block btn-primary btn-lg" v-on:click="submit">
               <i class="fa fa-fw fa-check-square-o"></i> 确定
             </button>
-
-            <a href="./resume.exp-education.html" class="btn btn-block btn-outline-secondary btn-sm mt-3">
+            <a v-bind:href="'./resume.exp-work.html?uuid=' + sessionStorage.getItem('resume')" class="btn btn-block btn-outline-secondary btn-sm mt-3">
               <i class="fa fa-fw fa-arrow-left"></i> 返回
             </a>
           </div>
