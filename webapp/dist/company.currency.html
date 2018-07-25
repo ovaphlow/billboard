@@ -14,7 +14,6 @@
 
 <body>
   <div id="navbar"></div>
-
   <div class="container-fluid" id="app">
     <div class="col-12 mt-3">
       <div class="btn-group pull-right">
@@ -23,23 +22,45 @@
           <i class="fa fa-fw fa-arrow-left"></i> 返回
         </a>
       </div>
-
-
       <p class="lead">积分中心
         <hr/>
       </p>
       <div class="btn btn-block">
 
-        <a href="./user.resume.html" class="btn btn-outline-secondary btn-lg">
+        <a class="btn btn-outline-secondary btn-lg">
           余　额　： 0
         </a>
 
-        <a href="./resume.exp-education.save.html" class="btn btn-outline-secondary btn-lg">
+        <a class="btn btn-outline-secondary btn-lg" data-toggle="modal" data-target="#myModal">
           <i class="fa fa-money"></i> 　充　值
         </a>
-      </div>
 
-
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3>支付金额</h3>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+					</div>
+					<div class="modal-body">
+						<button type="button" class="btn btn-info btn-block">1元/10币</button>
+						<button type="button" class="btn btn-info btn-block">10元/120币</button>
+						<button type="button" class="btn btn-info btn-block">100元/1500币</button>
+						<button type="button" class="btn btn-info btn-block">500元/8000币</button>
+					</div>
+					<div class="modal-footer">
+						
+						<button type="button" class="btn btn-info btn-block">
+							确认支付
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
+ </div>
 			<button type="button" class="btn btn-info btn-block"><i class="fa fa-file-text-o"></i> 　企业发帖</button>
 			<button type="button" class="btn btn-info btn-block"><i class="fa fa-calendar-check-o"></i>　 企业认证</button>
 			<button type="button" class="btn btn-info btn-block"><i class="fa fa-refresh"></i> 　简历刷新</button>
@@ -54,8 +75,8 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.min.js"></script>
 
-  <script src="./assets/lib/url-parameter.js"></script>
-  <script src="./assets/js/company.currency.js"></script>
+  <script src="./assets/js/company.resume.list.js"></script>
+
 </body>
 
 </html>
