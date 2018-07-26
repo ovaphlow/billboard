@@ -98,14 +98,17 @@ class CompanyUpdate extends React.Component {
   }
 
   render() {
+	  const word={
+		color: '#17a2b8',
+	  }
     return (
       <div className="row">
         <div className="col-12">
-          <p className="lead">编辑公司信息<hr /></p>
+          <p className="lead" style={word}>编辑公司信息<hr /></p>
         </div>
 
         {this.state.message && <div className="col-12">
-          <div className="alert alert-primary">
+          <div className="alert alert-warning">
             {this.state.message}
           </div>
         </div>}
@@ -114,28 +117,28 @@ class CompanyUpdate extends React.Component {
           <div className="card">
             <div class="card-body">
               <div className="form-group">
-                <label>公司名称</label>
+                <label style={word}>公司名称</label>
                 <input type="text" defaultValue={this.state.company.name} readOnly id="name" className="form-control" />
               </div>
 
               <div className="form-group">
-                <label>统一社会信用代码/营业执照注册号</label>
+                <label style={word}>统一社会信用代码/营业执照注册号</label>
                 <input type="text" defaultValue={this.state.company.licence_type} readOnly className="form-control" id="licence_type" />
                 <input type="text" defaultValue={this.state.company.licence} readOnly className="form-control mt-3" id="licence" />
               </div>
 
               <div className="form-group">
-                <label>联系电话</label>
+                <label style={word}>联系电话</label>
                 <input type="text" className="form-control" id="phone" defaultValue={this.state.company.phone} />
               </div>
 
               <div className="form-group">
-                <label>Email</label>
+                <label style={word}>Email</label>
                 <input type="text" id="email" className="form-control" defaultValue={this.state.company.email} />
               </div>
 
               <div className="form-group">
-                <label>公司地址</label>
+                <label style={word}>公司地址</label>
                 <select id="province" className="form-control" defaultValue={this.state.company.province} onChange={this.changeProvince}>
                   <option value="">{this.state.company.province}</option>
                 </select>
@@ -149,7 +152,7 @@ class CompanyUpdate extends React.Component {
               </div>
 
               <div className="form-group">
-                <label>公司简介</label>
+                <label style={word}>公司简介</label>
 
                 <textarea rows="3" className="form-control" id="intro" value={this.state.intro} onChange={this.changeIntro}>
 
@@ -160,13 +163,13 @@ class CompanyUpdate extends React.Component {
               <div className="col-12">
                 <br />
 
-                <div class="alert alert-primary">修改公司信息后需要重新登录</div>
+                <div class="alert alert-warning">修改公司信息后需要重新登录</div>
 
-                <button type="button" className="btn btn-primary btn-block" onClick={this.submit}>
+                <button type="button" className="btn btn-info btn-block" onClick={this.submit}>
                   <i className="fa fa-fw fa-check-square-o"></i> 确定
                 </button>
 
-                <a href="./company.index.html" className="btn btn-outline-secondary btn-block">
+                <a href="./company.index.html" className="btn btn-outline-info btn-block">
                   <i className="fa fa-fw fa-arrow-left"></i> 返回
                 </a>
               </div>

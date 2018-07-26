@@ -27,15 +27,18 @@ class UserMessageList extends React.Component {
   }
 
   render() {
+	  const word={
+		color: '#17a2b8',
+	  }
     return (
       <div className="col-12 card mt-3">
         <div className="card-body">
           <div className="card-title">
-            <h4>我的消息</h4>
+            <h4 style={word}>我的消息</h4>
             <hr/>
           </div>
 
-          <h5>我收到的消息</h5>
+          <h5 style={word}>我收到的消息</h5>
           <div className="col-12 list-group">
             {this.state.messageList.map( item => <a href={'./user.message.html?uuid=' + item.uuid} className="list-group-item list-group-item-action">
               <strong>{item.title}</strong>
