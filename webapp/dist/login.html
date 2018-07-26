@@ -15,31 +15,31 @@
 
 <body>
   <div id="navbar"></div>
-
+<p>&nbsp;</p>
   <div id="app" class="container-fluid">
-    <p>&nbsp;</p>
-
+	<h1 class="text-center" style="color: #17a2b8;">登　录　<i class="fa fa-user-circle-o"></i></h1>
+	<hr/>
     <div class="row">
       <div class="col-12">
-        <div class="alert alert-primary" role="alert" v-show="message">
+        <div class="alert alert-warning" role="alert" v-show="message">
           {{ message }}
         </div>
       </div>
 
       <div class="col-12 form-group">
-        <label>账号</label>
+        <label style="color: #17a2b8;">账　号</label>
         <input type="text" class="form-control" v-model="user.account">
       </div>
 
       <div class="col-12 form-group">
-        <label>密码</label>
+        <label style="color: #17a2b8;">密　码</label>
         <input type="password" class="form-control" v-model="user.password">
       </div>
 
       <div class="col-12 text-center">
-        <button type="button" class="btn btn-outline-primary btn-block btn-lg" v-on:click="submit">
+        <button type="button" class="btn btn-info btn-block btn-lg" style="btn: #538cc6;" v-on:click="submit">
           <i class="fa fa-sign-in fa-fw"></i>
-          登录
+          登　录
         </button>
 
         <br>
