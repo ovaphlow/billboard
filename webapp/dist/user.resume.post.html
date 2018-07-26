@@ -18,9 +18,9 @@
   <div id="app" class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <p class="lead">简历投递记录</p>
+	  <br>
+        <h3 class="text-center" style="color: #17a2b8;">简历投递记录</h3><hr/>
       </div>
-
       <div class="col-12">
         <div class="list-group">
           <a v-bind:href="'./user.job.html?uuid=' + item.job_uuid" class="list-group-item list-group-item-action" v-for="item in jobList">
@@ -32,7 +32,7 @@
      
       <div class="col-12">
         <br/>
-        <a href="./user.html " class="btn btn-outline-dark btn-block">
+        <a href="./user.html " class="btn btn-outline-info btn-block">
           <i class="fa fa-fw fa-arrow-left "></i>
           返回
         </a>
