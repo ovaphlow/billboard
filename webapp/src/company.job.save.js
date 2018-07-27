@@ -38,21 +38,24 @@ class CompanyJobSave extends React.Component {
   }
 
   render() {
+	  const word={
+		color: '#17a2b8',
+	  }
     return (
       <div className="row">
         <div className="col-12">
-          <p className="lead"><i className="fa fa-fw fa-plus"></i> 发布新职位<hr/></p>
+          <p className="lead" style={word}><i className="fa fa-fw fa-plus"></i> 发布新职位<hr/></p>
         </div>
 
         <div className="col-12">
           <div className="card">
             <div className="card-body">
               {this.state.message && <div className="col-12">
-                <div className="alert alert-primary">{this.state.message}</div>
+                <div className="alert alert-warning">{this.state.message}</div>
               </div>}
 
               <div className="form-group">
-                <label>类别</label>
+                <label style={word}>类别</label>
                 <select className="form-control" id="category">
                   <option value="">未分类</option>
                   <option value="产品技术">产品/技术</option>
@@ -65,31 +68,31 @@ class CompanyJobSave extends React.Component {
               </div>
 
               <div className="form-group">
-                <label>标题</label>
+                <label style={word}>标题</label>
                 <input type="text" className="form-control" id="title"/>
               </div>
 
               <div className="form-group">
-                <label>任职要求</label>
+                <label style={word}>任职要求</label>
                 <textarea rows="3" className="form-control" id="requirement"/>
               </div>
 
               <div className="form-group">
-                <label>岗位责任</label>
+                <label style={word}>岗位责任</label>
                 <textarea rows="3" className="form-control" id="duty"/>
               </div>
 
               <div className="form-group">
-                <label>详细内容</label>
+                <label style={word}>详细内容</label>
                 <textarea rows="3" className="form-control" id="content"/>
               </div>
 
               <div className="col-12">
-                <button type="button" className="btn btn-primary btn-block" onClick={this.submit}>
+                <button type="button" className="btn btn-info btn-block" onClick={this.submit}>
                   <i className="fa fa-fw fa-check-square-o"></i> 确定
                 </button>
 
-                <a href="./company.job.list.html" className="btn btn-outline-secondary btn-block btn-sm">
+                <a href="./company.job.list.html" className="btn btn-outline-info btn-block btn-sm">
                   <i className="fa fa-fw fa-arrow-left"></i> 返回
                 </a>
               </div>
