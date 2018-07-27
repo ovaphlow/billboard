@@ -43,11 +43,14 @@ class CompanySearch extends React.Component {
   }
 
   render() {
+	  const word={
+		color: '#17a2b8',
+	  }
     return (
       <div className="card mt-3">
         <div className="card-body">
-          <div className="card-title">
-            搜索简历
+          <div className="card-title" style={word}>
+            <i class="fa fa-search" aria-hidden="true"></i>&nbsp;搜索简历<hr/>
           </div>
 
           <div className="form-group">
@@ -77,36 +80,36 @@ class CompanySearch extends React.Component {
           </div>
 
           <div className="form-group">
-            <button type="button" className="btn btn-block btn-outline-primary" onClick={this.submit}>
+            <button type="button" className="btn btn-block btn-outline-info" onClick={this.submit}>
               <i className="fa fa-fw fa-search"></i> 搜索
             </button>
             <hr/>
-			  <a href="./company.index.html" className="btn btn-outline-secondary btn-block">
+			  <a href="./company.index.html" className="btn btn-outline-info btn-block">
                   <i className="fa fa-fw fa-arrow-left"></i> 返回
                 </a>
           </div>
 
-          {this.state.message && <div className="alert alert-primary">
+          {this.state.message && <div className="alert alert-warning">
             {this.state.message}
           </div>}
 
           {this.state.resumeList.map(item => <div className="card w-100 mt-3">
-            <div className="card-header">
+            <div className="card-header" style={word}>
               <h5>求职意向：{item.category}</h5>
             </div>
             <div className="card-body">
-              <h6>姓名：{item.name}</h6>
+              <h6 style={word}>姓名：{item.name}</h6>
 
               <ul class="list-inline">
-                <li className="list-inline-item">性别：{item.gender}</li>
-                <li className="list-inline-item">出生日期：{item.birthday}</li>
-                <li className="list-inline-item">学历：{item.degree}</li>
-                <li className="list-inline-item">专业：{item.major}</li>
+                <li className="list-inline-item"><span style={word}>性别：</span>{item.gender}</li>
+                <li className="list-inline-item"><span style={word}>出生日期：</span>{item.birthday}</li>
+                <li className="list-inline-item"><span style={word}>学历：</span>{item.degree}</li>
+                <li className="list-inline-item"><span style={word}>专业：</span>{item.major}</li>
               </ul>
 
-              <h6 className="text-secondary">
+              <h6 className="text-info">
                 <i className="fa fa-eye"></i> {item.views}
-                <a href={'./resume.html?uuid=' + item.uuid} className="btn btn-sm btn-outline-secondary pull-right">
+                <a href={'./resume.html?uuid=' + item.uuid} className="btn btn-sm btn-outline-info pull-right">
                   查看详情
                 </a>
               </h6>

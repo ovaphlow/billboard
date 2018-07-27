@@ -58,10 +58,13 @@ class CompanyJob extends React.Component {
   }
 
   render() {
+	  const word={
+		color: '#17a2b8',
+	  }
     return (
       <div className="row">
         <div className="col-12">
-          <p className="lead">招聘职位<hr/></p>
+          <p className="lead" style={word}>招聘职位<hr/></p>
         </div>
 
         <div className="col-12">
@@ -72,22 +75,22 @@ class CompanyJob extends React.Component {
               </div>}
 
               <ul className="list-inline">
-                <li className="list-inline-item text-secondary">标题</li>
+                <li className="list-inline-item text-info">标题</li>
                 <li className="list-inlien-item">{this.state.job.title}</li>
               </ul>
 
               <ul className="list-inline">
-                <li className="list-inline-item text-secondary">任职要求</li>
+                <li className="list-inline-item text-info">任职要求</li>
                 <li className="list-inlien-item">{this.state.job.requirement}</li>
               </ul>
 
               <ul className="list-inline">
-                <li className="list-inline-item text-secondary">岗位责任</li>
+                <li className="list-inline-item text-info">岗位责任</li>
                 <li className="list-inlien-item">{this.state.job.duty}</li>
               </ul>
 
               <ul className="list-inline">
-                <li className="list-inline-item text-secondary">详细内容</li>
+                <li className="list-inline-item text-info">详细内容</li>
                 <li className="list-inlien-item">{this.state.job.content}</li>
               </ul>
 
@@ -100,11 +103,11 @@ class CompanyJob extends React.Component {
               <hr/>
 
               <div className="form-group">
-                <button type="button" className="btn btn-outline-primary btn-block btn-sm" onClick={this.remove}>
+                <button type="button" className="btn btn-outline-info btn-block btn-sm" onClick={this.remove}>
                   <i className="fa fa-fw fa-check-square-o"></i> 删除
                 </button>
 
-                <a href="./company.job.list.html" className="btn btn-outline-secondary btn-block btn-sm">
+                <a href="./company.job.list.html" className="btn btn-outline-info btn-block btn-sm">
                   <i className="fa fa-fw fa-arrow-left"></i> 返回
                 </a>
               </div>

@@ -51,15 +51,18 @@ class CompanyJobList extends React.Component {
   }
 
   render() {
+	  const word={
+		color: '#17a2b8',
+	  }
     return (
       <div className="row">
         <div className="col-12">
-          <p className="lead">发布的职位<hr/></p>
+          <p className="lead" style={word}>发布的职位<hr/></p>
         </div>
 
         <div className="col-12">
           <div className="btn-group pull-right">
-            <a href="./company.job.save.html" className="btn btn-outline-secondary btn-sm">
+            <a href="./company.job.save.html" className="btn btn-outline-info btn-sm">
               <i className="fa fa-fw fa-plus"></i> 添加新职位
             </a>
           </div>
@@ -76,7 +79,7 @@ class CompanyJobList extends React.Component {
           )}
           </div>
 			<hr/>
-			<a href="./company.index.html" className="btn btn-outline-secondary btn-block">
+			<a href="./company.index.html" className="btn btn-outline-info btn-block">
                   <i className="fa fa-fw fa-arrow-left"></i> 返回
             </a>
         </div>
