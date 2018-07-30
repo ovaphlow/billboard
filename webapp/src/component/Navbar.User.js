@@ -18,6 +18,9 @@ export default class NavbarUser extends React.Component {
             <li className="nav-item">
               <a className="nav-link" href="./user.html">用户中心</a>
             </li>
+			<li class="nav-item">
+				<a class="nav-link" href="./user.currency.html">积分中心</a>
+		    </li>
             <li className="nav-item">
               <a className="nav-link" href="./company.login.html">企业版</a>
             </li>

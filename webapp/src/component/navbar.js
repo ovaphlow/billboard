@@ -20,6 +20,10 @@ export default class Navbar extends React.Component {
               <a className="nav-link" href="./company.index.html">用户中心</a>
             </li>
 
+			<li className="nav-item">
+              <a className="nav-link" href="./company.currency.html">积分中心</a>
+            </li>
+
             <li className="nav-item">
               <a className="nav-link" href="./index.html">退出企业版</a>
             </li>
