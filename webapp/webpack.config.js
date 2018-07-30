@@ -21,6 +21,7 @@ module.exports = {
     'user.message': './src/user.message.js',
 	'user.currency': './src/user.currency.js',
 	'user.task': './src/user.task.js',
+	'user.currency-shop': './src/user.currency-shop.js',
 	
     
     'resume.exp-education': './src/resume.exp-education.js',
