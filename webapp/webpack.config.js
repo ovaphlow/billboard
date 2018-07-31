@@ -22,8 +22,8 @@ module.exports = {
 	'user.currency': './src/user.currency.js',
 	'user.task': './src/user.task.js',
 	'user.currency-shop': './src/user.currency-shop.js',
-	
-    
+	'currency-details': './src/currency-details.js',
+
     'resume.exp-education': './src/resume.exp-education.js',
     'resume.exp-education.save': './src/resume.exp-education.save.js',
     'resume.exp-work': './src/resume.exp-work.js',
