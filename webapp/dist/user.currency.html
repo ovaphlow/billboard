@@ -14,15 +14,15 @@
 
 <body>
 	<div id="navbar"></div>
-		<div class="carousel-inner">
-			<div class="carousel-item active" style="background-color:#17a2b8; color:#ffffff;">
-				<br>
-				<h2 class="text-center">我的积分</h2>
-				<br><br>
-				<p class="text-center">当前可兑换的积分：0<p><br>
-			</div>
-		</div>
-		<div class="container-fluid" id="app">
+		<div id="app">
+				<div class="carousel-inner">
+						<div class="carousel-item active" style="background-color:#17a2b8; color:#ffffff;">
+							<br>
+							<h2 class="text-center">我的积分</h2>
+							<br><br>
+							<p class="text-center">当前可兑换的积分：{{currency}}<p><br>
+						</div>
+					</div>
 			<ul class="list-group"><br>
 				<a href="user.task.html" class="list-group-item-action">
 					<li class="list-group-item btn-outline-info btn-block btn-sm"><i class="fa fa-bell"></i>　积分任务

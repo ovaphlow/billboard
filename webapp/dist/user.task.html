@@ -20,23 +20,28 @@
 		  </div>
 		</div>
 		<div class="container-fluid" id="app">
-			<ul class="list-group"><br>
-				<li class="list-group-item"><i class="fa fa-hand-paper-o" style="color:#FF0000"></i>　立即签到
-					<span class="pull-right">
-						<button type="button" class="btn btn-warning">+ 5积分</button>
-					</span>
-				</li><br>
-				<li class="list-group-item"><i style="color:#32CD32" class="fa fa-weixin"></i>　分享朋友圈或好友
-					<span class="pull-right">
-						<button type="button" class="btn btn-warning">+10积分</button>
-					</span>
-				</li><br>
-				<li class="list-group-item"><i class="fa fa-file-text" style="color:#6495ED"></i>　完善个人简历
-					<span class="pull-right">
-						<button type="button" class="btn btn-warning">+15积分</button>
-					</span>
-				</li><br>
-			</ul>
+				<div class="col-12">
+						<div class="alert alert-warning mt-3" role="alert" v-if="message">
+							{{ message }}
+						</div>
+					</div>
+				<ul class="list-group"><br>
+						<li class="list-group-item"><i class="fa fa-hand-paper-o" style="color:#FF0000"></i>　立即签到
+							<span class="pull-right">
+								<button type="button" class="btn btn-warning" v-on:click="sign">+ 5积分</button>
+							</span>
+						</li><br>
+						<li class="list-group-item"><i style="color:#32CD32" class="fa fa-weixin"></i>　分享朋友圈或好友
+							<span class="pull-right">
+								<button type="button" class="btn btn-warning">+10积分</button>
+							</span>
+						</li><br>
+						<li class="list-group-item"><i class="fa fa-file-text" style="color:#6495ED"></i>　完善个人简历
+							<span class="pull-right">
+								<button type="button" class="btn btn-warning" >+15积分</button>
+							</span>
+						</li><br>
+				</ul>
 		</div>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
