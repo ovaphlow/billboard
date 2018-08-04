@@ -17,7 +17,7 @@ let app = new Vue({
       axios({
         method: 'POST',
         url: './api/user/login',
-        data: { account: this.user.account, password: md5(this.user.password) },
+        data: { account: (this.user.account), password: md5(this.user.password) },
         responseType: 'json'
       }).then(response => {
         if (response.data.message) {
