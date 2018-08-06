@@ -85,7 +85,7 @@ router.route('/:job_uuid/user').post((req, res) => {
     },
     type: sequelize.QueryTypes.SELECT
   }).then(result =>{
-    if(result[0].count <= 10){
+    if(result[0].count < 10){
         let sql = `
         insert into
           ${config.database.schema}.post_resume

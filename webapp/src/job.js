@@ -1,6 +1,7 @@
 import navbar from './navbar.html'
 document.getElementById('navbar').innerHTML = navbar
 
+
 let app = new Vue({
   el: '#app',
 
@@ -13,14 +14,30 @@ let app = new Vue({
 	  }else{
       axios({
         method: 'post',
-        url: './api/job/' + urlParameter('uuid') + '/user/',
-        data: { user_uuid: this.auth.uuid },
+        url: './api/job/judge',
+        data: { 
+          user_uuid: this.auth.uuid,
+          job_uuid: urlParameter('uuid')
+         },
         responseType: 'json'
       }).then(response => {
+        console.log(response)
         if (response.data.message) {
           app.message = response.data.message
         } else {
-          app.message = '简历投递成功。'
+          axios({
+            method: 'post',
+            url: './api/job/' + urlParameter('uuid') + '/user/',
+            data: { user_uuid: this.auth.uuid },
+            responseType: 'json'
+          }).then(response => {
+            console.log(response)
+            if (response.data.message) {
+              app.message = response.data.message
+            } else {
+              app.message = '简历投递成功。'
+            }
+          })
         }
       })
     }
