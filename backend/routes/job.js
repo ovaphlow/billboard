@@ -123,18 +123,24 @@ router.route('/:job_uuid/user').post((req, res) => {
  */
 
  router.route('/judge').post((req, res) => {
+  let date = moment(new Date()).format('YYYY-MM-DD');
    let sql = `
     select count(*) count
     from
       ${config.database.schema}.post_resume
     where
       job_uuid = :job_uuid
+      and date_format(date, '%Y-%m-%d') = :date
       and resume_uuid = (select uuid from ${config.database.schema}.resume where user_uuid = :user_uuid limit 1)
    `
 
    sequelize.query(sql, {
-     replacements: req.body,
-     type: sequelize.QueryTypes.SELECT
+      replacements:{
+        date: date,
+        user_uuid: req.body.user_uuid,
+        job_uuid: req.body.job_uuid
+      },
+      type: sequelize.QueryTypes.SELECT
    }).then(result =>{
      if(result[0].count <1){
       res.json({content:'200', message:''})

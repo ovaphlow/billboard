@@ -22,7 +22,8 @@ let app = new Vue({
         responseType: 'json'
       }).then(response => {
         console.log(response)
-        if (response.data.message) {
+        console.log(response.data.content)
+        if (response.data.content != 200) {
           app.message = response.data.message
         } else {
           axios({
