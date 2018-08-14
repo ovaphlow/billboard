@@ -67,21 +67,21 @@
 
     <div class="card w-100 mt-3" v-for="item in content">
       <div class="card-header" style=" color: #ffffff; background-color: #17a2b8;">
-      <i class="fa fa-university"></i> {{ item.name }}		   
+        <i class="fa fa-university"></i> {{ item.name }}
         <span class="text-muted float-right">{{ item.date }}</span>
       </div>
-      <div class="card-body" >
+      <div class="card-body">
         <h5 class="card-title">
-          <a v-bind:href="'./job.html?uuid=' + item.uuid"  style="color: #17a2b8;">{{ item.title }}</a>
+          <a v-bind:href="'./job.html?uuid=' + item.uuid" style="color: #17a2b8;">{{ item.title }}</a>
         </h5>
 
         <p class="card-text">
           {{ item.requirement }}
-		  <ul class="list-inline pull-left">
-            
+          <ul class="list-inline pull-left">
+
           </ul>
           <ul class="list-inline pull-right">
-		    <li class="list-inline-item text-secondary"><i class="fa fa-briefcase"></i></li>
+            <li class="list-inline-item text-secondary"><i class="fa fa-briefcase"></i></li>
             <li class="list-inline-item text-secondary">{{ item.city }}</li>
             <li class="list-inline-item text-secondary">{{ item.district }}</li>
           </ul>

@@ -1,0 +1,16 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "parcel build ./src/**/*.html",
+    "start": "parcel serve ./src/**/*.html --port=9000",
+    "watch": "parcel watch ./src/**/*.html"
+  },
+  "author": "ovaphlow",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}
