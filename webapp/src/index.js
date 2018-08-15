@@ -1,6 +1,3 @@
-import navbar from './navbar.html'
-document.getElementById('navbar').innerHTML = navbar
-
 let app = new Vue({
   el: '#app',
 
@@ -26,11 +23,7 @@ let app = new Vue({
       url: './api/job/',
       responseType: 'json'
     }).then(response => {
-      if (response.data.message === 200) {
-        this.content = response.data.content
-      } else {
-        this.message = '服务器异常。'
-      }
+      this.content = response.data.content 
     })
   }
 })
