@@ -41,7 +41,7 @@ class User extends React.Component {
               </div>
 
               <div className="col">
-                <a href="./user.resume.post.html" className="btn btn-block btn-outline-info">简历投递记录</a>
+                <a href="./user.resume-post.html" className="btn btn-block btn-outline-info">简历投递记录</a>
               </div>
 
               <br /><br />

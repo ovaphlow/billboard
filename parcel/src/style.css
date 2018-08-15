@@ -5,3 +5,8 @@ body {
 .theme-dh {
   color: #17a2b8;
 }
+
+.theme-dh-title {
+  color: #ffffff;
+  background-color: #17a2b8;
+}

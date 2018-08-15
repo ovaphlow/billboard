@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Navbar from './component/Navbar.User'
+import JobItem from './component/JobItem'
 
 import Banner3 from './image/banner3.jpg'
 import Banner4 from './image/banner4.jpg'
@@ -12,6 +13,7 @@ class Index extends React.Component {
     super(props)
     this.state = { message: '', list: [] }
     this.filter = this.filter.bind(this)
+    this.detail = this.detail.bind(this)
   }
 
   componentDidMount() {
@@ -26,6 +28,11 @@ class Index extends React.Component {
       }
       this.setState({ list: response.data.content })
     }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+  }
+
+  detail(event) {
+    sessionStorage.setItem('job', event.target.getAttribute('data-id'))
+    location.href = './job.html'
   }
 
   filter() {
@@ -101,30 +108,7 @@ class Index extends React.Component {
           </div>
 
           {this.state.list.map(item =>
-            <div className="card w-100 mt-3" key={item.uuid}>
-              <div className="card-header" style={{color: '#ffffff', backgroundColor: '#17a2b8'}}>
-                <i className="fa fa-fw fa-university"></i> {item.name}
-                <span className="text-muted float-right">{item.date}</span>
-              </div>
-
-              <div className="card-body">
-                <h5 className="card-title">
-                  <a href={'./job.html?uuid=' + item.uuid} style={{color: '#17a2b8'}}>{item.title}</a>
-                </h5>
-
-                <div className="card-text">
-                  {item.requirement}
-                  <ul className="list-inline pull-left">
-
-                  </ul>
-                  <ul className="list-inline pull-right">
-                    <li className="list-inline-item text-secondary"><i className="fa fa-briefcase"></i></li>
-                    <li className="list-inline-item text-secondary">{item.city}</li>
-                    <li className="list-inline-item text-secondary">{item.district}</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <JobItem key={item.uuid} item={item} />
           )}
         </div>
       </div>

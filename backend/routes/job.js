@@ -66,8 +66,6 @@ router.get('/category/:category', async (req, res) => {
  * 指定职位投递的简历
  */
 router.route('/:job_uuid/user').post((req, res) => {
-  req.body.job_uuid = req.params.job_uuid
-
   let date = moment(new Date()).format('YYYY-MM-DD');
   let sql1 = `select count(*) count
     from 
@@ -76,11 +74,12 @@ router.route('/:job_uuid/user').post((req, res) => {
     date_format(date, '%Y-%m-%d') = :date
     and resume_uuid = (select uuid from ${config.database.schema}.resume where user_uuid = :user_uuid limit 1)
   `
+  req.body.job_uuid = req.params.job_uuid
   sequelize.query(sql1, {
     replacements: {
       date: date,
       user_uuid: req.body.user_uuid,
-      job_uuid: req.body.job_uuid
+      job_uuid: req.params.job_uuid
     },
     type: sequelize.QueryTypes.SELECT
   }).then(result => {
@@ -120,7 +119,7 @@ router.route('/:job_uuid/user').post((req, res) => {
  * 判断是否可以点击投递按钮。
  * 默认一天一份简历仅可以投递一家公司一次。
  */
-router.route('/judge').post((req, res) => {
+router.get('/:uuid/judge/:user_uuid', (req, res) => {
   let date = moment(new Date()).format('YYYY-MM-DD');
   let sql = `
     select count(*) count
@@ -131,23 +130,22 @@ router.route('/judge').post((req, res) => {
       and date_format(date, '%Y-%m-%d') = :date
       and resume_uuid = (select uuid from ${config.database.schema}.resume where user_uuid = :user_uuid limit 1)
   `
-
   sequelize.query(sql, {
+    type: sequelize.QueryTypes.SELECT,
     replacements: {
       date: date,
-      user_uuid: req.body.user_uuid,
-      job_uuid: req.body.job_uuid
-    },
-    type: sequelize.QueryTypes.SELECT
+      user_uuid: req.params.user_uuid,
+      job_uuid: req.params.uuid
+    }
   }).then(result => {
-    if (result[0].count < 1) {
-      res.json({ content: '200', message: '' })
+    if (result[0].count === 0) {
+      res.json({ content: '', message: '' })
     } else {
-      res.json({ content: '500', message: '请明天投递' })
+      res.json({ content: '', message: '请明天投递' })
     }
   }).catch(err => {
     logger.error(err)
-    res.json({ content: '500', message: '服务器错误' })
+    res.json({ content: '', message: '服务器错误' })
   })
 })
 
