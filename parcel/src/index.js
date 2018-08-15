@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom'
 
 import Navbar from './component/Navbar.User'
 
+import Banner3 from './image/banner3.jpg'
+import Banner4 from './image/banner4.jpg'
+import Banner6 from './image/banner6.jpg'
+
 class Index extends React.Component {
   constructor(props) {
     super(props)
@@ -50,7 +54,13 @@ class Index extends React.Component {
         <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img className="d-block w-100" src="./assets/image/banner3.jpg" alt="宣传图" />
+              <img className="d-block w-100" src={Banner3} alt="宣传图" />
+            </div>
+            <div className="carousel-item">
+              <img className="d-block w-100" src={Banner4} alt="宣传图" />
+            </div>
+            <div className="carousel-item">
+              <img className="d-block w-100" src={Banner6} alt="宣传图" />
             </div>
           </div>
 

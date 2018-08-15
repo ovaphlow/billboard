@@ -19,7 +19,7 @@ const prodConfig = {
       acquire: 1000
     },
     packSize: 20000,
-    logging: true,
+    logging: false,
     fetchLimit: 100
   }
 }

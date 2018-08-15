@@ -380,6 +380,7 @@ router.route('/:uuid/career').post((req, res) => {
  * 删除教育经历
  */
 router.route("/education/:uuid").delete((req, res) =>{
+  console.info(req.params.uuid)
   let sql = `
     delete from
       ${config.database.schema}.resume_education

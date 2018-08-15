@@ -1,7 +1,7 @@
 const path = require('path')
 
 const express = require('express')
-// const cors = require('cors')
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const log4js = require('log4js')
 
@@ -19,7 +19,9 @@ app.set('env', config.app.env)
 
 // app.use('/lib', express.static(path.join(__dirname, 'node_modules')))
 
-// app.use(cors())
+if (config.app.env === 'development') {
+  app.use(cors())
+}
 
 app.use(bodyParser.urlencoded({
   extended: true
