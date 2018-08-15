@@ -26,11 +26,7 @@ let app = new Vue({
       url: './api/job/',
       responseType: 'json'
     }).then(response => {
-      if (response.data.message === 200) {
-        this.content = response.data.content
-      } else {
-        this.message = '服务器异常。'
-      }
+      this.content = response.data.content 
     })
   }
 })
