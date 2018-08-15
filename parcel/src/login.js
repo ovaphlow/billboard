@@ -37,7 +37,7 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="text-center" style={{color: '#17a2b8'}}>
+        <h1 className="text-center theme-dh">
           登　录
           <i className="fa fa-fw fa-user-circle-o"></i>
         </h1>

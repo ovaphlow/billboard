@@ -169,7 +169,7 @@ class ResumeExpEducation extends React.Component {
             </div>
           </div>
         </div>
-        
+
         <Tabbar active={'resume'} />
       </div>
     )
@@ -179,6 +179,5 @@ class ResumeExpEducation extends React.Component {
 let auth = JSON.parse(sessionStorage.getItem('auth'))
 if (!!!auth) {
   location.href = './login.html'
-  return false
 }
 ReactDOM.render(<ResumeExpEducation auth={auth} />, document.getElementById('app'))

@@ -190,7 +190,6 @@ class ResumeExpCareer extends React.Component {
 let auth = JSON.parse(sessionStorage.getItem('auth'))
 if (!!!auth) {
   location.href = './login.html'
-  return false
 }
 
 ReactDOM.render(<ResumeExpCareer auth={auth} />, document.getElementById('app'))
