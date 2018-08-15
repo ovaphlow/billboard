@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Navbar from './component/navbar'
+//import Navbar from './component/navbar'
 
-ReactDOM.render(
-  <Navbar/>,
-  document.getElementById('navbar')
-)
+//ReactDOM.render(
+ // <Navbar/>,
+ // document.getElementById('navbar')
+//)
 
 class Register extends React.Component {
   constructor(props) {
@@ -55,7 +55,7 @@ class Register extends React.Component {
       <div className="card">
         <div className="row card-body">
           <div className="col-12 card-title">
-            <h4 style={word}>注册账号</h4>
+            <h3 style={word}>注册账号</h3>
             <hr/>
           </div>
 
