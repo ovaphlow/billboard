@@ -3,10 +3,7 @@ import ReactDOM from 'react-dom'
 
 import Navbar from './component/navbar'
 
-ReactDOM.render(
-  <Navbar/>,
-  document.getElementById('navbar')
-)
+ReactDOM.render(<Navbar/>, document.getElementById('navbar'))
 
 class CompanyLogin extends React.Component {
   constructor(props) {
@@ -35,10 +32,10 @@ class CompanyLogin extends React.Component {
     }).then(response => {
       if (response.data.message) {
         this.setState({ message: response.data.message })
-      } else {
-        sessionStorage.setItem('authCompany', JSON.stringify(response.data.content))
-        location.href = './company.index.html'
+        return false
       }
+      sessionStorage.setItem('authCompany', JSON.stringify(response.data.content))
+      location.href = './company.index.html'
     })
   }
 
