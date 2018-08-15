@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Navbar from './component/Navbar.User'
+import Tabbar from './component/TabbarUser'
 import UserResumeMod from './component/UserResumeMod'
 
 class UserResumeUpdate extends React.Component {
@@ -16,7 +17,7 @@ class UserResumeUpdate extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
 
         <div className="container-fluid">
           <div className="col-12">
@@ -33,6 +34,8 @@ class UserResumeUpdate extends React.Component {
 
           <UserResumeMod read={false} auth={this.props.auth} />
         </div>
+
+        <Tabbar active={'resume'} />
       </div>
     )
   }

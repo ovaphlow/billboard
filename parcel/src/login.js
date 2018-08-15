@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import Tabbar from './component/TabbarUser'
+
 class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -78,6 +80,8 @@ class Login extends React.Component {
             企业账号登录
           </a>
         </div>
+
+        <Tabbar active={'user'} />
       </div>
     )
   }

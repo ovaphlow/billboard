@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Navbar from './component/Navbar.User'
+import Tabbar from './component/TabbarUser'
 import JobItem from './component/JobItem'
 
 class UserResumePost extends React.Component {
@@ -27,7 +28,7 @@ class UserResumePost extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
 
         <div className="container-fluid">
           <div className="col-12">
@@ -48,6 +49,8 @@ class UserResumePost extends React.Component {
             )}
           </ul>
         </div>
+
+        <Tabbar active={'resume'} />
       </div>
     )
   }

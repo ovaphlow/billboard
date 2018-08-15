@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import Navbar from './component/Navbar.User'
 import JobItem from './component/JobItem'
+import TabbarBottom from './component/TabbarUser'
 
 import Banner3 from './image/banner3.jpg'
 import Banner4 from './image/banner4.jpg'
@@ -56,7 +57,7 @@ class Index extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
 
         <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
           <div className="carousel-inner">
@@ -111,6 +112,8 @@ class Index extends React.Component {
             <JobItem key={item.uuid} item={item} />
           )}
         </div>
+
+        <TabbarBottom active={'job'} />
       </div>
     )
   }

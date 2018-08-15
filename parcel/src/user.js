@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Navbar from './component/Navbar.User'
+import Tabbar from './component/TabbarUser'
 
 class User extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class User extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
 
         <div className="contrainer-fluid">
           <div className="col-12">
@@ -57,6 +58,8 @@ class User extends React.Component {
             </div>
           </div>
         </div>
+
+        <Tabbar active={'user'} />
       </div>
     )
   }

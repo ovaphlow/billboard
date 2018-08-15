@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Navbar from './component/Navbar.User'
+import Tabbar from './component/TabbarUser'
 
 class ResumeExpCareer extends React.Component {
   constructor(props) {
@@ -68,7 +69,7 @@ class ResumeExpCareer extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
 
         <div className="container-fluid">
           <div className="col-12">
@@ -178,8 +179,9 @@ class ResumeExpCareer extends React.Component {
               )}
             </div>
           </div>
-
         </div>
+
+        <Tabbar active={'resume'} />
       </div>
     )
   }
