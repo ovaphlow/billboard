@@ -13,21 +13,21 @@
 </head>
 
 <body>
-  <div id="navbar"></div>
+  <!--<div id="navbar"></div>-->
 
   <div id="app" class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <p class="lead">我的简历</p>
+        <h3 style="color: #17a2b8; text-align: center;"><br>我的简历<hr/></h3>
       </div>
 
       <div class="form-group col-12">
-        <label>姓名</label>
+        <label style="color: #17a2b8;">姓　　名</label>
         <input type="text" class="form-control" v-model="resume.name">
       </div>
 
       <div class="form-group col-12">
-        <label>性别</label>
+        <label style="color: #17a2b8;">性　　别</label>
         <select class="form-control" v-model="resume.gender">
           <option value="女">女</option>
           <option value="男" selected>男</option>
@@ -35,22 +35,22 @@
       </div>
 
       <div class="form-group col-12">
-        <label>出生日期</label>
+        <label style="color: #17a2b8;">出生日期</label>
         <input type="date" class="form-control" v-model="resume.birthday">
       </div>
 
       <div class="form-group col-12">
-        <label>手机号码</label>
+        <label style="color: #17a2b8;">手机号码</label>
         <input type="text" class="form-control" v-model="resume.phone">
       </div>
 
       <div class="form-group col-12">
-        <label>Email</label>
+        <label style="color: #17a2b8;">Email</label>
         <input type="text" class="form-control" v-model="resume.email">
       </div>
 
       <div class="col-12">
-        <label>现居住地址</label>
+        <label style="color: #17a2b8;">现居住地址</label>
       </div>
 
       <div class="form-group col-12">
@@ -66,18 +66,34 @@
       </div>
 
       <div class="col-12">
-        <button type="button" class="btn btn-primary btn-lg btn-block " v-on:click="submit">
+        <button type="button" class="btn btn-info btn-lg btn-block " v-on:click="submit">
           <i class="fa fa-fw fa-check-square-o "></i>
           保存
         </button>
-        <a href="./user.resume.html" class="btn btn-outline-secondary btn-block">
+        <a href="./user.resume.html" class="btn btn-outline-info btn-block">
           <i class="fa fa-fw fa-arrow-left"></i>
-          返回
+          取消
         </a>
+        <p>
+          <br><br><br>
+        </p>
       </div>
     </div>
   </div>
-
+  <ul class="nav nav-tabs" role="tablist" style="position:fixed; background-color: white;  bottom:0; font-size: 8px; width: 100%; text-align: center;">
+      <li class="nav-item" style="width: 33%;">
+        <a class="nav-link active" href="index.html" style="color: #17a2b8">
+            <i class="fa fa-quora fa-2x" ></i><br>职位</a>
+      </li>
+      <li class="nav-item" style="width: 33%">
+        <a class="nav-link" href="user.resume.html" style="color: #17a2b8">
+            <i class="fa fa-envelope-open fa-2x"></i><br>简历</a>
+      </li>
+      <li class="nav-item" style="width: 34%">
+        <a class="nav-link" href="job-search.html" style="color: #17a2b8">
+            <i class="fa fa-user fa-2x"></i><br>我的</a>
+      </li>
+  </ul>
   <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js "></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js "></script>

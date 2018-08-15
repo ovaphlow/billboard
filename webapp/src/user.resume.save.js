@@ -1,5 +1,5 @@
-import navbar from './navbar.html'
-document.getElementById('navbar').innerHTML = navbar
+//import navbar from './navbar.html'
+//document.getElementById('navbar').innerHTML = navbar
 
 let user = JSON.parse(sessionStorage.getItem('auth'))
 

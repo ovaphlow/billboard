@@ -23,6 +23,7 @@ module.exports = {
 	'user.task': './src/user.task.js',
 	'user.currency-shop': './src/user.currency-shop.js',
 	'currency-details': './src/currency-details.js',
+	'job-search':'./src/job-search.js',
 
     'resume.exp-education': './src/resume.exp-education.js',
     'resume.exp-education.save': './src/resume.exp-education.save.js',
