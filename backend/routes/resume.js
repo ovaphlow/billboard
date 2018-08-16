@@ -15,7 +15,7 @@ const router = express.Router()
 router.get('/company/:uuid', function (req, res) {
   var sql = `
     select
-      r.*
+      r.*, pr.date
     from
       ${config.database.schema}.post_resume as pr
       join ${config.database.schema}.job as j on pr.job_uuid = j.uuid
@@ -136,7 +136,7 @@ router.route('/job/:uuid/').get((req, res) => {
   let sql = `
     select
       r.uuid, r.name, r.gender, r.birthday, pr.date
-    from  
+    from
       ${config.database.schema}.post_resume as pr
     join
       ${config.database.schema}.resume as r
@@ -188,7 +188,7 @@ router.route('/user/:uuid').get((req, res) => {
 router.route('/:uuid/').post((req, res) => {
   req.body.uuid = req.params.uuid
   let sql = `
-    insert into 
+    insert into
       ${config.database.schema}.resume
     set
       uuid = uuid(),
@@ -244,7 +244,7 @@ router.route('/findResume').get((req, res) => {
       school, qualifications, intake, graduation_time, major_name,
       company_name, station, hiredate, leavedate, income
     from ${config.database.schema}.user_resume a left join
-    ${config.database.schema}.resume_company b on a.id = b.userId 
+    ${config.database.schema}.resume_company b on a.id = b.userId
     ${config.database.schema}.education_experience c on b.companyId = c.id
   `
   sequelize.query(sql, {
@@ -268,11 +268,11 @@ router.route('/:companyId/findResume').get((req, res) => {
       school, qualifications, intake, graduation_time, major_name,
       company_name, station, hiredate, leavedate, income
     from ${config.database.schema}.user_resume a left join
-    ${config.database.schema}.resume_company b on a.id = b.userId 
+    ${config.database.schema}.resume_company b on a.id = b.userId
     ${config.database.schema}.education_experience c on b.companyId = c.id
-    where 
-    companyId = :companyId 
-  ` 
+    where
+    companyId = :companyId
+  `
   sequelize.query(sql, {
     replacements: {
       companyId: req.params.companyId
@@ -293,7 +293,7 @@ router.route('/user/:uuid').put((req, res) => {
   let sql = `
     update
       ${config.database.schema}.resume
-    set 
+    set
       category = :category,
       name = :name,
       gender = :gender,
@@ -385,7 +385,7 @@ router.route("/education/:uuid").delete((req, res) =>{
     delete from
       ${config.database.schema}.resume_education
     where
-      uuid = :uuid  
+      uuid = :uuid
   `
   sequelize.query(sql, {
     replacements: { uuid: req.params.uuid },
@@ -406,7 +406,7 @@ router.route("/career/:uuid").delete((req, res) =>{
     delete from
       ${config.database.schema}.resume_career
     where
-      uuid = :uuid  
+      uuid = :uuid
     `
   sequelize.query(sql, {
     replacements: { uuid: req.params.uuid },
@@ -424,7 +424,7 @@ router.route("/career/:uuid").delete((req, res) =>{
  */
 router.route("/:uuid/education").get((req, res) =>{
   let sql = `
-    select * from ${config.database.schema}.resume_education where master_uuid = :uuid  
+    select * from ${config.database.schema}.resume_education where master_uuid = :uuid
   `
   sequelize.query(sql, {
     replacements: { uuid: req.params.uuid },
@@ -442,7 +442,7 @@ router.route("/:uuid/education").get((req, res) =>{
  */
 router.route("/:uuid/career").get((req, res) =>{
   let sql = `
-    select * from ${config.database.schema}.resume_career where master_uuid = :uuid  
+    select * from ${config.database.schema}.resume_career where master_uuid = :uuid
   `
   sequelize.query(sql, {
     replacements: { uuid: req.params.uuid },

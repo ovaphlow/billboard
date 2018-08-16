@@ -100,9 +100,13 @@ router.route('/:uuid/job/').post((req, res) => {
 router.route('/:uuid/job/').get((req, res) => {
   let sql = `
     select
-      *
+      j.id,
+      j.uuid, j.category, j.date, j.title, j.requirement, j.duty, j.content,
+      c.name, c.province, c.city, c.district, c.address, c.intro
     from
-      ${config.database.schema}.job
+      ${config.database.schema}.job as j
+    join
+      ${config.database.schema}.company as c on c.uuid = j.master_uuid
     where
       master_uuid = :uuid
       and removed = 0
@@ -155,9 +159,9 @@ router.route('/register').post((req, res) => {
   let sql = `
     select
       account
-    from 
+    from
       ${config.database.schema}.company
-    where 
+    where
       account = :account
   `
   sequelize.query(sql, {
@@ -199,11 +203,11 @@ router.route('/register').post((req, res) => {
  */
 router.route("/login").post((req, res) => {
   let sql = `
-    select 
+    select
       *
     from
       ${config.database.schema}.company
-    where 
+    where
       account = :account
   `
   sequelize.query(sql, {
@@ -240,7 +244,7 @@ router.route("/company/:companyId").post((res, req) => {
     select
       account, name
     from ${config.database.schema}.company
-    where 
+    where
       id = :companyId
   `
   sequelize.query(sql, {

@@ -13,7 +13,7 @@ export default class JobItem extends React.Component {
 
   render() {
     return (
-      <div className="card w-100 mt-3" key={this.props.item.uuid}>
+      <div className="card w-100 mt-3">
         <div className="card-header theme-dh-title">
           <i className="fa fa-fw fa-university"></i> {this.props.item.name}
           <span className="text-muted float-right">{this.props.item.date}</span>
@@ -36,6 +36,16 @@ export default class JobItem extends React.Component {
             </ul>
           </div>
         </div>
+
+        {this.props.company &&
+          <div className="card-footer">
+            <div className="btn-group pull-right">
+              <button type="button" className="btn btn-info" onClick={this.resume}>
+                查看收到的简历
+              </button>
+            </div>
+          </div>
+        }
       </div>
     )
   }

@@ -12,7 +12,7 @@ export default class TabbarCompany extends React.Component {
           </a>
         </li>
         <li className="nav-item tab-bottom-item">
-          <a href="./company.job.html" className={this.props.active === 'job' ? 'nav-link active theme-dh' : 'nav-link theme-dh'}>
+          <a href="./company.job-list.html" className={this.props.active === 'job' ? 'nav-link active theme-dh' : 'nav-link theme-dh'}>
             <i className="fa fa-fw fa-envelope-open fa-3x"></i>
             <br />
             职位
