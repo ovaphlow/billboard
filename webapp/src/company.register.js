@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Navbar from './component/navbar'
+//mport Navbar from './component/navbar'
 
-ReactDOM.render(
-  <Navbar/>,
-  document.getElementById('navbar')
-)
+//ReactDOM.render(
+ // <Navbar/>,
+ // document.getElementById('navbar')
+//)
 
 class CompanyRegister extends React.Component {
   constructor(props) {
