@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Navbar from './component/navbar'
+//import Navbar from './component/navbar'
 import ResumeItem from './component/ResumeItem'
 
-ReactDOM.render(
-  <Navbar/>,
-  document.getElementById('navbar')
-)
+//ReactDOM.render(
+ // <Navbar/>,
+  //document.getElementById('navbar')
+//)
 
 class CompanyJob extends React.Component {
   constructor(props) {

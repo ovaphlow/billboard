@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Navbar from './component/navbar'
+//import Navbar from './component/navbar'
 
-ReactDOM.render(<Navbar/>, document.getElementById('navbar'))
+//ReactDOM.render(<Navbar/>, document.getElementById('navbar'))
 
 class CompanyLogin extends React.Component {
   constructor(props) {
