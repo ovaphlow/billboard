@@ -65,7 +65,7 @@ class Company extends React.Component {
               <span className="pull-right"><i className="fa fa-fw fa-angle-right"></i></span>
             </a>
 
-            <a href="./company.resume.filter.html" className="list-group-item list-group-item-action theme-dh">
+            <a href="./company.resume-filter.html" className="list-group-item list-group-item-action theme-dh">
               <i className="fa fa-fw fa-search"></i>
               搜索简历
               <span className="pull-right"><i className="fa fa-fw fa-angle-right"></i></span>
@@ -88,6 +88,7 @@ class Company extends React.Component {
 }
 
 let auth = JSON.parse(sessionStorage.getItem('authCompany'))
-if (!!!auth.uuid) location.href = './company.login.html'
+console.info(auth)
+if (!!!auth) location.href = './company.login.html'
 
 ReactDOM.render(<Company auth={auth} />, document.getElementById('app'))

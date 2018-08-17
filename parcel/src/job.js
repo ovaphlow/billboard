@@ -23,32 +23,33 @@ class Job extends React.Component {
       url: './api/job/' + sessionStorage.getItem('job'),
       responseType: 'json'
     }).then(response => {
-      console.info(response.data)
       if (response.data.message) {
         this.setState({ message: response.data.message })
         return false
       }
       this.setState({ job: response.data.content })
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   submit() {
+    let auth = JSON.parse(sessionStorage.getItem('auth'))
+    if (!!!auth) location.href = './login.html'
+
     this.setState({ message: '' })
     axios({
       method: 'get',
-      url: './api/job/' + sessionStorage.getItem('job') + '/judge/' + this.props.auth.uuid,
+      url: './api/job/' + sessionStorage.getItem('job') + '/judge/' + auth.uuid,
       responseType: 'json'
     }).then(response => {
       if (response.data.message) {
         this.setState({ message: response.data.message })
         return false
       }
-      console.info(response.data)
       axios({
         method: 'post',
         url: './api/job/' + sessionStorage.getItem('job') + '/user',
         data: {
-          user_uuid: this.props.auth.uuid
+          user_uuid: auth.uuid
         },
         responseType: 'json'
       }).then(response => {
@@ -59,8 +60,8 @@ class Job extends React.Component {
         // ---------------------------------------------------------
         this.setState({ message: '投递成功' })
         // ---------------------------------------------------------
-      }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+      }).catch(err => this.setState({ message: `服务器通信异常` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   back() {
@@ -166,9 +167,4 @@ class Job extends React.Component {
   }
 }
 
-let auth = JSON.parse(sessionStorage.getItem('auth'))
-if (!!!auth) {
-  location.href = './login.html'
-}
-
-ReactDOM.render(<Job auth={auth} />, document.getElementById('app'))
+ReactDOM.render(<Job />, document.getElementById('app'))

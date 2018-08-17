@@ -21,7 +21,7 @@ class CompanyJobList extends React.Component {
         return false
       }
       this.setState({ jobList: response.data.content })
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   render() {
@@ -69,6 +69,6 @@ class CompanyJobList extends React.Component {
 }
 
 let auth = JSON.parse(sessionStorage.getItem('authCompany'))
-if (!!!auth.uuid) location.href = './company.login.html'
+if (!!!auth) location.href = './company.login.html'
 
 ReactDOM.render(<CompanyJobList auth={auth} />, document.getElementById('app'))

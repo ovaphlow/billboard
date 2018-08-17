@@ -31,7 +31,7 @@ class Login extends React.Component {
       }
       sessionStorage.setItem('auth', JSON.stringify(response.data.content))
       location.href = './user.html'
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   render() {
@@ -81,7 +81,7 @@ class Login extends React.Component {
           </a>
         </div>
 
-        <Tabbar active={'user'} />
+        <Tabbar />
       </div>
     )
   }

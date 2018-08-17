@@ -135,12 +135,11 @@ router.route('/:uuid').get((req, res) => {
 router.route('/job/:uuid/').get((req, res) => {
   let sql = `
     select
-      r.uuid, r.name, r.gender, r.birthday, pr.date
+      r.*, pr.date
     from
       ${config.database.schema}.post_resume as pr
-    join
-      ${config.database.schema}.resume as r
-      on r.uuid = pr.resume_uuid
+      join ${config.database.schema}.job as j on pr.job_uuid = j.uuid
+      join ${config.database.schema}.resume as r on pr.resume_uuid = r.uuid
     where
       job_uuid = :job_uuid
     order by

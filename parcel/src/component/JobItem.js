@@ -8,7 +8,7 @@ export default class JobItem extends React.Component {
 
   detail(event) {
     sessionStorage.setItem('job', event.target.getAttribute('data-id'))
-    location.href = './job.html'
+    location.href = './company.job.html'
   }
 
   render() {
@@ -40,8 +40,8 @@ export default class JobItem extends React.Component {
         {this.props.company &&
           <div className="card-footer">
             <div className="btn-group pull-right">
-              <button type="button" className="btn btn-info" onClick={this.resume}>
-                查看收到的简历
+              <button type="button" data-id={this.props.item.uuid} className="btn btn-info" onClick={this.detail}>
+                查看详情
               </button>
             </div>
           </div>

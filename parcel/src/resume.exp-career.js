@@ -25,7 +25,7 @@ class ResumeExpCareer extends React.Component {
         return false
       }
       this.setState({ list: response.data.content })
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   save() {
@@ -48,7 +48,7 @@ class ResumeExpCareer extends React.Component {
         return false
       }
       location.reload(true)
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   remove(event) {
@@ -63,7 +63,7 @@ class ResumeExpCareer extends React.Component {
         return false
       }
       location.reload(true)
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   render() {
@@ -181,7 +181,7 @@ class ResumeExpCareer extends React.Component {
           </div>
         </div>
 
-        <Tabbar active={'resume'} />
+        <Tabbar />
       </div>
     )
   }

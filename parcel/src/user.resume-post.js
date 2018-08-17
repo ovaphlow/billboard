@@ -22,7 +22,7 @@ class UserResumePost extends React.Component {
         return false
       }
       this.setState({ list: response.data.content })
-    }).catch(err => this.setSTate({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setSTate({ message: `服务器通信异常` }))
   }
 
   render() {
@@ -57,7 +57,7 @@ class UserResumePost extends React.Component {
 }
 
 let auth = JSON.parse(sessionStorage.getItem('auth'))
-if (!!!auth.uuid) {
+if (!!!auth) {
   location.href = './login.html'
 }
 

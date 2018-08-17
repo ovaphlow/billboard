@@ -20,9 +20,8 @@ class CompanyResumeList extends React.Component {
         this.message = response.data.message
         return false
       }
-      console.info(response.data.content)
       this.setState({ resumeList: response.data.content })
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   render() {
@@ -50,13 +49,13 @@ class CompanyResumeList extends React.Component {
           )}
         </div>
 
-        <Tabbar />
+        <Tabbar active={'resume'} />
       </div>
     )
   }
 }
 
 let auth = JSON.parse(sessionStorage.getItem('authCompany'))
-if (!!!auth.uuid) location.href = './company.login.html'
+if (!!!auth) location.href = './company.login.html'
 
 ReactDOM.render(<CompanyResumeList auth={auth} />, document.getElementById('app'))

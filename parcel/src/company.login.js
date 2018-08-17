@@ -86,7 +86,7 @@ class CompanyLogin extends React.Component {
           </div>
         </div>
 
-        <Tabbar active={'company'} />
+        <Tabbar />
       </div>
     )
   }

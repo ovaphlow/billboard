@@ -28,7 +28,7 @@ class Index extends React.Component {
         return false
       }
       this.setState({ list: response.data.content })
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   detail(event) {
@@ -51,7 +51,7 @@ class Index extends React.Component {
         return false
       }
       this.setState({ list: response.data.content })
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   render() {

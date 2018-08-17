@@ -78,7 +78,7 @@ class CompanyUpdate extends React.Component {
         return false
       }
       location.href = './company.login.html'
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   render() {
@@ -163,13 +163,13 @@ class CompanyUpdate extends React.Component {
           </div>
         </div>
 
-        <Tabbar active={'company'} />
+        <Tabbar />
       </div>
     )
   }
 }
 
 let auth = JSON.parse(sessionStorage.getItem('authCompany'))
-if (!!!auth.uuid) location.href = './company.login.html'
+if (!!!auth) location.href = './company.login.html'
 
 ReactDOM.render(<CompanyUpdate auth={auth} />, document.getElementById('app'))

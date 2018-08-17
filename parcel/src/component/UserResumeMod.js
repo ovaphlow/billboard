@@ -31,7 +31,7 @@ export default class UserResumeMod extends React.Component {
           }
         }
       }
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   changeProvince() {
@@ -74,7 +74,7 @@ export default class UserResumeMod extends React.Component {
         return false
       }
       location.href = './user.resume.html'
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   render() {

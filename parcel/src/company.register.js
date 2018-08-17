@@ -47,7 +47,7 @@ class CompanyRegister extends React.Component {
         return false
       }
       location.href = './company.login.html'
-    }).catch(err => this.setState({ message: `服务器通信异常 ${err}` }))
+    }).catch(err => this.setState({ message: `服务器通信异常` }))
   }
 
   render() {

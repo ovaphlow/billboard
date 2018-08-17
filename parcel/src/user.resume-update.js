@@ -35,7 +35,7 @@ class UserResumeUpdate extends React.Component {
           <UserResumeMod read={false} auth={this.props.auth} />
         </div>
 
-        <Tabbar active={'resume'} />
+        <Tabbar />
       </div>
     )
   }
