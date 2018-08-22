@@ -1,0 +1,40 @@
+/* Add here all your css styles (customizations) */
+header{
+    background-color: #58b99d;
+    text-align:center;
+    color: #000;
+}
+.order-Address{
+    height: 30%;
+}
+
+.icon-head{
+    float:left;
+}
+.icon-body{
+    text-align:right;
+    float:right;
+}
+.icon-account{
+}
+
+.payButton{
+    width: 70%;
+    background-color: #58b99d;
+    text-align:center;
+    margin-left:50%;
+    left: 10%;
+}
+
+body {
+    font-weight: 400;
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+    line-height: 1.6;
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga", "kern";
+    text-rendering: optimizelegibility;
+    background-color: #fff;
+}
