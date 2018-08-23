@@ -1,0 +1,172 @@
+<!-- Header -->
+<header id="js-header" class="u-header u-header--static u-shadow-v19">
+  <!-- Top Bar -->
+  <div class="u-header__section g-brd-bottom g-brd-gray-light-v4 g-bg-black g-transition-0_3">
+    <div class="container">
+      <div class="row justify-content-between align-items-center g-mx-0--lg">
+        <div class="col-auto g-hidden-xs-down g-color-white-opacity-0_6 g-font-weight-400 g-pl-15 g-pl-0--sm g-py-14">
+          <i class="icon-communication-163 u-line-icon-pro g-font-size-18 g-valign-middle g-color-white-opacity-0_8 g-mr-10 g-mt-minus-2"></i>
+          服务热线：800 1234 4321
+        </div>
+
+        <div class="col-auto g-pr-15 g-pr-0--sm">
+          <!-- List -->
+          <ul class="list-inline g-overflow-hidden g-pt-1 g-mx-minus-4 mb-0">
+            <li class="list-inline-item g-mx-4">
+              <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" href="#">平台网站</a>
+            </li>
+
+            <li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li>
+            <li class="list-inline-item g-mx-4">
+              <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" href="#">个人门户</a>
+            </li>
+
+            <li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li>
+            <!-- Account -->
+            <li class="list-inline-item g-mx-4">
+              <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" href="#">商户门户</a>
+            </li>
+
+            <li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li>
+            <!-- Account -->
+            <li class="list-inline-item g-mx-4">
+              <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" href="#" routerLink="/home/modifyPassword">修改密码</a>
+            </li>
+
+            <li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li>
+            <!-- Account -->
+            <li class="list-inline-item g-mx-4">
+              <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" href="#" (click)="signOut()">退出</a>
+            </li>
+            <!-- End Account -->
+          </ul>
+          <!-- End List -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Top Bar -->
+
+  <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10">
+    <nav class="js-mega-menu navbar navbar-expand-lg">
+      <div class="container">
+        <!-- Responsive Toggle Button -->
+        <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-3 g-right-0" type="button"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="navBar"
+                data-toggle="collapse"
+                data-target="#navBar">
+                        <span class="hamburger hamburger--slider g-pr-0">
+                          <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                          </span>
+                        </span>
+        </button>
+        <!-- End Responsive Toggle Button -->
+
+        <!-- Logo -->
+        <a class="" href="#">
+          <img src="/img/logo/logo.png" width="50px" height="50px">
+        </a>
+        <h5 class="h5 g-font-weight-600 ">
+          <span class="g-mr-5 g-color-gray-dark-v4" style="white-space: nowrap">虹账付</span>
+        </h5>
+        <!-- End Logo -->
+
+        <!-- Navigation -->
+        <div id="navBar" class="collapse navbar-collapse align-items-center flex-sm-row g-pt-15 g-pt-0--lg">
+          <ul class="navbar-nav ml-auto">
+            <!-- 首页 -->
+            <li class="nav-item g-mx-10--lg g-mx-15--xl">
+              <a id="nav-link--home" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="/homepage"
+                 aria-haspopup="true"
+                 aria-expanded="false"
+                 aria-controls="nav-submenu--home">
+                首页
+              </a>
+            </li>
+            <!-- End 首页 -->
+            <!-- 交易记录 -->
+            <li class="nav-item g-mx-10--lg g-mx-15--xl">
+              <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#!"
+                 aria-haspopup="true"
+                 aria-expanded="false"
+                 aria-controls="nav-submenu--pages">
+                交易记录
+              </a>
+            </li>
+            <!-- End 交易记录 -->
+            <!-- 统计报表 -->
+            <li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-15--xl"
+                data-animation-in="fadeIn"
+                data-animation-out="fadeOut"
+                data-position="right">
+              <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#!" aria-haspopup="true" aria-expanded="false">
+                统计报表
+                <i class="hs-icon g-font-size-11 g-ml-7"></i>
+              </a>
+
+            </li>
+            <!-- End 统计报表 -->
+            <!-- 内部管理 -->
+            <li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
+              <a id="nav-link--home" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#!"
+                 aria-haspopup="true"
+                 aria-expanded="false"
+                 aria-controls="nav-submenu--home">
+                内部管理
+              </a>
+
+              <ul id="nav-submenu--home" class="hs-sub-menu list-unstyled u-shadow-v11 g-min-width-220 g-brd-top g-brd-primary g-brd-top-2 g-mt-17"
+                  aria-labelledby="nav-link--home">
+                <li class="dropdown-item">
+                  <a class="nav-link g-color-gray-dark-v4" href="home-page-1.html">门店管理</a>
+                </li>
+                <li class="dropdown-item">
+                  <a class="nav-link g-color-gray-dark-v4" href="home-page-1.html">员工管理</a>
+                </li>
+              </ul>
+              <!-- End 内部管理 -->
+            </li>
+            <!-- 合作伙伴 -->
+            <li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
+              <a id="nav-link--home" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#!"
+                 aria-haspopup="true"
+                 aria-expanded="false"
+                 aria-controls="nav-submenu--home">
+                合作伙伴
+              </a>
+
+              <ul id="nav-submenu--home" class="hs-sub-menu list-unstyled u-shadow-v11 g-min-width-220 g-brd-top g-brd-primary g-brd-top-2 g-mt-17"
+                  aria-labelledby="nav-link--home">
+                <li class="dropdown-item">
+                  <a class="nav-link g-color-gray-dark-v4" href="home-page-1.html">二级商户</a>
+                </li>
+                <li class="dropdown-item">
+                  <a class="nav-link g-color-gray-dark-v4" href="home-page-1.html">商户流水</a>
+                </li>
+              </ul>
+            </li>
+            <!-- End 合作伙伴  -->
+            <!-- 账户设置 -->
+            <li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-15--xl"
+                data-animation-in="fadeIn"
+                data-animation-out="fadeOut"
+                data-position="right">
+              <a id="mega-menu-label-3" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#!" aria-haspopup="true" aria-expanded="false">
+                账户设置
+                <i class="hs-icon g-font-size-11 g-ml-7"></i>
+              </a>
+
+            </li>
+            <!-- End 账户设置 -->
+
+          </ul>
+        </div>
+        <!-- End Navigation -->
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- End Header -->
