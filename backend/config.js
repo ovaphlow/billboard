@@ -3,7 +3,7 @@ const os = require('os')
 const prodConfig = {
   app: {
     env: 'production',
-    port: 80,
+    port: 8000,
     secretKey: 'ovaphlow'
   },
   database: {

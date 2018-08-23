@@ -1,0 +1,26 @@
+body {
+  /* margin-top: 3.5rem; */
+  margin-bottom: 4rem;
+}
+
+.theme-dh {
+  color: #17a2b8;
+}
+
+.theme-dh-title {
+  color: #ffffff;
+  background-color: #17a2b8;
+}
+
+.tab-bottom {
+  position:fixed;
+  background-color: white;
+  bottom: 0;
+  font-size: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.tab-bottom-item {
+  width: 33%;
+}
