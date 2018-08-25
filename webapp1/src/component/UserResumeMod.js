@@ -1,50 +1,56 @@
 import React from 'react'
 
-import Region from '../region.json'
-
 export default class UserResumeMod extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { message: '', resume: {} }
+    this.state = { message: '', resume: {}, region: {} }
     this.changeProvince = this.changeProvince.bind(this)
     this.submit = this.submit.bind(this)
   }
 
   componentDidMount() {
-    axios({
+    fetch('./region.json', {
+      method: 'get'
+    })
+    .then(res => res.json())
+    .then(response => console.info(response))
+    fetch('./api/resume/user/' + this.props.auth.uuid, {
       method: 'get',
-      url: './api/resume/user/'+ this.props.auth.uuid,
-      responseType:'json'
-    }).then(response => {
-      if (response.data.message) {
-        this.setState({ message: response.data.message })
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.message) {
+        this.setState({ message: response.message })
         return false
       }
-      this.setState({ resume: response.data.content })
+      this.setState({ resume: response.content })
       if (!!!this.props.read) {
-        document.getElementById('category').value = response.data.content.category
-        document.getElementById('province').options.add(new Option(response.data.content.province, response.data.content.province))
-        document.getElementById('city').options.add(new Option(response.data.content.city, response.data.content.city))
-        for (let key in Region) {
+        document.getElementById('category').value = response.content.category
+        document.getElementById('province').options.add(new Option(response.content.province, response.content.province))
+        document.getElementById('city').options.add(new Option(response.content.city, response.content.city))
+        for (let key in this.state.region) {
           if (key.substr(2, 4) === '0000') {
-            document.getElementById('province').options.add(new Option(Region[key], key))
+            document.getElementById('province').options.add(new Option(this.region[key], key))
           }
         }
       }
-    }).catch(err => this.setState({ message: `服务器通信异常` }))
+    })
   }
 
   changeProvince() {
     document.getElementById('city').innerHTML = ''
     document.getElementById('city').options.add(new Option('未选择', ''))
 
-    for (let key in Region) {
+    for (let key in this.state.region) {
       if (key.substr(0, 2) === document.getElementById('province').value.substr(0, 2) && key.substr(2, 4) !== '0000') {
         if (document.getElementById('province').options[document.getElementById('province').options.selectedIndex].text.indexOf('市') !== -1) {
-          document.getElementById('city').options.add(new Option(Region[key], key))
+          document.getElementById('city').options.add(new Option(this.state.region[key], key))
         } else {
           if (key.substr(4, 2) === '00') {
-            document.getElementById('city').options.add(new Option(Region[key], key))
+            document.getElementById('city').options.add(new Option(this.state.region[key], key))
           }
         }
       }
@@ -52,10 +58,12 @@ export default class UserResumeMod extends React.Component {
   }
 
   submit() {
-    axios({
+    fetch('./api/resume/user/' + this.props.auth.uuid, {
       method: 'put',
-      url: './api/resume/user/' + this.props.auth.uuid,
-      data: {
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
         category: document.getElementById('category').value,
         name: document.getElementById('name').value,
         gender: document.getElementById('gender').value,
@@ -66,15 +74,16 @@ export default class UserResumeMod extends React.Component {
         email: document.getElementById('email').value,
         province: document.getElementById('province').options[document.getElementById('province').options.selectedIndex].text,
         city: document.getElementById('city').options[document.getElementById('city').options.selectedIndex].text,
-      },
-      responseType: 'json'
-    }).then(response => {
-      if (response.data.message) {
-        this.setState({ message: response.data.message })
+      })
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.message) {
+        this.setStaet({ message: response.message })
         return false
       }
-      location.href = './user.resume.html'
-    }).catch(err => this.setState({ message: `服务器通信异常` }))
+      window.location.href = './#/user.resume'
+    }).catch(err => this.setState({ message: '服务器通信异常' }))
   }
 
   render() {
@@ -82,9 +91,7 @@ export default class UserResumeMod extends React.Component {
       <div>
         {this.state.message &&
           <div className="col-12">
-            <div className="alert alert-danger">
-              {this.state.message}
-            </div>
+            <div className="alert alert-danger">{this.state.message}</div>
           </div>
         }
 

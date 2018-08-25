@@ -8,7 +8,7 @@ export default class JobItem extends React.Component {
 
   detail(event) {
     sessionStorage.setItem('job', event.target.getAttribute('data-id'))
-    window.location.href = './#/company.job'
+    window.location.href = './#/job'
   }
 
   render() {

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import JobItem from './component/JobItem'
-import TabbarBottom from './component/TabbarUser'
+import Tabbar from './component/TabbarUser'
 
 import Banner3 from './media/banner3.jpg'
 import Banner4 from './media/banner4.jpg'
@@ -95,7 +95,7 @@ export default class Home extends React.Component {
           )}
         </div>
 
-        <TabbarBottom active="job" />
+        <Tabbar active="job" />
       </div>
     )
   }
