@@ -6,7 +6,7 @@ import UserResumeMod from './component/UserResumeMod'
 export default class UserResume extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { auth: {}, message: '', resume: {} }
+    this.state = { auth: {}, message: '' }
     this.resumeHandler = this.resumeHandler.bind(this)
   }
 
@@ -20,7 +20,6 @@ export default class UserResume extends React.Component {
   }
 
   resumeHandler() {
-    sessionStorage.setItem('resume', this.state.resume.uuid)
     window.location.href = './#/user.resume-update'
   }
 
@@ -52,7 +51,7 @@ export default class UserResume extends React.Component {
           <div className="col-12">
             <label className="theme-dh">教育经历</label>
             <ul className="list-group">
-              <a href="./#/resume.exp-education" className="list-group-item list-group-item-action" style={{height: '45px'}}>
+              <a href="./#/resume.exp-education" className="list-group-item list-group-item-action theme-dh">
                 编辑教育经历
                 <span className="pull-right text-secondary">
                   <i className="fa fa-fw fa-angle-right"></i>
@@ -65,7 +64,7 @@ export default class UserResume extends React.Component {
             <br />
             <label className="theme-dh">工作经历</label>
             <ul className="list-group">
-              <a href="./#/resume.exp-career" className="list-group-item list-group-item-action" style={{height: '45px'}}>
+              <a href="./#/resume.exp-career" className="list-group-item list-group-item-action theme-dh">
                 编辑工作经历
                 <span className="pull-right text-secondary ">
                   <i className="fa fa-fw fa-angle-right " aria-hidden="true"></i>

@@ -9,7 +9,7 @@ const sequelize = new Sequelize(config.database.database, config.database.user, 
 
   port: 3306,
 
-  logging: config.database.logging,
+  logging: false,
 
   // disable inserting undefined values as NULL
   // - default: false
@@ -20,7 +20,7 @@ const sequelize = new Sequelize(config.database.database, config.database.user, 
     max: config.database.pool.max,
     min: config.database.pool.min,
     idle: config.database.pool.idle,
-    acquire: 1000, // 默认10000
+    acquire: config.database.pool.acquire, // 默认10000
   },
 
 })

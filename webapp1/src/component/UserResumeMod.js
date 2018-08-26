@@ -3,18 +3,22 @@ import React from 'react'
 export default class UserResumeMod extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { message: '', resume: {}, region: {} }
+    this.state = { message: '', resume: {}, region: {}, auth: {} }
     this.changeProvince = this.changeProvince.bind(this)
     this.submit = this.submit.bind(this)
   }
 
   componentDidMount() {
+    let auth = JSON.parse(sessionStorage.getItem('auth'))
+    this.setState({ auth: auth })
+
     fetch('./region.json', {
       method: 'get'
     })
     .then(res => res.json())
-    .then(response => console.info(response))
-    fetch('./api/resume/user/' + this.props.auth.uuid, {
+    .then(response => this.setState({ region: response }))
+
+    fetch('./api/resume/user/' + auth.uuid, {
       method: 'get',
       headers: {
         'content-type': 'application/json'
@@ -33,7 +37,7 @@ export default class UserResumeMod extends React.Component {
         document.getElementById('city').options.add(new Option(response.content.city, response.content.city))
         for (let key in this.state.region) {
           if (key.substr(2, 4) === '0000') {
-            document.getElementById('province').options.add(new Option(this.region[key], key))
+            document.getElementById('province').options.add(new Option(this.state.region[key], key))
           }
         }
       }
@@ -58,7 +62,7 @@ export default class UserResumeMod extends React.Component {
   }
 
   submit() {
-    fetch('./api/resume/user/' + this.props.auth.uuid, {
+    fetch('./api/resume/user/' + this.state.auth.uuid, {
       method: 'put',
       headers: {
         'content-type': 'application/json'
@@ -119,7 +123,16 @@ export default class UserResumeMod extends React.Component {
         <div className="col-12">
           <div className="form-group">
             <label className="theme-dh">学历</label>
-            <input type="text" className="form-control" id="degree" readOnly={this.props.read ? true : false} defaultValue={this.state.resume.degree} />
+            <select className="form-control" disabled={this.props.read ? true : false} id="degree" defaultValue={this.state.resume.degree}>
+              {this.props.read &&
+                <option>{this.state.resume.degree}</option>
+              }
+              <option value="高中及以下">高中及以下</option>
+              <option value="大学专科">大学专科</option>
+              <option value="大学本科">大学本科</option>
+              <option value="硕士">硕士</option>
+              <option value="博士">博士</option>
+            </select>
           </div>
         </div>
 

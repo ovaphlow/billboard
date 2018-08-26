@@ -24,6 +24,7 @@ export default class Home extends React.Component {
     })
     .then(res => res.json())
     .then(response => this.setState({ list: response.content }))
+    .catch(err => console.error(`服务器通信异常: ${err}`))
   }
 
   detail(event) {

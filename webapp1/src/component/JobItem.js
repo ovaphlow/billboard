@@ -16,7 +16,7 @@ export default class JobItem extends React.Component {
       <div className="card w-100 mt-3">
         <div className="card-header theme-dh-title">
           <i className="fa fa-fw fa-university"></i> {this.props.item.name}
-          <span className="text-muted float-right">{this.props.item.date}</span>
+          <span className="float-right">{this.props.item.date}</span>
         </div>
 
         <div className="card-body">
