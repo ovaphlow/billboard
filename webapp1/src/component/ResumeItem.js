@@ -9,7 +9,7 @@ export default class ResumeItem extends React.Component {
 
   detail(event) {
     sessionStorage.setItem('resume', event.target.getAttribute('data-id'))
-    location.href = './resume.html'
+    window.location.href = './#/resume'
   }
 
   render() {

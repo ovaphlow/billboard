@@ -4,11 +4,26 @@ export default class JobItem extends React.Component {
   constructor(props) {
     super(props)
     this.detail = this.detail.bind(this)
+    this.remove = this.remove.bind(this)
+  }
+
+  remove(event) {
+    fetch('./api/job/' + event.target.getAttribute('data-id'), {
+      method: 'delete'
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.message) {
+        this.setState({ message: response.message })
+        return false
+      }
+      window.location.reload(true)
+    })
   }
 
   detail(event) {
     sessionStorage.setItem('job', event.target.getAttribute('data-id'))
-    window.location.href = './#/job'
+    window.location.href = './#/company.job'
   }
 
   render() {
@@ -39,6 +54,10 @@ export default class JobItem extends React.Component {
 
         {this.props.company &&
           <div className="card-footer">
+            <button type="button" data-id={this.props.item.uuid} className="btn btn-danger" onClick={this.remove}>
+              <i className="fa fa-fw fa-remove"></i>
+              删除
+            </button>
             <div className="btn-group pull-right">
               <button type="button" data-id={this.props.item.uuid} className="btn btn-info" onClick={this.detail}>
                 查看详情
