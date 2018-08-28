@@ -6,14 +6,14 @@ export default class TabbarUser extends React.Component {
       <ul className="nav nav-tabs tab-bottom" role="tablist">
         <li className="nav-item tab-bottom-item">
           <a className={this.props.active === 'job' ? 'nav-link active theme-dh' : 'nav-link theme-dh'} href="./#/">
-            <i className="fa fa-fw fa-quora fa-3x" ></i>
+            <i className="fa fa-fw fa-bookmark-o fa-3x" ></i>
             <br />
             职位
           </a>
         </li>
         <li className="nav-item tab-bottom-item">
           <a className={this.props.active === 'resume' ? 'nav-link active theme-dh' : 'nav-link theme-dh'} href="./#/user.resume">
-            <i className="fa fa-fw fa-envelope-open fa-3x"></i>
+            <i className="fa fa-fw fa-address-card-o fa-3x"></i>
             <br />
             简历
           </a>

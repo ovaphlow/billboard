@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Tabbar from './component/TabbarUser'
+import { DegreeSelect } from './component/Common'
 
 export default class ResumeExpEducation extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ export default class ResumeExpEducation extends React.Component {
       body: JSON.stringify({
         school: document.getElementById('school').value,
         major: document.getElementById('major').value,
-        degree: document.getElementById('degree').value,
+        degree: document.getElementById('component.degree-list').value,
         begin: document.getElementById('begin').value,
         end: document.getElementById('end').value
       })
@@ -115,16 +116,7 @@ export default class ResumeExpEducation extends React.Component {
             </div>
 
             <div className="col-6">
-              <div className="form-group">
-                <label className="theme-dh">学历</label>
-                <select className="form-control" id="degree">
-                  <option value="高中及以下">高中及以下</option>
-                  <option value="大学专科">大学专科</option>
-                  <option value="大学本科">大学本科</option>
-                  <option value="硕士">硕士</option>
-                  <option value="博士">博士</option>
-                </select>
-              </div>
+              <DegreeSelect />
             </div>
           </div>
 

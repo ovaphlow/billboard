@@ -83,6 +83,11 @@ export default class Resume extends React.Component {
                 <li className="list-inline-item">{this.state.resume.province}</li>
                 <li className="list-inline-item">{this.state.resume.city}</li>
               </ul>
+
+              <ul className="list-inline">
+                <li className="list-inline-item theme-dh">联系电话：</li>
+                <li className="list-inline-item">{this.state.resume.phone}</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -137,7 +142,7 @@ export default class Resume extends React.Component {
           </div>
         </div>
 
-        <Tabbar active={'resume'} />
+        <Tabbar />
       </div>
     )
   }

@@ -83,6 +83,9 @@ export default class CompanyLogin extends React.Component {
             <div className="text-center">
               <br/>
               <a href="./#/company.register">没有账号，我要注册。</a>
+              <br />
+              <br />
+              <a href="./#/login">个人用户登录</a>
             </div>
           </div>
         </div>

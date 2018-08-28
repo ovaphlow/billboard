@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { DegreeSelect, CategorySelect } from './Common'
+
 export default class UserResumeMod extends React.Component {
   constructor(props) {
     super(props)
@@ -12,27 +14,16 @@ export default class UserResumeMod extends React.Component {
     let auth = JSON.parse(sessionStorage.getItem('auth'))
     this.setState({ auth: auth })
 
-    fetch('./region.json', {
-      method: 'get'
-    })
+    fetch('./region.json')
     .then(res => res.json())
     .then(response => this.setState({ region: response }))
 
-    fetch('./api/resume/user/' + auth.uuid, {
-      method: 'get',
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
+    fetch('./api/resume/user/' + auth.uuid)
     .then(res => res.json())
     .then(response => {
-      if (response.message) {
-        this.setState({ message: response.message })
-        return false
-      }
       this.setState({ resume: response.content })
       if (!!!this.props.read) {
-        document.getElementById('category').value = response.content.category
+        // document.getElementById('component.category-select').value = response.content.category
         document.getElementById('province').options.add(new Option(response.content.province, response.content.province))
         document.getElementById('city').options.add(new Option(response.content.city, response.content.city))
         for (let key in this.state.region) {
@@ -68,11 +59,11 @@ export default class UserResumeMod extends React.Component {
         'content-type': 'application/json'
       },
       body: JSON.stringify({
-        category: document.getElementById('category').value,
+        category: document.getElementById('component.category-select').value,
         name: document.getElementById('name').value,
         gender: document.getElementById('gender').value,
         birthday: document.getElementById('birthday').value,
-        degree: document.getElementById('degree').value,
+        degree: document.getElementById('component.degree-select').value,
         major: document.getElementById('major').value,
         phone: document.getElementById('phone').value,
         email: document.getElementById('email').value,
@@ -121,19 +112,9 @@ export default class UserResumeMod extends React.Component {
         </div>
 
         <div className="col-12">
-          <div className="form-group">
-            <label className="theme-dh">学历</label>
-            <select className="form-control" disabled={this.props.read ? true : false} id="degree" defaultValue={this.state.resume.degree}>
-              {this.props.read &&
-                <option>{this.state.resume.degree}</option>
-              }
-              <option value="高中及以下">高中及以下</option>
-              <option value="大学专科">大学专科</option>
-              <option value="大学本科">大学本科</option>
-              <option value="硕士">硕士</option>
-              <option value="博士">博士</option>
-            </select>
-          </div>
+          {this.state.resume.degree &&
+            <DegreeSelect degree={this.state.resume.degree} read={this.props.read ? true : false} />
+          }
         </div>
 
         <div className="col-12">
@@ -144,23 +125,9 @@ export default class UserResumeMod extends React.Component {
         </div>
 
         <div className="col-12">
-          <div className="form-group">
-            <label className="theme-dh">求职方向</label>
-            {this.props.read &&
-              <input type="text" className="form-control" readOnly defaultValue={this.state.resume.category} />
-            }
-            {!!!this.props.read &&
-              <select className="form-control" id="category">
-                <option value="">不限类别</option>
-                <option value="产品技术">产品/技术</option>
-                <option value="金融保险">金融/保险</option>
-                <option value="销售市场">销售/市场</option>
-                <option value="生产制造">生产/制造</option>
-                <option value="地产建筑">地产/建筑</option>
-                <option value="职能其它">职能/其它</option>
-              </select>
-            }
-          </div>
+          {this.state.resume.category &&
+            <CategorySelect read={this.props.read} category={this.state.resume.category} />
+          }
         </div>
 
         <div className="col-12">
