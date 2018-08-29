@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Tabbar from './component/TabbarUser'
+import { CareerItem } from './component/UserComponent'
 
 export default class ResumeExpCareer extends React.Component {
   constructor(props) {

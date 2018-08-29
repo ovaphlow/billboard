@@ -4,8 +4,8 @@ import md5 from 'blueimp-md5'
 import Tabbar from './component/TabbarUser'
 
 export default class Login extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = { message: '' }
     this.submit = this.submit.bind(this)
   }
@@ -40,47 +40,57 @@ export default class Login extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="text-center theme-dh">
-          登　录
-          <i className="fa fa-fw fa-user-circle-o"></i>
-        </h1>
-
-        <hr />
-
-        {this.state.message &&
-          <div className="col-12">
-            <div className="alert alert-warning" role="alert">{this.state.message}</div>
-          </div>
-        }
-
-        <div className="col-12 form-group">
-          <label className="theme-dh">账　号</label>
-          <input type="text" className="form-control" id="account" />
-        </div>
-
-        <div className="col-12 form-group">
-          <label className="theme-dh">密　码</label>
-          <input type="password" className="form-control" id="password" />
-        </div>
-
-        <div className="col-12 text-center">
-          <button type="button" className="btn btn-info btn-block btn-lg" onClick={this.submit}>
-            <i className="fa fa-sign-in fa-fw"></i>
+        <div className="container-fluid">
+          <h1 className="text-center theme-dh">
             登　录
-          </button>
+            <i className="fa fa-fw fa-user-circle-o"></i>
+          </h1>
 
-          <br/>
+          <hr />
 
-          <a href="./#/register">
-            注册账号
-          </a>
+          {this.state.message &&
+            <div className="col-12">
+              <div className="alert alert-warning" role="alert">{this.state.message}</div>
+            </div>
+          }
 
-          <br />
-          <br />
+          <div className="col-12">
+            <div className="form-group">
+              <label className="theme-dh">账　号</label>
+              <input type="text" className="form-control form-control-lg" id="account" />
+            </div>
+          </div>
 
-          <a href="./#/company.login">
-            企业账号登录
-          </a>
+          <div className="col-12">
+            <div className="form-group">
+              <label className="theme-dh">密　码</label>
+              <input type="password" className="form-control form-control-lg" id="password" />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-6">
+              <a href="./#/register" className="btn btn-block btn-lg btn-outline-danger">
+                <i className="fa fa-fw fa-user-plus"></i>
+                注册账号
+              </a>
+            </div>
+            <div className="col-6">
+              <button type="button" className="btn btn-info btn-block btn-lg" onClick={this.submit}>
+                <i className="fa fa-sign-in fa-fw"></i>
+                登　录
+              </button>
+            </div>
+          </div>
+
+          <div className="col-12 text-center">
+            <br/>
+            <br />
+
+            <a href="./#/company.login">
+              企业账号登录
+            </a>
+          </div>
         </div>
 
         <Tabbar />

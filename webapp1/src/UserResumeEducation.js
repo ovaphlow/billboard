@@ -2,6 +2,7 @@ import React from 'react'
 
 import Tabbar from './component/TabbarUser'
 import { DegreeSelect } from './component/Common'
+import { EducationItem } from './component/UserComponent'
 
 export default class ResumeExpEducation extends React.Component {
   constructor(props) {
@@ -25,7 +26,6 @@ export default class ResumeExpEducation extends React.Component {
     })
     .then(res => res.json())
     .then(response => this.setState({ list: response.content }))
-    .catch(err => console.error(`服务器通信异常 ${err}`))
   }
 
   save() {
@@ -38,7 +38,7 @@ export default class ResumeExpEducation extends React.Component {
       body: JSON.stringify({
         school: document.getElementById('school').value,
         major: document.getElementById('major').value,
-        degree: document.getElementById('component.degree-list').value,
+        degree: document.getElementById('component.degree-select').value,
         begin: document.getElementById('begin').value,
         end: document.getElementById('end').value
       })
@@ -148,18 +148,7 @@ export default class ResumeExpEducation extends React.Component {
           <div className="col-12">
             <div className="list-group">
               {this.state.list.map(item =>
-                <li className="list-group-item theme-dh" key={item.id}>
-                  {item.school} - {item.major}
-                  <br />
-                  {item.degree}
-                  <span className="pull-right text-secondary">{item.begin} - {item.end}</span>
-                  <br />
-
-                  <button type="button" className="btn btn-sm btn-outline-warning pull-right mt-3" data-id={item.uuid} onClick={this.remove}>
-                    <i className="fa fa-fw fa-remove"></i>
-                    删除
-                  </button>
-                </li>
+                <EducationItem key={item.id} mode="update" />
               )}
             </div>
           </div>

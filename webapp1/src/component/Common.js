@@ -36,3 +36,31 @@ export class CategorySelect extends React.Component {
     )
   }
 }
+
+export class Message extends React.Component {
+  render() {
+    return (
+      <div className="alert alert-info">
+        {this.props.message}
+      </div>
+    )
+  }
+}
+
+export class BackButton extends React.Component {
+  constructor() {
+    super()
+    this.submit = this.submit.bind(this)
+  }
+
+  submit() { window.history.go(-1) }
+
+  render() {
+    return (
+      <button type="button" className="btn btn-outline-secondary btn-block btn-lg" onClick={this.submit}>
+        <i className="fa fa-fw fa-arrow-left"></i>
+        返回
+      </button>
+    )
+  }
+}
