@@ -8,7 +8,6 @@ export default class ResumeExpCareer extends React.Component {
     super(props)
     this.state = { message: '', list: [], auth: {} }
     this.save = this.save.bind(this)
-    this.remove = this.remove.bind(this)
   }
 
   componentDidMount() {
@@ -49,22 +48,6 @@ export default class ResumeExpCareer extends React.Component {
       window.location.reload(true)
     })
     .then(err => this.setState({ message: '服务器通信异常' }))
-  }
-
-  remove(event) {
-    this.setState({ message: '' })
-    fetch('./api/resume/career/' + event.target.getAttribute('data-id'), {
-      method: 'delete'
-    })
-    .then(res => res.json())
-    .then(response => {
-      if (response.message) {
-        this.setState({ message: response.message })
-        return false
-      }
-      window.location.reload(true)
-    })
-    .catch(err => this.setState({ message: '服务器通信异常' }))
   }
 
   render() {
@@ -156,25 +139,7 @@ export default class ResumeExpCareer extends React.Component {
           <div className="col-12">
             <div className="list-group">
               {this.state.list.map(item =>
-                <li className="list-group-item theme-dh" key={item.id}>
-                  {item.company} - {item.title}
-                  <br />
-                  薪资：
-                  <i className=" fa fa-fw fa-cny"></i>
-                  {item.salary}
-                  <span className="pull-right text-secondary">{item.begin} 至 {item.end}</span>
-                  <br />
-
-                  <p>
-                    工作内容：
-                    {item.duty}
-                  </p>
-
-                  <button type="button" className="btn btn-sm btn-outline-warning pull-right mt-3" data-id={item.uuid} onClick={this.remove}>
-                    <i className="fa fa-fw fa-remove"></i>
-                    删除
-                  </button>
-                </li>
+                <CareerItem item={item} key={item.id} mode="update" />
               )}
             </div>
           </div>

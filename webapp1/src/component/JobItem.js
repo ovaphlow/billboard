@@ -23,7 +23,7 @@ export default class JobItem extends React.Component {
 
   detail(event) {
     sessionStorage.setItem('job', event.target.getAttribute('data-id'))
-    window.location.href = './#/company.job'
+    window.location.href = './#/job'
   }
 
   render() {
@@ -45,7 +45,7 @@ export default class JobItem extends React.Component {
 
             </ul>
             <ul className="list-inline pull-right">
-              <li className="list-inline-item text-secondary"><i className="fa fa-briefcase"></i></li>
+              <li className="list-inline-item text-secondary"><i className="fa fa-fw fa-location-arrow"></i></li>
               <li className="list-inline-item text-secondary">{this.props.item.city}</li>
               <li className="list-inline-item text-secondary">{this.props.item.district}</li>
             </ul>

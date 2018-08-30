@@ -1,8 +1,7 @@
 import React from 'react'
 
 import Tabbar from './component/TabbarUser'
-import UserResumeMod from './component/UserResumeMod'
-import { EducationItem } from './component/UserComponent'
+import { EducationItem, CareerItem } from './component/UserComponent'
 
 export default class UserResume extends React.Component {
   constructor(props) {
@@ -17,13 +16,16 @@ export default class UserResume extends React.Component {
       window.location.href = './#/login'
       return false
     }
-    this.setState({ auth: auth })
 
-    fetch('./api/resume/' + auth.uuid + '/education')
+    fetch(`./api/resume/user/${auth.uuid}`)
+    .then(res => res.json())
+    .then(response => this.setState({ auth: response.content }))
+
+    fetch(`./api/resume/${auth.uuid}/education`)
     .then(res => res.json())
     .then(response => this.setState({ educationList: response.content }))
 
-    fetch('./api/resume/' + auth.uuid + '/career')
+    fetch(`./api/resume/${auth.uuid}/career`)
     .then(res => res.json())
     .then(response => this.setState({ careerList: response.content }))
   }
@@ -131,36 +133,14 @@ export default class UserResume extends React.Component {
               </div>
 
               <div className="card-body">
+                <ul className="list-group">
+                  {this.state.careerList.map(item =>
+                    <CareerItem item={item} key={item.id} />
+                  )}
+                </ul>
               </div>
             </div>
           </div>
-
-          {/*<UserResumeMod read={true} auth={this.state.auth} />*/}
-
-          {/*<div className="col-12">
-            <label className="theme-dh">教育经历</label>
-            <ul className="list-group">
-              <a href="./#/resume.exp-education" className="list-group-item list-group-item-action theme-dh">
-                编辑教育经历
-                <span className="pull-right text-secondary">
-                  <i className="fa fa-fw fa-angle-right"></i>
-                </span>
-              </a>
-            </ul>
-          </div>
-
-          <div className="col-12">
-            <br />
-            <label className="theme-dh">工作经历</label>
-            <ul className="list-group">
-              <a href="./#/resume.exp-career" className="list-group-item list-group-item-action theme-dh">
-                编辑工作经历
-                <span className="pull-right text-secondary ">
-                  <i className="fa fa-fw fa-angle-right " aria-hidden="true"></i>
-                </span>
-              </a>
-            </ul>
-          </div>*/}
         </div>
 
         <Tabbar active={'resume'} />

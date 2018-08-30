@@ -72,19 +72,23 @@ export default class CompanyLogin extends React.Component {
             </div>
           }
 
-          <div className="col-12">
-            <button type="button" className="btn btn-outline-info btn-block btn-lg" id="submit" onClick={this.submit}>
-              <i className="fa fa-fw fa-sign-in"></i>
-              确　定
-            </button>
+          <div className="row">
+            <div className="col-6">
+              <a href="./#/company.register" className="btn btn-outline-danger btn-block btn-lg">
+                <i className="fa fa-fw fa-user-plus"></i>
+                注册企业账号
+              </a>
+            </div>
+            <div className="col-6">
+              <button type="button" className="btn btn-info btn-block btn-lg" id="submit" onClick={this.submit}>
+                <i className="fa fa-fw fa-sign-in"></i>
+                确　定
+              </button>
+            </div>
           </div>
 
-          <div className="col-12">
+          <div className="col-12 mt-3">
             <div className="text-center">
-              <br/>
-              <a href="./#/company.register">没有账号，我要注册。</a>
-              <br />
-              <br />
               <a href="./#/login">个人用户登录</a>
             </div>
           </div>

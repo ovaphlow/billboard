@@ -15,7 +15,7 @@ export default class UserResumePost extends React.Component {
       window.location.href = './#/login'
     }
     this.setState({ message: auth })
-    fetch('./api/resume/user/' + auth.uuid + '/post')
+    fetch(`./api/resume/user/${auth.uuid}/post`)
     .then(res => res.json())
     .then(response => this.setState({ list: response.content }))
   }
@@ -35,7 +35,7 @@ export default class UserResumePost extends React.Component {
           </ul>
         </div>
 
-        <Tabbar active={'resume'} />
+        <Tabbar />
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { DegreeSelect, CategorySelect } from './Common'
+import { Message, DegreeSelect, CategorySelect } from './Common'
 
 export default class UserResumeMod extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class UserResumeMod extends React.Component {
     .then(res => res.json())
     .then(response => this.setState({ region: response }))
 
-    fetch('./api/resume/user/' + auth.uuid)
+    fetch(`./api/resume/user/${auth.uuid}`)
     .then(res => res.json())
     .then(response => {
       this.setState({ resume: response.content })
@@ -63,8 +63,9 @@ export default class UserResumeMod extends React.Component {
         name: document.getElementById('name').value,
         gender: document.getElementById('gender').value,
         birthday: document.getElementById('birthday').value,
-        degree: document.getElementById('component.degree-select').value,
+        school: document.getElementById('school').value,
         major: document.getElementById('major').value,
+        degree: document.getElementById('component.degree-select').value,
         phone: document.getElementById('phone').value,
         email: document.getElementById('email').value,
         province: document.getElementById('province').options[document.getElementById('province').options.selectedIndex].text,
@@ -84,12 +85,6 @@ export default class UserResumeMod extends React.Component {
   render() {
     return (
       <div>
-        {this.state.message &&
-          <div className="col-12">
-            <div className="alert alert-danger">{this.state.message}</div>
-          </div>
-        }
-
         <div className="col-12">
           <div className="form-group">
             <label className="theme-dh">姓名</label>
@@ -112,9 +107,10 @@ export default class UserResumeMod extends React.Component {
         </div>
 
         <div className="col-12">
-          {this.state.resume.degree &&
-            <DegreeSelect degree={this.state.resume.degree} read={this.props.read ? true : false} />
-          }
+          <div className="form-group">
+            <label className="theme-dh">毕业院校</label>
+            <input type="text" className="form-control" id="school" readOnly={this.props.read ? true : false} defaultValue={this.state.resume.school} />
+          </div>
         </div>
 
         <div className="col-12">
@@ -122,6 +118,12 @@ export default class UserResumeMod extends React.Component {
             <label className="theme-dh">专业</label>
             <input type="text" className="form-control" id="major" readOnly={this.props.read ? true : false} defaultValue={this.state.resume.major} />
           </div>
+        </div>
+
+        <div className="col-12">
+          {this.state.resume.degree &&
+            <DegreeSelect degree={this.state.resume.degree} read={this.props.read ? true : false} />
+          }
         </div>
 
         <div className="col-12">
@@ -160,17 +162,20 @@ export default class UserResumeMod extends React.Component {
           }
         </div>
 
+        {this.state.message &&
+          <div className="col-12">
+            <Message message={this.state.message} />
+          </div>
+        }
+
         {!!!this.props.read &&
           <div className="col-12 mt-3">
-            <button type="button" className="btn btn-primary btn-block" onClick={this.submit}>
+            <button type="button" className="btn btn-info btn-block btn-lg" onClick={this.submit}>
               <i className="fa fa-fw fa-check-square-o"></i>
               确定
             </button>
           </div>
         }
-
-        <br />
-        <br />
       </div>
     )
   }

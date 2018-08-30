@@ -17,12 +17,7 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    fetch('./api/job/', {
-      method: 'get',
-      headers: {
-        'content-type': 'application/json; charset=utf-8'
-      }
-    })
+    fetch('./api/job/')
     .then(res => res.json())
     .then(response => this.setState({ list: response.content }))
   }
@@ -74,7 +69,7 @@ export default class Home extends React.Component {
 
           <div className="col-12">
             <CategorySelect />
-            <button type="button" className="btn btn-block btn-outline-primary" onClick={this.filter}>
+            <button type="button" className="btn btn-block btn-outline-info" onClick={this.filter}>
               <i className="fa fa-fw fa-search"></i>
               搜索
             </button>

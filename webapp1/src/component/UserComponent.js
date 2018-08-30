@@ -1,33 +1,48 @@
 import React from 'react'
 
-export class CareerItem extends React.Component {
-  constructor(props) {
-    super(props)
-    this.remove = this.remove.bind(this)
+export class RemoveCareer extends React.Component {
+  constructor() {
+    super()
+    this.submit = this.submit.bind(this)
   }
 
-  remove() {}
+  submit() {
+    fetch(`./api/resume/career/${this.props.uuid}`, {
+      method: 'delete'
+    })
+    .then(() => window.location.reload(true))
+  }
 
   render() {
     return (
-      <li className="list-group-item theme-dh" key={item.id}>
-        {item.company} - {item.title}
+      <button type="button" className="btn btn-outline-danger pull-right mt-3" onClick={this.submit}>
+        <i className="fa fa-fw fa-remove"></i>
+        删除
+      </button>
+    )
+  }
+}
+
+export class CareerItem extends React.Component {
+  render() {
+    return (
+      <li className="list-group-item theme-dh">
+        {this.props.item.company} - {this.props.item.title}
         <br />
         薪资：
         <i className=" fa fa-fw fa-cny"></i>
-        {item.salary}
-        <span className="pull-right text-secondary">{item.begin} 至 {item.end}</span>
+        {this.props.item.salary}
+        <span className="pull-right text-secondary">{this.props.item.begin} 至 {this.props.item.end}</span>
         <br />
 
         <p>
           工作内容：
-          {item.duty}
+          {this.props.item.duty}
         </p>
 
-        <button type="button" className="btn btn-sm btn-outline-warning pull-right mt-3" data-id={item.uuid} onClick={this.remove}>
-          <i className="fa fa-fw fa-remove"></i>
-          删除
-        </button>
+        {this.props.mode === 'update' &&
+          <RemoveCareer uuid={this.props.item.uuid} />
+        }
       </li>
     )
   }

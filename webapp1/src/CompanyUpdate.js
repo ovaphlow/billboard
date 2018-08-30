@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Tabbar from './component/TabbarCompany'
+import { BackButton, Message } from './component/Common'
 
 export default class CompanyUpdate extends React.Component {
   constructor(props) {
@@ -77,9 +78,9 @@ export default class CompanyUpdate extends React.Component {
       body: JSON.stringify({
         phone: document.getElementById('phone').value,
         email: document.getElementById('email').value,
-        province: document.getElementById('province').value,
-        city: document.getElementById('city').value,
-        district: document.getElementById('district').value,
+        province: document.getElementById('province').options[document.getElementById('province').options.selectedIndex].text,
+        city: document.getElementById('city').options[document.getElementById('city').options.selectedIndex].text,
+        district: document.getElementById('district').options[document.getElementById('district').options.selectedIndex].text,
         address: document.getElementById('address').value,
         intro: document.getElementById('intro').value
       })
@@ -152,27 +153,27 @@ export default class CompanyUpdate extends React.Component {
                 <label className="theme-dh">简介</label>
                 <textarea rows="3" className="form-control" id="intro"></textarea>
               </div>
-
-              {this.state.message &&
-                <div className="alert alert-danger">
-                  {this.state.message}
-                </div>
-              }
-
-              <button type="button" className="btn btn-info btn-block btn-lg" onClick={this.submit}>
-                <i className="fa fa-fw fa-check-square-o"></i>
-                确定
-              </button>
-
-              <br />
-
-              <div className="text-center">
-                <a href="./#/company">
-                  <i className="fa fa-fw fa-arrow-left"></i>
-                  返回
-                </a>
-              </div>
             </div>
+          </div>
+        </div>
+
+
+        {this.state.message &&
+          <div className="col-12">
+            <Message message={this.state.message} />
+          </div>
+        }
+
+        <div className="row mt-3">
+          <div className="col">
+            <BackButton />
+          </div>
+
+          <div className="col">
+            <button type="button" className="btn btn-info btn-block btn-lg" onClick={this.submit}>
+              <i className="fa fa-fw fa-check-square-o"></i>
+              确定
+            </button>
           </div>
         </div>
 
