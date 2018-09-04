@@ -59,13 +59,13 @@ export default class UserResumeMod extends React.Component {
         'content-type': 'application/json'
       },
       body: JSON.stringify({
-        category: document.getElementById('component.category-select').value,
+        // category: document.getElementById('component.category-select').value,
         name: document.getElementById('name').value,
         gender: document.getElementById('gender').value,
         birthday: document.getElementById('birthday').value,
         school: document.getElementById('school').value,
         major: document.getElementById('major').value,
-        degree: document.getElementById('component.degree-select').value,
+        // degree: document.getElementById('component.degree-select').value,
         phone: document.getElementById('phone').value,
         email: document.getElementById('email').value,
         province: document.getElementById('province').options[document.getElementById('province').options.selectedIndex].text,

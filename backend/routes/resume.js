@@ -296,13 +296,11 @@ router.route('/user/:uuid').put((req, res) => {
     update
       ${config.database.schema}.resume
     set
-      category = :category,
       name = :name,
       gender = :gender,
       birthday = :birthday,
       school = :school,
       major = :major,
-      degree = :degree,
       phone = :phone,
       email = :email,
       province = :province,
