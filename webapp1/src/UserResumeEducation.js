@@ -148,7 +148,7 @@ export default class ResumeExpEducation extends React.Component {
           <div className="col-12">
             <div className="list-group">
               {this.state.list.map(item =>
-                <EducationItem key={item.id} mode="update" />
+                <EducationItem key={item.id} item={item} mode="update" />
               )}
             </div>
           </div>
