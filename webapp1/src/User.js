@@ -37,20 +37,29 @@ export default class User extends React.Component {
 
             <div className="row">
               <div className="col">
-                <a href="./#/user.resume" className="btn btn-block btn-outline-info">我的简历</a>
+                <a href="./#/user.resume" className="btn btn-block btn-outline-info btn-lg">
+                  <i className="fa fa-fw fa-address-card-o"></i>
+                  我的简历
+                </a>
               </div>
 
               <div className="col">
-                <a href="./#/user.resume-post" className="btn btn-block btn-outline-info">简历投递记录</a>
+                <a href="./#/user.resume-post" className="btn btn-block btn-outline-info btn-lg">
+                  <i className="fa fa-fw fa-history"></i>
+                  简历投递记录
+                </a>
               </div>
 
               <br /><br />
               <div className="col">
-                <a href="./#/user.message-list" className="btn btn-block btn-outline-info">收到的消息</a>
+                <a href="./#/user.message-list" className="btn btn-block btn-outline-info btn-lg">
+                  <i className="fa fa-fw fa-commenting-o"></i>
+                  收到的消息
+                </a>
               </div>
               <br /><br /><br />
-              <div className="col-12">
-                <a href="./#/login" className="btn btn-info btn-block btn-lg">
+              <div className="col-12 text-center">
+                <a href="./#/login" className="btn btn-outline-secondary">
                   <i className="fa fa-fw fa-sign-out"></i>
                   退出登录
                 </a>

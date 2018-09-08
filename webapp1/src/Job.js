@@ -1,13 +1,13 @@
 import React from 'react'
 
 import Tabbar from './component/TabbarUser'
+import { BackButton, Message } from './component/Common'
 
 export default class Job extends React.Component {
   constructor(props) {
     super(props)
     this.state = { message: '', job: {} }
     this.submit = this.submit.bind(this)
-    this.back = this.back.bind(this)
   }
 
   componentDidMount() {
@@ -17,12 +17,7 @@ export default class Job extends React.Component {
       return false
     }
 
-    fetch('./api/job/' + sessionStorage.getItem('job'), {
-      method: 'get',
-      headers: {
-        'content-type': 'application/json; charset=utf-8'
-      }
-    })
+    fetch('./api/job/' + sessionStorage.getItem('job'))
     .then(res => res.json())
     .then(response => this.setState({ job: response.content }))
   }
@@ -34,12 +29,7 @@ export default class Job extends React.Component {
       return false
     }
     this.setState({ message: '' })
-    fetch('./api/job/' + sessionStorage.getItem('job') + '/judge/' + auth.uuid, {
-      method: 'get',
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
+    fetch(`./api/job/${sessionStorage.getItem('job')}/judge/${auth.uuid}`)
     .then(res => res.json())
     .then(response => {
       if (response.message) {
@@ -49,7 +39,7 @@ export default class Job extends React.Component {
       fetch('./api/job/' + sessionStorage.getItem('job') + '/user', {
         method: 'post',
         headers: {
-          'content-type': 'application/json'
+          'content-type': 'application/json; charset=utf-8'
         },
         body: JSON.stringify({
           user_uuid: auth.uuid
@@ -67,10 +57,6 @@ export default class Job extends React.Component {
     }).catch(err => this.setState({ message: '服务器通信异常' }))
   }
 
-  back() {
-    window.history.go(-1)
-  }
-
   render() {
     return (
       <div>
@@ -78,12 +64,6 @@ export default class Job extends React.Component {
           <div className="col-12">
             <h3 className="text-center theme-dh">招聘信息</h3>
           </div>
-
-          {this.state.message &&
-            <div className="col-12">
-              <div className="alert alert-danger">{this.state.message}</div>
-            </div>
-          }
 
           <div className="col-12">
             <div className="card">
@@ -145,18 +125,23 @@ export default class Job extends React.Component {
             </div>
           </div>
 
-          <div className="col-12 mt-3">
-            <button type="button" className="btn btn-info btn-block btn-large" onClick={this.submit}>
-              <i className="fa fa-fw fa-check-square-o"></i>
-              投递简历
-              </button>
+          {this.state.message &&
+            <div className="col-12 mt-3">
+              <Message message={this.state.message} />
+            </div>
+          }
+
+          <div className="row mt-3">
+            <div className="col-6">
+              <BackButton />
             </div>
 
-          <div className="col-12 mt-3">
-            <button type="button" className="btn btn-sm btn-outline-info btn-block" onClick={this.back}>
-              <i className="fa fa-fw fa-arrow-left"></i>
-              返回
-            </button>
+            <div className="col-6">
+              <button type="button" className="btn btn-info btn-block btn-lg" onClick={this.submit}>
+                <i className="fa fa-fw fa-check-square-o"></i>
+                投递简历
+              </button>
+            </div>
           </div>
         </div>
 

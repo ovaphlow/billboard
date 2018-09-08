@@ -2,6 +2,7 @@ import React from 'react'
 
 import JobItem from './component/JobItem'
 import Tabbar from './component/TabbarUser'
+import { CategorySelect } from './component/Common'
 
 import Banner3 from './media/banner3.jpg'
 import Banner4 from './media/banner4.jpg'
@@ -16,15 +17,9 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    fetch('./api/job/', {
-      method: 'get',
-      headers: {
-        'content-type': 'application/json; charset=utf-8'
-      }
-    })
+    fetch('./api/job/')
     .then(res => res.json())
     .then(response => this.setState({ list: response.content }))
-    .catch(err => console.error(`服务器通信异常: ${err}`))
   }
 
   detail(event) {
@@ -33,16 +28,11 @@ export default class Home extends React.Component {
   }
 
   filter() {
-    if (document.getElementById('category').value === '') {
+    if (document.getElementById('component.category-select').value === '') {
       window.location.reload(true)
       return false
     }
-    fetch('./api/job/category/' + document.getElementById('category').value, {
-      method: 'get',
-      headers: {
-        'content-type': 'application/json; charset=utf-8'
-      }
-    })
+    fetch('./api/job/category/' + document.getElementById('component.category-select').value)
     .then(res => res.json())
     .then(response => this.setState({ list: response.content }))
   }
@@ -78,17 +68,11 @@ export default class Home extends React.Component {
           <div className="col-12"><br /></div>
 
           <div className="col-12">
-            <div className="form-group">
-              <select className="form-control" id="category" onChange={this.filter}>
-                <option value="">不限类别</option>
-                <option value="产品技术">产品/技术</option>
-                <option value="金融保险">金融/保险</option>
-                <option value="销售市场">销售/市场</option>
-                <option value="生产制造">生产/制造</option>
-                <option value="地产建筑">地产/建筑</option>
-                <option value="职能其它">职能/其它</option>
-              </select>
-            </div>
+            <CategorySelect />
+            <button type="button" className="btn btn-block btn-outline-info" onClick={this.filter}>
+              <i className="fa fa-fw fa-search"></i>
+              搜索
+            </button>
           </div>
 
           {this.state.list.map(item =>

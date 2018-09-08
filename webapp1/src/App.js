@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter, Route } from 'react-router-dom'
 
 import Home from './Home'
+import Register from './Register'
 import Login from './Login'
 import User from './User'
 import UserResume from './UserResume'
@@ -30,6 +31,7 @@ class App extends Component {
 
         <div>
           <Route exact path="/" component={Home} />
+          <Route path="/Register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/user" component={User} />
           <Route path="/user.resume" component={UserResume} />
@@ -37,8 +39,8 @@ class App extends Component {
           <Route path="/user.resume-post" component={UserResumePost} />
           <Route path="/user.message-list" component={UserMessageList} />
           <Route path="/user.message" component={UserMessage} />
-          <Route path="/resume.exp-education" component={UserResumeEducation} />
-          <Route path="/resume.exp-career" component={UserResumeCareer} />
+          <Route path="/user.resume-education" component={UserResumeEducation} />
+          <Route path="/user.resume-career" component={UserResumeCareer} />
           <Route path="/job" component={Job} />
           <Route path="/company.register" component={CompanyRegister} />
           <Route path="/company.login" component={CompanyLogin} />

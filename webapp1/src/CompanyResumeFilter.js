@@ -2,6 +2,7 @@ import React from 'react'
 
 import Tabbar from './component/TabbarCompany'
 import ResumeItem from './component/ResumeItem'
+import { DegreeSelect, CategorySelect } from './component/Common'
 
 export default class CompanyResumeFilter extends React.Component {
   constructor(props) {
@@ -15,8 +16,8 @@ export default class CompanyResumeFilter extends React.Component {
     if (sessionStorage.getItem('filter')) {
       this.filter()
       let filter = JSON.parse(sessionStorage.getItem('filter'))
-      document.getElementById('category').value = filter.category
-      document.getElementById('degree').value = filter.degree
+      document.getElementById('component.category-select').value = filter.category
+      document.getElementById('component.degree-select').value = filter.degree
       document.getElementById('major').value = filter.major
     }
   }
@@ -24,8 +25,8 @@ export default class CompanyResumeFilter extends React.Component {
   filter() {
     this.setState({ message: '' })
     let body = {
-      category: document.getElementById('category').value,
-      degree: document.getElementById('degree').value,
+      category: document.getElementById('component.category-select').value,
+      degree: document.getElementById('component.degree-select').value,
       major: document.getElementById('major').value
     }
     fetch('./api/resume/filter', {
@@ -67,34 +68,16 @@ export default class CompanyResumeFilter extends React.Component {
         </div>
 
         <div className="col-12">
-          <div className="form-group">
-            <select className="form-control" id="category">
-              <option value="">求职方向</option>
-              <option value="产品技术">产品/技术</option>
-              <option value="金融保险">金融/保险</option>
-              <option value="销售市场">销售/市场</option>
-              <option value="生产制造">生产/制造</option>
-              <option value="地产建筑">地产/建筑</option>
-              <option value="职能其它">职能/其它</option>
-            </select>
-          </div>
+          <CategorySelect />
+        </div>
+
+        <div className="col-12">
+          <DegreeSelect />
         </div>
 
         <div className="col-12">
           <div className="form-group">
-            <select className="form-control" id="degree">
-              <option value="">学历</option>
-              <option value="高中及以下">高中及以下</option>
-              <option value="大学专科">大学专科</option>
-              <option value="大学本科">大学本科</option>
-              <option value="硕士">硕士</option>
-              <option value="博士">博士</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="col-12">
-          <div className="form-group">
+            <label>专业</label>
             <input type="text" className="form-control" placeholder="专业" id="major" />
           </div>
         </div>

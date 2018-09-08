@@ -87,7 +87,10 @@ router.post('/filter', (req, res) => {
 router.route('/user/:uuid/post').get((req, res) => {
   let sql = `
     select
-      *, (select title from ${config.database.schema}.job where uuid = pr.job_uuid) as title
+      *, (select title from ${config.database.schema}.job where uuid = pr.job_uuid) as title,
+      (select name from ${config.database.schema}.company where uuid = j.master_uuid) as name,
+      (select city from ${config.database.schema}.company where uuid = j.master_uuid) as city,
+      (select district from ${config.database.schema}.company where uuid = j.master_uuid) as district
     from
       ${config.database.schema}.post_resume as pr
       join ${config.database.schema}.job as j on j.uuid = pr.job_uuid
@@ -293,11 +296,10 @@ router.route('/user/:uuid').put((req, res) => {
     update
       ${config.database.schema}.resume
     set
-      category = :category,
       name = :name,
       gender = :gender,
       birthday = :birthday,
-      degree = :degree,
+      school = :school,
       major = :major,
       phone = :phone,
       email = :email,

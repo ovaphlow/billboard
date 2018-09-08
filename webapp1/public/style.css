@@ -1,6 +1,8 @@
 body {
-  /* margin-top: 3.5rem; */
-  margin-bottom: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+  font-size: 1.25rem;
+  background-color: whitesmoke;
 }
 
 .theme-dh {
@@ -19,8 +21,4 @@ body {
   font-size: 0.5rem;
   width: 100%;
   text-align: center;
-}
-
-.tab-bottom-item {
-  width: 33%;
 }
