@@ -55,3 +55,37 @@ router.get('/:uuid', (req, res) => {
     res.json({ content: '', message: '服务器错误' })
   })
 })
+
+/**
+ * 未测试，待修改。
+ */
+router.post('/insertMessage', (req, res) =>{
+  let sql = `
+    insert into ${config.database.schema}.message(uuid, category, source, source_uuid, target, target_uuid, title, content, status, created_at)
+    values(:uuid, :category, :source, :source_uuid, :target, :target_uuid, :title, :content, :status, :created_at)
+  `
+  sequelize.query(sql, {
+    replacements: req.body,
+    tyep: sequelize.QueryTypes.INSERT
+  }).then(result =>{
+    req.json({ content:'', message:''})
+  }).catch(err => {
+    logger.error(err)
+    res.json({content:'', message: '服务器错误'})
+  })
+})
+
+router.get('/deleteMessage/:id', (req, res) => {
+  let sql = `delete from ${config.database.schema}.message where id = :id`
+
+  sequelize.query(sql, {
+    replacements: {id: req.params.id},
+    tyep: sequelize.QueryTypes.DELETE
+  }).then(resule => {
+    res.json({ content: '', message: "删除成功"})
+  }).catch(err => {
+    logger.error(err)
+    res.json({content:'', message: '服务器错误'})
+  })
+
+})
