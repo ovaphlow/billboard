@@ -83,10 +83,10 @@ export default class UserResume extends React.Component {
                   <li className="list-inline-item">{this.state.auth.major}</li>
                 </ul>
 
-                <ul className="list-inline">
+                {/* <ul className="list-inline">
                   <li className="list-inline-item">学历</li>
                   <li className="list-inline-item">{this.state.auth.degree}</li>
-                </ul>
+                </ul> */}
 
                 <ul className="list-inline">
                   <li className="list-inline-item">联系电话</li>

@@ -59,33 +59,59 @@ router.route('/login').post((req, res) => {
   })
 })
 
-router.post('/register', (req, res) => {
+router.post('/register', async(req, res) => {
   let sql = `
     select id, account from ${config.database.schema}.user where account = :account
   `
-  sequelize.query(sql, {
+  let result = await sequelize.query(sql, {
     replacements: req.body,
     type: sequelize.QueryTypes.SELECT
-  }).then(result => {
-    if (result.length > 0) {
-      res.json({ content: '', message: '用户已存在' })
-      return false
-    }
-    sql = `
-      insert into ${config.database.schema}.user set uuid = uuid(), account = :account, password = :password, name = :account
-    `
-    sequelize.query(sql, {
-      replacements: req.body,
-      type: sequelize.QueryTypes.INSERT
-    }).then(result => {
-      res.json({ content: result, message: '' })
-    }).catch(err => {
-      logger.error(err)
-      res.json({ content: '', message: '服务器错误' })
-    })
   }).catch(err => {
     logger.error(err)
     res.json({ content: '', message: '服务器错误' })
+  })
+
+  if(result != null && result != ''){
+    res.json({content:result, message:'已存在该用户名'})
+    return
+  }
+
+  let sql1 = `
+    insert into ${config.database.schema}.user set uuid = uuid(), account = :account, password = :password
+  `
+  let id = await sequelize.query(sql1, {
+    replacements: {
+      account: req.body.account,
+      password: req.body.password
+    },
+    type: sequelize.QueryTypes.INSERT
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误' })
+  })
+  
+  let sql2 = `
+    select * from ${config.database.schema}.user where id = :id
+  `
+  let user = await sequelize.query(sql2, {
+    replacements: {id: id[0]},
+    type: sequelize.QueryTypes.SELECT
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content: '', message: '服务器错误' })
+  })
+
+  let sql3 = `
+    insert into ${config.database.schema}.resume set user_uuid = :uuid
+  `
+  sequelize.query(sql3, {
+    replacements:{uuid: user[0].uuid},
+    type: sequelize.QueryTypes.INSERT
+  }).then(result =>{
+    res.json({content:1})
+  }).catch(err => {
+    logger.error(err)
+    res.json({ content:'', message: '服务器错误'})
   })
 })
 
